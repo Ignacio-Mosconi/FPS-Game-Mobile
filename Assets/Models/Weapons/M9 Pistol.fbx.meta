@@ -1,16 +1,28 @@
 fileFormatVersion: 2
 guid: 05e89770cfeea1b47abe2fc877ef4d33
-timeCreated: 1527868267
-licenseType: Free
 ModelImporter:
-  serializedVersion: 22
+  serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
+    100002: Pistol
+    100004: Pistol.001
+    100006: Magazine
     400000: //RootNode
+    400002: Pistol
+    400004: Pistol.001
+    400006: Magazine
     2100000: Pistol
     2300000: //RootNode
+    2300002: Pistol
+    2300004: Pistol.001
+    2300006: Magazine
     3300000: //RootNode
+    3300002: Pistol
+    3300004: Pistol.001
+    3300006: Magazine
     4300000: Pistol
+    4300002: Pistol.001
+    4300004: Magazine
   externalObjects: {}
   materials:
     importMaterials: 0
@@ -30,6 +42,7 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
@@ -41,7 +54,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 100
     meshCompression: 0
     addColliders: 0
     importVisibility: 1
@@ -61,6 +74,8 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0

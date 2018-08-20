@@ -12,10 +12,8 @@ public class HUD : MonoBehaviour
     [SerializeField] PlayerAnimation playerAnimation;
     [SerializeField] Life playerLife;
     [SerializeField] WeaponManager weaponManager;
-    //[SerializeField] PlayerShooting playerShooting;
-    //[SerializeField] PlayerReloading playerReloading;
 
-    void Awake() 
+    void Start() 
 	{
         playerAnimation.OnShootingEnabledToggle.AddListener(CrosshairEnabledToggle);
         playerLife.OnHit.AddListener(ChangeHealthDisplay);

@@ -10,26 +10,27 @@ public class HUD : MonoBehaviour
     [SerializeField] TextMeshProUGUI ammoText;
     [SerializeField] TextMeshProUGUI healthText;
     [SerializeField] PlayerAnimation playerAnimation;
-    [SerializeField] PlayerShooting playerShooting;
-    [SerializeField] PlayerReloading playerReloading;
     [SerializeField] Life playerLife;
+    [SerializeField] WeaponManager weaponManager;
+    //[SerializeField] PlayerShooting playerShooting;
+    //[SerializeField] PlayerReloading playerReloading;
 
     void Awake() 
 	{
         playerAnimation.OnShootingEnabledToggle.AddListener(CrosshairEnabledToggle);
-        playerReloading.OnAmmoChange.AddListener(ChangeAmmoDisplay);
         playerLife.OnHit.AddListener(ChangeHealthDisplay);
+        weaponManager.PlayerReloading.OnAmmoChange.AddListener(ChangeAmmoDisplay);
 	}
 
     void CrosshairEnabledToggle()
     {
-        crosshair.enabled = playerShooting.enabled;
+        crosshair.enabled = weaponManager.PlayerShooting.enabled;
     }
 
     void ChangeAmmoDisplay()
     {
-        string bulletsInMag = playerReloading.BulletsInMag.ToString();
-        string ammoLeft = playerReloading.AmmoLeft.ToString();
+        string bulletsInMag = weaponManager.PlayerReloading.BulletsInMag.ToString();
+        string ammoLeft = weaponManager.PlayerReloading.AmmoLeft.ToString();
 
         ammoText.text = bulletsInMag + "/" + ammoLeft;
     }

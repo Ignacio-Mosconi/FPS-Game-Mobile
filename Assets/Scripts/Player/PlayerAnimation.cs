@@ -8,24 +8,24 @@ using UnityEngine.Events;
 public class PlayerAnimation : MonoBehaviour 
 {
     [SerializeField] UnityEvent onShootingEnabledToggle;
-    [SerializeField] AnimationClip reloadingAnimation;
-    [SerializeField] GameObject weaponHolder;
+    //[SerializeField] AnimationClip reloadingAnimation;
+    [SerializeField] WeaponManager weaponManager;
     Animator animator;
     CharacterController charController;
     PlayerMovement playerMovement;
-    PlayerShooting playerShooting;
-    PlayerReloading playerReloading;
+    //PlayerShooting playerShooting;
+    //PlayerReloading playerReloading;
 
     void Awake()
     {
         animator = GetComponent<Animator>();
-        playerShooting = weaponHolder.GetComponentInChildren<PlayerShooting>();
-        playerReloading = weaponHolder.GetComponentInChildren<PlayerReloading>();
+        //playerShooting = weaponHolder.GetComponentInChildren<PlayerShooting>();
+        //playerReloading = weaponHolder.GetComponentInChildren<PlayerReloading>();
         charController = GetComponentInParent<CharacterController>();
         playerMovement = GetComponentInParent<PlayerMovement>();
 
-        playerShooting.OnShot.AddListener(HasShot);
-        playerReloading.OnReload.AddListener(HasReloaded);
+        weaponManager.PlayerShooting.OnShot.AddListener(HasShot);
+        weaponManager.PlayerReloading.OnReload.AddListener(HasReloaded);
     }
 
     void Update() 
@@ -39,27 +39,27 @@ public class PlayerAnimation : MonoBehaviour
         {
             if (normalizedVelocity < 0.6)
             {
-                if (!playerShooting.enabled)
+                if (!weaponManager.PlayerShooting.enabled)
                     EnableShooting();
-                if (!playerReloading.enabled)
+                if (!weaponManager.PlayerReloading.enabled)
                     EnableReloading();
             }
             else
             {
                 if (normalizedVelocity >= 0.6)
                 {
-                    if (playerShooting.enabled)
+                    if (weaponManager.PlayerShooting.enabled)
                         DisableShooting();
-                    if (playerReloading.enabled)
+                    if (weaponManager.PlayerReloading.enabled)
                         DisableReloading();
                 }
             }
         }
         else
         {
-            if (playerShooting.enabled)
+            if (weaponManager.PlayerShooting.enabled)
                 DisableShooting();
-            if (playerReloading.enabled)
+            if (weaponManager.PlayerReloading.enabled)
                 DisableReloading();
         }
 
@@ -71,7 +71,7 @@ public class PlayerAnimation : MonoBehaviour
     void HasShot()
     {
         animator.SetBool("Is Shooting", true);
-        Invoke("IsNotShooting", 1 / playerShooting.FireRate);
+        Invoke("IsNotShooting", 1 / weaponManager.PlayerShooting.FireRate);
     }
 
     void IsNotShooting()
@@ -82,7 +82,7 @@ public class PlayerAnimation : MonoBehaviour
     void HasReloaded()
     {
         animator.SetBool("Is Reloading", true);
-        Invoke("IsNotReloading", reloadingAnimation.length);
+        Invoke("IsNotReloading", weaponManager.PlayerReloading.ReloadTime);
     }
 
     void IsNotReloading()
@@ -92,24 +92,24 @@ public class PlayerAnimation : MonoBehaviour
 
     void DisableShooting()
     {
-        playerShooting.enabled = false;
+        weaponManager.PlayerShooting.enabled = false;
         onShootingEnabledToggle.Invoke();
     }
 
     void EnableShooting()
     {
-        playerShooting.enabled = true;
+        weaponManager.PlayerShooting.enabled = true;
         onShootingEnabledToggle.Invoke();
     }
 
     void DisableReloading()
     {
-        playerReloading.enabled = false;
+        weaponManager.PlayerReloading.enabled = false;
     }
 
     void EnableReloading()
     {
-        playerReloading.enabled = true;
+        weaponManager.PlayerReloading.enabled = true;
     }
 
     public UnityEvent OnShootingEnabledToggle

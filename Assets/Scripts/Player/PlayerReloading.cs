@@ -10,6 +10,7 @@ public class PlayerReloading : MonoBehaviour
     [SerializeField] UnityEvent onAmmoChange;
     [SerializeField] UnityEvent onReload;
     [SerializeField] AudioSource reloadSound;
+    [SerializeField] AnimationClip reloadAnimation;
     int bulletsInMag;
 
     void Start()
@@ -70,5 +71,10 @@ public class PlayerReloading : MonoBehaviour
     public UnityEvent OnReload
     {
         get { return onReload; }
+    }
+
+    public float ReloadTime
+    {
+        get { return reloadAnimation.length; }
     }
 }

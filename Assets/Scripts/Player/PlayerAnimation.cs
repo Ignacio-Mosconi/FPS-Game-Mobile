@@ -4,12 +4,12 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(Animator))]
-[RequireComponent(typeof(PlayerShooting))]
 
 public class PlayerAnimation : MonoBehaviour 
 {
     [SerializeField] UnityEvent onShootingEnabledToggle;
     [SerializeField] AnimationClip reloadingAnimation;
+    [SerializeField] GameObject weaponHolder;
     Animator animator;
     CharacterController charController;
     PlayerMovement playerMovement;
@@ -19,8 +19,8 @@ public class PlayerAnimation : MonoBehaviour
     void Awake()
     {
         animator = GetComponent<Animator>();
-        playerShooting = GetComponent<PlayerShooting>();
-        playerReloading = GetComponent<PlayerReloading>();
+        playerShooting = weaponHolder.GetComponentInChildren<PlayerShooting>();
+        playerReloading = weaponHolder.GetComponentInChildren<PlayerReloading>();
         charController = GetComponentInParent<CharacterController>();
         playerMovement = GetComponentInParent<PlayerMovement>();
 

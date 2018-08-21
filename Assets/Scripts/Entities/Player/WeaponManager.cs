@@ -27,9 +27,9 @@ public class WeaponManager : MonoBehaviour
 	
 	void Update ()
     {
-        if (Input.GetAxis("Mouse ScrollWheel") > 0)
+        if (playerShooting.enabled && playerReloading.enabled && Input.GetAxis("Mouse ScrollWheel") > 0)
             SwapWeapon(ScrollWheelDir.Up);
-        if (Input.GetAxis("Mouse ScrollWheel") < 0)
+        if (playerShooting.enabled && playerReloading.enabled && Input.GetAxis("Mouse ScrollWheel") < 0)
             SwapWeapon(ScrollWheelDir.Down);
 	}
 

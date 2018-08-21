@@ -77,4 +77,9 @@ public class PlayerReloading : MonoBehaviour
     {
         get { return reloadAnimation.length; }
     }
+
+    public AnimationClip ReloadAnimation
+    {
+        get { return reloadAnimation; }
+    }
 }

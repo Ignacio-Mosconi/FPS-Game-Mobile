@@ -9,6 +9,9 @@ public class PlayerAnimation : MonoBehaviour
 {
     [SerializeField] UnityEvent onShootingEnabledToggle;
     [SerializeField] WeaponManager weaponManager;
+    [SerializeField] AnimatorOverrideController animatorOverrideController;
+    [SerializeField] AnimationClip[] longGunAnimations;
+    [SerializeField] AnimationClip[] handGunAnimations;
     Animator animator;
     CharacterController charController;
     PlayerMovement playerMovement;
@@ -19,8 +22,11 @@ public class PlayerAnimation : MonoBehaviour
         charController = GetComponentInParent<CharacterController>();
         playerMovement = GetComponentInParent<PlayerMovement>();
 
+        weaponManager.OnWeaponSwap.AddListener(ChangeWeaponAnimations);
         weaponManager.PlayerShooting.OnShot.AddListener(HasShot);
         weaponManager.PlayerReloading.OnReload.AddListener(HasReloaded);
+
+        ChangeWeaponAnimations();
     }
 
     void Update() 
@@ -105,6 +111,31 @@ public class PlayerAnimation : MonoBehaviour
     void EnableReloading()
     {
         weaponManager.PlayerReloading.enabled = true;
+    }
+
+    void ChangeWeaponAnimations()
+    {
+        animator.runtimeAnimatorController = animatorOverrideController;
+        animatorOverrideController["AK-47 Reloading"] = weaponManager.PlayerReloading.ReloadAnimation;
+
+        switch (weaponManager.GetCurrentWeaponIndex())
+        {
+            case 0:
+                animatorOverrideController["Assault Rifle Idle"] = longGunAnimations[0];
+                animatorOverrideController["Assault Rifle Jumping"] = longGunAnimations[1];
+                animatorOverrideController["Assault Rifle Shooting"] = longGunAnimations[2];
+                animatorOverrideController["Assault Rifle Sprinting"] = longGunAnimations[3];
+                animatorOverrideController["Assault Rifle Walking"] = longGunAnimations[4]; 
+                break;
+            case 1:
+                animatorOverrideController["Assault Rifle Idle"] = handGunAnimations[0];
+                animatorOverrideController["Assault Rifle Jumping"] = handGunAnimations[1];
+                animatorOverrideController["Assault Rifle Shooting"] = handGunAnimations[2];
+                animatorOverrideController["Assault Rifle Sprinting"] = handGunAnimations[3];
+                animatorOverrideController["Assault Rifle Walking"] = handGunAnimations[4];
+                break;
+        }
+
     }
 
     public UnityEvent OnShootingEnabledToggle

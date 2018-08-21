@@ -1,17 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 enum ScrollWheelDir
 {
     Up, Down 
 }
 
+enum WeaponType
+{
+    LongGun, HandGun
+}
+
 public class WeaponManager : MonoBehaviour
 {
+    [SerializeField] UnityEvent onWeaponSwap;
     PlayerShooting playerShooting;
     PlayerReloading playerReloading;
-    int currentWeapon = 0;
+    WeaponType currentWeapon = WeaponType.HandGun;
 
 	void Awake ()
     {
@@ -31,11 +38,12 @@ public class WeaponManager : MonoBehaviour
         int i = 0;
         foreach (Transform weapon in transform)
         {
-            weapon.gameObject.SetActive(i == currentWeapon);
-            if (i == currentWeapon)
+            weapon.gameObject.SetActive(i == (int)currentWeapon);
+            if (i == (int)currentWeapon)
             {
-                playerShooting = weapon.GetComponent<PlayerShooting>();
-                playerReloading = weapon.GetComponent<PlayerReloading>();
+                playerShooting = weapon.gameObject.GetComponent<PlayerShooting>();
+                playerReloading = weapon.gameObject.GetComponent<PlayerReloading>();
+                onWeaponSwap.Invoke();
             }
             i++;
         }
@@ -43,25 +51,30 @@ public class WeaponManager : MonoBehaviour
 
     void SwapWeapon(ScrollWheelDir dir)
     {
-        int previousWeapon = currentWeapon;
+        WeaponType previousWeapon = currentWeapon;
 
         if (dir == ScrollWheelDir.Up)
         {
-            if (currentWeapon < transform.childCount - 1)
+            if ((int)currentWeapon < transform.childCount - 1)
                 currentWeapon++;
             else
-                currentWeapon = 0;
+                currentWeapon = WeaponType.LongGun;
         }
         else
         {
-            if (currentWeapon > 0)
+            if ((int)currentWeapon > 0)
                 currentWeapon--;
             else
-                currentWeapon = 0;
+                currentWeapon = WeaponType.HandGun;
         }
 
         if (currentWeapon != previousWeapon)
             SetEquippedWeapon();
+    }
+
+    public int GetCurrentWeaponIndex()
+    {
+        return (int)currentWeapon;
     }
 
     public PlayerShooting PlayerShooting
@@ -72,5 +85,10 @@ public class WeaponManager : MonoBehaviour
     public PlayerReloading PlayerReloading
     {
         get { return playerReloading; }
+    }
+
+    public UnityEvent OnWeaponSwap
+    {
+        get { return onWeaponSwap; }
     }
 }

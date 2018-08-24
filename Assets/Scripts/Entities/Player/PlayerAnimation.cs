@@ -23,8 +23,8 @@ public class PlayerAnimation : MonoBehaviour
         playerMovement = GetComponentInParent<PlayerMovement>();
 
         weaponManager.OnWeaponSwap.AddListener(ChangeWeaponAnimations);
-        weaponManager.PlayerShooting.OnShot.AddListener(HasShot);
-        weaponManager.PlayerReloading.OnReload.AddListener(HasReloaded);
+        weaponManager.CurrentWeaponShooting.OnShot.AddListener(HasShot);
+        weaponManager.CurrentWeaponReloading.OnReload.AddListener(HasReloaded);
 
         ChangeWeaponAnimations();
     }
@@ -40,27 +40,27 @@ public class PlayerAnimation : MonoBehaviour
         {
             if (normalizedVelocity < 0.6)
             {
-                if (!weaponManager.PlayerShooting.enabled)
+                if (!weaponManager.CurrentWeaponShooting.enabled)
                     EnableShooting();
-                if (!weaponManager.PlayerReloading.enabled)
+                if (!weaponManager.CurrentWeaponReloading.enabled)
                     EnableReloading();
             }
             else
             {
                 if (normalizedVelocity >= 0.6)
                 {
-                    if (weaponManager.PlayerShooting.enabled)
+                    if (weaponManager.CurrentWeaponShooting.enabled)
                         DisableShooting();
-                    if (weaponManager.PlayerReloading.enabled)
+                    if (weaponManager.CurrentWeaponReloading.enabled)
                         DisableReloading();
                 }
             }
         }
         else
         {
-            if (weaponManager.PlayerShooting.enabled)
+            if (weaponManager.CurrentWeaponShooting.enabled)
                 DisableShooting();
-            if (weaponManager.PlayerReloading.enabled)
+            if (weaponManager.CurrentWeaponReloading.enabled)
                 DisableReloading();
         }
 
@@ -72,7 +72,7 @@ public class PlayerAnimation : MonoBehaviour
     void HasShot()
     {
         animator.SetBool("Is Shooting", true);
-        Invoke("IsNotShooting", 1 / weaponManager.PlayerShooting.FireRate);
+        Invoke("IsNotShooting", 1 / weaponManager.CurrentWeaponShooting.FireRate);
     }
 
     void IsNotShooting()
@@ -83,7 +83,7 @@ public class PlayerAnimation : MonoBehaviour
     void HasReloaded()
     {
         animator.SetBool("Is Reloading", true);
-        Invoke("IsNotReloading", weaponManager.PlayerReloading.ReloadTime);
+        Invoke("IsNotReloading", weaponManager.CurrentWeaponReloading.ReloadTime);
     }
 
     void IsNotReloading()
@@ -93,46 +93,45 @@ public class PlayerAnimation : MonoBehaviour
 
     void DisableShooting()
     {
-        weaponManager.PlayerShooting.enabled = false;
+        weaponManager.CurrentWeaponShooting.enabled = false;
         onShootingEnabledToggle.Invoke();
     }
 
     void EnableShooting()
     {
-        weaponManager.PlayerShooting.enabled = true;
+        weaponManager.CurrentWeaponShooting.enabled = true;
         onShootingEnabledToggle.Invoke();
     }
 
     void DisableReloading()
     {
-        weaponManager.PlayerReloading.enabled = false;
+        weaponManager.CurrentWeaponReloading.enabled = false;
     }
 
     void EnableReloading()
     {
-        weaponManager.PlayerReloading.enabled = true;
+        weaponManager.CurrentWeaponReloading.enabled = true;
     }
 
     void ChangeWeaponAnimations()
     {
         animator.runtimeAnimatorController = animatorOverrideController;
-        animatorOverrideController["AK-47 Reloading"] = weaponManager.PlayerReloading.ReloadAnimation;
+        animatorOverrideController["DEFAULT SHOOTING"] = weaponManager.CurrentWeaponShooting.ShootAnimation;
+        animatorOverrideController["DEFAULT RELOADING"] = weaponManager.CurrentWeaponReloading.ReloadAnimation;
 
         switch (weaponManager.GetCurrentWeaponIndex())
         {
             case 0:
-                animatorOverrideController["Assault Rifle Idle"] = longGunAnimations[0];
-                animatorOverrideController["Assault Rifle Jumping"] = longGunAnimations[1];
-                animatorOverrideController["Assault Rifle Shooting"] = longGunAnimations[2];
-                animatorOverrideController["Assault Rifle Sprinting"] = longGunAnimations[3];
-                animatorOverrideController["Assault Rifle Walking"] = longGunAnimations[4]; 
+                animatorOverrideController["DEFAULT IDLE"] = longGunAnimations[0];
+                animatorOverrideController["DEFAULT JUMPING"] = longGunAnimations[1];
+                animatorOverrideController["DEFAULT SPRINTING"] = longGunAnimations[2];
+                animatorOverrideController["DEFAULT WALKING"] = longGunAnimations[3]; 
                 break;
             case 1:
-                animatorOverrideController["Assault Rifle Idle"] = handGunAnimations[0];
-                animatorOverrideController["Assault Rifle Jumping"] = handGunAnimations[1];
-                animatorOverrideController["Assault Rifle Shooting"] = handGunAnimations[2];
-                animatorOverrideController["Assault Rifle Sprinting"] = handGunAnimations[3];
-                animatorOverrideController["Assault Rifle Walking"] = handGunAnimations[4];
+                animatorOverrideController["DEFAULT IDLE"] = handGunAnimations[0];
+                animatorOverrideController["DEFAULT JUMPING"] = handGunAnimations[1];
+                animatorOverrideController["DEFAULT SPRINTING"] = handGunAnimations[2];
+                animatorOverrideController["DEFAULT WALKING"] = handGunAnimations[3];
                 break;
         }
 

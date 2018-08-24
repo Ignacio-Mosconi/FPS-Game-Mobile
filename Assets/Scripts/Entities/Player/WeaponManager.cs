@@ -16,22 +16,36 @@ enum WeaponType
 public class WeaponManager : MonoBehaviour
 {
     [SerializeField] UnityEvent onWeaponSwap;
-    PlayerShooting playerShooting;
-    PlayerReloading playerReloading;
-    WeaponType currentWeapon = WeaponType.HandGun;
+    WeaponShooting[2] weaponShootings;
+    WeaponReloading[2] weaponReloadings;
+    WeaponShooting currentWeaponShooting;
+    WeaponReloading currentWeaponReloading;
+    WeaponType currentWeapon = WeaponType.LongGun;
 
 	void Awake ()
     {
+        SetWeaponsArray();
         SetEquippedWeapon();
 	}
 	
 	void Update ()
     {
-        if (playerShooting.enabled && playerReloading.enabled && Input.GetAxis("Mouse ScrollWheel") > 0)
+        if (currentWeaponShooting.enabled && currentWeaponReloading.enabled && Input.GetAxis("Mouse ScrollWheel") > 0)
             SwapWeapon(ScrollWheelDir.Up);
-        if (playerShooting.enabled && playerReloading.enabled && Input.GetAxis("Mouse ScrollWheel") < 0)
+        if (currentWeaponShooting.enabled && currentWeaponReloading.enabled && Input.GetAxis("Mouse ScrollWheel") < 0)
             SwapWeapon(ScrollWheelDir.Down);
 	}
+
+    void SetWeaponsArray()
+    {
+        int i = 0;
+        foreach (Transform weapon in transform)
+        {
+            weaponShootings[i] = weapon.gameObject.GetComponent<WeaponShooting>();
+            weaponReloadings[i] = weapon.gameObject.GetComponent<WeaponReloading>();
+            i++;
+        }
+    }
 
     void SetEquippedWeapon()
     {
@@ -41,8 +55,8 @@ public class WeaponManager : MonoBehaviour
             weapon.gameObject.SetActive(i == (int)currentWeapon);
             if (i == (int)currentWeapon)
             {
-                playerShooting = weapon.gameObject.GetComponent<PlayerShooting>();
-                playerReloading = weapon.gameObject.GetComponent<PlayerReloading>();
+                currentWeaponShooting = weapon.gameObject.GetComponent<WeaponShooting>();
+                currentWeaponReloading = weapon.gameObject.GetComponent<WeaponReloading>();
                 onWeaponSwap.Invoke();
             }
             i++;
@@ -77,14 +91,29 @@ public class WeaponManager : MonoBehaviour
         return (int)currentWeapon;
     }
 
-    public PlayerShooting PlayerShooting
+    public int GetNumberOfWeapons()
     {
-        get { return playerShooting; }
+        return transform.childCount;
     }
 
-    public PlayerReloading PlayerReloading
+    public WeaponShooting GetWeaponShootingAtIndex(int i)
     {
-        get { return playerReloading; }
+        return weaponShootings[i];
+    }
+
+    public WeaponReloading GetWeaponReloadingAtIndex(int i)
+    {
+        return weaponReloadings[i];
+    }
+
+    public WeaponShooting CurrentWeaponShooting
+    {
+        get { return currentWeaponShooting; }
+    }
+
+    public WeaponReloading CurrentWeaponReloading
+    {
+        get { return currentWeaponReloading; }
     }
 
     public UnityEvent OnWeaponSwap

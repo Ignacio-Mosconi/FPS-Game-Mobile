@@ -18,18 +18,20 @@ public class HUD : MonoBehaviour
         playerAnimation.OnShootingEnabledToggle.AddListener(CrosshairEnabledToggle);
         playerLife.OnHit.AddListener(ChangeHealthDisplay);
         weaponManager.OnWeaponSwap.AddListener(ChangeAmmoDisplay);
-        weaponManager.PlayerReloading.OnAmmoChange.AddListener(ChangeAmmoDisplay);
+
+        for (int i = 0; i < weaponManager.GetNumberOfWeapons(); i++)
+            weaponManager.GetWeaponReloadingAtIndex(i).OnAmmoChange.AddListener(ChangeAmmoDisplay);
 	}
 
     void CrosshairEnabledToggle()
     {
-        crosshair.enabled = weaponManager.PlayerShooting.enabled;
+        crosshair.enabled = weaponManager.CurrentWeaponShooting.enabled;
     }
 
     void ChangeAmmoDisplay()
     {
-        string bulletsInMag = weaponManager.PlayerReloading.BulletsInMag.ToString();
-        string ammoLeft = weaponManager.PlayerReloading.AmmoLeft.ToString();
+        string bulletsInMag = weaponManager.CurrentWeaponReloading.BulletsInMag.ToString();
+        string ammoLeft = weaponManager.CurrentWeaponReloading.AmmoLeft.ToString();
 
         ammoText.text = bulletsInMag + "/" + ammoLeft;
     }

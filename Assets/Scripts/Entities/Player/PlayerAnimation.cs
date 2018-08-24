@@ -125,7 +125,7 @@ public class PlayerAnimation : MonoBehaviour
                 animatorOverrideController["DEFAULT IDLE"] = longGunAnimations[0];
                 animatorOverrideController["DEFAULT JUMPING"] = longGunAnimations[1];
                 animatorOverrideController["DEFAULT SPRINTING"] = longGunAnimations[2];
-                animatorOverrideController["DEFAULT WALKING"] = longGunAnimations[3]; 
+                animatorOverrideController["DEFAULT WALKING"] = longGunAnimations[3];
                 break;
             case 1:
                 animatorOverrideController["DEFAULT IDLE"] = handGunAnimations[0];

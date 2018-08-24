@@ -2942,7 +2942,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 10
   range: 100
-  fireRate: 2.5
+  fireRate: 2
   impactForce: 50
   onShot:
     m_PersistentCalls:

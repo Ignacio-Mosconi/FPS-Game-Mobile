@@ -16,15 +16,12 @@ enum WeaponType
 public class WeaponManager : MonoBehaviour
 {
     [SerializeField] UnityEvent onWeaponSwap;
-    WeaponShooting[2] weaponShootings;
-    WeaponReloading[2] weaponReloadings;
     WeaponShooting currentWeaponShooting;
     WeaponReloading currentWeaponReloading;
-    WeaponType currentWeapon = WeaponType.LongGun;
+    WeaponType currentWeapon = WeaponType.HandGun;
 
 	void Awake ()
     {
-        SetWeaponsArray();
         SetEquippedWeapon();
 	}
 	
@@ -35,17 +32,6 @@ public class WeaponManager : MonoBehaviour
         if (currentWeaponShooting.enabled && currentWeaponReloading.enabled && Input.GetAxis("Mouse ScrollWheel") < 0)
             SwapWeapon(ScrollWheelDir.Down);
 	}
-
-    void SetWeaponsArray()
-    {
-        int i = 0;
-        foreach (Transform weapon in transform)
-        {
-            weaponShootings[i] = weapon.gameObject.GetComponent<WeaponShooting>();
-            weaponReloadings[i] = weapon.gameObject.GetComponent<WeaponReloading>();
-            i++;
-        }
-    }
 
     void SetEquippedWeapon()
     {
@@ -89,21 +75,6 @@ public class WeaponManager : MonoBehaviour
     public int GetCurrentWeaponIndex()
     {
         return (int)currentWeapon;
-    }
-
-    public int GetNumberOfWeapons()
-    {
-        return transform.childCount;
-    }
-
-    public WeaponShooting GetWeaponShootingAtIndex(int i)
-    {
-        return weaponShootings[i];
-    }
-
-    public WeaponReloading GetWeaponReloadingAtIndex(int i)
-    {
-        return weaponReloadings[i];
     }
 
     public WeaponShooting CurrentWeaponShooting

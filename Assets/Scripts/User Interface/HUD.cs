@@ -18,9 +18,8 @@ public class HUD : MonoBehaviour
         playerAnimation.OnShootingEnabledToggle.AddListener(CrosshairEnabledToggle);
         playerLife.OnHit.AddListener(ChangeHealthDisplay);
         weaponManager.OnWeaponSwap.AddListener(ChangeAmmoDisplay);
-
-        for (int i = 0; i < weaponManager.GetNumberOfWeapons(); i++)
-            weaponManager.GetWeaponReloadingAtIndex(i).OnAmmoChange.AddListener(ChangeAmmoDisplay);
+        foreach (Transform weapon in weaponManager.transform)
+           weapon.gameObject.GetComponent<WeaponReloading>().OnAmmoChange.AddListener(ChangeAmmoDisplay);
 	}
 
     void CrosshairEnabledToggle()

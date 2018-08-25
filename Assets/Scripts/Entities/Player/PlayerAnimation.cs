@@ -23,8 +23,11 @@ public class PlayerAnimation : MonoBehaviour
         playerMovement = GetComponentInParent<PlayerMovement>();
 
         weaponManager.OnWeaponSwap.AddListener(ChangeWeaponAnimations);
-        weaponManager.CurrentWeaponShooting.OnShot.AddListener(HasShot);
-        weaponManager.CurrentWeaponReloading.OnReload.AddListener(HasReloaded);
+        foreach (Transform weapon in weaponManager.transform)
+        {
+            weapon.gameObject.GetComponent<WeaponShooting>().OnShot.AddListener(HasShot);
+            weapon.gameObject.GetComponent<WeaponReloading>().OnReload.AddListener(HasReloaded);
+        }
 
         ChangeWeaponAnimations();
     }

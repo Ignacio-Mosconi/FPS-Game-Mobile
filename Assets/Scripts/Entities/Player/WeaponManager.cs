@@ -18,7 +18,7 @@ public class WeaponManager : MonoBehaviour
     [SerializeField] UnityEvent onWeaponSwap;
     WeaponShooting currentWeaponShooting;
     WeaponReloading currentWeaponReloading;
-    WeaponType currentWeapon = WeaponType.HandGun;
+    WeaponType currentWeapon = WeaponType.LongGun;
 
 	void Awake ()
     {

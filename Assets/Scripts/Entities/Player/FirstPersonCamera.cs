@@ -4,20 +4,28 @@ using UnityEngine;
 
 public class FirstPersonCamera : MonoBehaviour
 {
-    [SerializeField] Transform fpsCamera;
     [SerializeField] float rotationSpeed;
     [SerializeField] float verticalViewRange;
+    Transform fpsCamera;
     float verAngle = 0;
+    float horAngle = 0;
+
+    void Start()
+    {
+        fpsCamera = GetComponentInChildren<Camera>().transform;
+    }
 
     void Update()
     {
-        float horRotation = Input.GetAxis("Mouse X") * rotationSpeed * Time.deltaTime;
-        float verRotation = -Input.GetAxis("Mouse Y") * rotationSpeed * Time.deltaTime;
+        float horRotation = InputManager.Instance.GetHorizontalViewAxis() * rotationSpeed * Time.deltaTime;
+        float verRotation = InputManager.Instance.GetVerticalViewAxis() * rotationSpeed * Time.deltaTime;
 
-        verAngle += verRotation;
+        horAngle += horRotation;
+        verAngle -= verRotation;
+
         verAngle = Mathf.Clamp(verAngle, -verticalViewRange, verticalViewRange);
 
+        transform.localEulerAngles = new Vector3(0, horAngle, 0);
         fpsCamera.localEulerAngles = new Vector3(verAngle, 0, 0);
-        transform.Rotate(0, horRotation, 0);
     }
 }

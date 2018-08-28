@@ -39,25 +39,12 @@ public class PlayerAnimation : MonoBehaviour
         float verticalVelocity = charController.velocity.y;
         bool jumping = playerMovement.IsJumping();
 
-        if (!jumping && !animator.GetBool("Is Reloading"))
+        if (!jumping && !animator.GetBool("Is Reloading") && normalizedVelocity < 0.6)
         {
-            if (normalizedVelocity < 0.6)
-            {
-                if (!weaponManager.CurrentWeaponShooting.enabled)
-                    EnableShooting();
-                if (!weaponManager.CurrentWeaponReloading.enabled)
-                    EnableReloading();
-            }
-            else
-            {
-                if (normalizedVelocity >= 0.6)
-                {
-                    if (weaponManager.CurrentWeaponShooting.enabled)
-                        DisableShooting();
-                    if (weaponManager.CurrentWeaponReloading.enabled)
-                        DisableReloading();
-                }
-            }
+            if (!weaponManager.CurrentWeaponShooting.enabled)
+                EnableShooting();
+            if (!weaponManager.CurrentWeaponReloading.enabled)
+                EnableReloading();
         }
         else
         {
@@ -74,13 +61,7 @@ public class PlayerAnimation : MonoBehaviour
 
     void HasShot()
     {
-        animator.SetBool("Is Shooting", true);
-        Invoke("IsNotShooting", 1 / weaponManager.CurrentWeaponShooting.FireRate);
-    }
-
-    void IsNotShooting()
-    {
-        animator.SetBool("Is Shooting", false);
+        animator.SetTrigger("Has Shot");
     }
 
     void HasReloaded()

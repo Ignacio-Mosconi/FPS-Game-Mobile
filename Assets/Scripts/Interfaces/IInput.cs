@@ -7,7 +7,8 @@ interface IInput
 	float GetHorizontalAxis();
 	float GetVerticalAxis();
 	float GetHorizontalViewAxis();
-	float GetVerticalViewAxis(); 
+	float GetVerticalViewAxis();
+	float GetWeaponSwapAxis();
 	bool GetFireButton();
 	bool GetReloadButton();
 	bool GetJumpButton();

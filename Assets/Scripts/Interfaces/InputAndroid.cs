@@ -24,6 +24,11 @@ public class InputAndroid : IInput
 		return Input.GetAxis("Mouse Y");
 	}
 
+	public float GetWeaponSwapAxis()
+	{
+		return Input.GetAxis("Mouse ScrollWheel");
+	}
+
 	public bool GetFireButton()
 	{
 		return Input.GetButton("Fire1");

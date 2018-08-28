@@ -27,9 +27,9 @@ public class WeaponManager : MonoBehaviour
 	
 	void Update ()
     {
-        if (currentWeaponShooting.enabled && currentWeaponReloading.enabled && Input.GetAxis("Mouse ScrollWheel") > 0)
+        if (InputManager.Instance.GetWeaponSwapAxis() > 0 && CanSwapWeapon())
             SwapWeapon(ScrollWheelDir.Up);
-        if (currentWeaponShooting.enabled && currentWeaponReloading.enabled && Input.GetAxis("Mouse ScrollWheel") < 0)
+        if (InputManager.Instance.GetWeaponSwapAxis() < 0 && CanSwapWeapon())
             SwapWeapon(ScrollWheelDir.Down);
 	}
 
@@ -70,6 +70,11 @@ public class WeaponManager : MonoBehaviour
 
         if (currentWeapon != previousWeapon)
             SetEquippedWeapon();
+    }
+
+    bool CanSwapWeapon()
+    {
+        return (currentWeaponShooting.enabled && currentWeaponReloading.enabled);
     }
 
     public int GetCurrentWeaponIndex()

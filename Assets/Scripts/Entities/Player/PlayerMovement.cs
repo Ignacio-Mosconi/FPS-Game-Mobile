@@ -38,10 +38,10 @@ public class PlayerMovement : MonoBehaviour
 
         verticalSpeed -= gravity * Time.deltaTime;
 
-        float fwdMovement = Input.GetAxis("Vertical");
-        float horMovement = Input.GetAxis("Horizontal");
-        float speedMultiplier = (Input.GetAxis("Vertical") > 0 && Input.GetButton("Sprint") && !IsJumping()) || jumpedWhileSprinting ?
-            1.0f : 0.5f;
+        float fwdMovement = InputManager.Instance.GetVerticalAxis();
+        float horMovement = InputManager.Instance.GetHorizontalAxis();
+        float speedMultiplier = (fwdMovement > 0 && InputManager.Instance.GetSprintButton() &&
+                                !IsJumping()) ||  jumpedWhileSprinting ? 1.0f : 0.5f;
 
         Vector3 inputVector = new Vector3(horMovement, 0, fwdMovement);
         inputVector.Normalize();
@@ -64,8 +64,9 @@ public class PlayerMovement : MonoBehaviour
             fallingDistance = 0;
             lastPositionY = 0;
 
-            verticalSpeed = (Input.GetButton("Jump")) ? jumpingSpeed : 0;
-            jumpedWhileSprinting = Input.GetButton("Jump") && Input.GetAxis("Vertical") > 0 && Input.GetButton("Sprint") ? true : false;
+            verticalSpeed = InputManager.Instance.GetJumpButton() ? jumpingSpeed : 0;
+            jumpedWhileSprinting = InputManager.Instance.GetJumpButton() && fwdMovement > 0 && 
+                                    speedMultiplier > 0.5 ? true : false;
         }
         else
         {

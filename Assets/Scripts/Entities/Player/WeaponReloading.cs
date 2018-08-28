@@ -21,7 +21,7 @@ public class WeaponReloading : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown("Reload") && bulletsInMag < magSize + 1)
+        if (CanReload())
             Reload();
     }
 
@@ -48,6 +48,10 @@ public class WeaponReloading : MonoBehaviour
         }
     }
 
+    bool CanReload()
+    {
+        return (InputManager.Instance.GetReloadButton() && bulletsInMag < magSize + 1);
+    }
     public int BulletsInMag
     {
         get { return bulletsInMag; }

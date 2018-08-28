@@ -41,6 +41,11 @@ public class InputManager : MonoBehaviour
 		return input.GetVerticalViewAxis();
 	}
 
+	public float GetWeaponSwapAxis()
+	{
+		return input.GetWeaponSwapAxis();
+	}
+
 	public bool GetFireButton()
 	{
 		return input.GetFireButton();

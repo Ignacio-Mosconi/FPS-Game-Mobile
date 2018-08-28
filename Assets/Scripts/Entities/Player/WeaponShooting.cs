@@ -29,11 +29,10 @@ public class WeaponShooting : MonoBehaviour
 
     void Update() 
 	{
-        if (Input.GetButton("Fire1") && Time.time >= nextFireTime && !PauseMenu.IsPaused && !LevelManager.Instance.GameOver)
+        if (CanShoot())
         {
             if (weaponReloading.BulletsInMag > 0)
             {
-                nextFireTime = Time.time + 1 / fireRate;
                 Shoot();
                 onShot.Invoke();
             }
@@ -48,9 +47,11 @@ public class WeaponShooting : MonoBehaviour
         muzzleFlash.Play();
         shotSound.Play();
 
+        nextFireTime = Time.time + 1 / fireRate;
         weaponReloading.BulletsInMag--;
 
         RaycastHit hit;
+        
         if (Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.forward, out hit, range))
         {
             Life targetLife = hit.transform.GetComponent<Life>();
@@ -64,6 +65,12 @@ public class WeaponShooting : MonoBehaviour
             if (targetRigidbody)
                 targetRigidbody.AddForce(-hit.normal * impactForce);
         }
+    }
+
+    bool CanShoot()
+    {
+        return (InputManager.Instance.GetFireButton() && Time.time >= nextFireTime &&
+                !PauseMenu.IsPaused && !LevelManager.Instance.GameOver);
     }
 
     public float FireRate

@@ -1,21 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+
+enum WalkingSurface
+{
+	Indoors, Outdoors
+}
 
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(Life))]
-[RequireComponent(typeof(AudioSource))]
 [RequireComponent(typeof(MeshFilter))]
 
 public class PlayerMovement : MonoBehaviour 
 {
+    [Header("Movement Attributes")]
     [SerializeField] float movementSpeed;
     [SerializeField] float jumpingSpeed;
     [SerializeField] float gravity;
     [SerializeField] float pushingForce;
     [SerializeField] float maxFallingDistance;
-    [SerializeField] AudioSource indoorsFootstepsSound;
-    [SerializeField] AudioSource outdoorsFootstepsSound;
+    [SerializeField] UnityEvent onSurfaceChange;
     Life life;
     CharacterController charController;
     float verticalSpeed;
@@ -23,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
     bool jumpedWhileSprinting;
     float fallingDistance;
     float lastPositionY;
+    WalkingSurface currentSurface;
 
     void Awake()
     {
@@ -30,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
         life = GetComponent<Life>();
         distanceToGround = GetComponent<MeshFilter>().mesh.bounds.extents.y + 0.5f;      
         jumpedWhileSprinting = false;
+        currentSurface = WalkingSurface.Outdoors;
     }
 
     void Update() 
@@ -69,14 +76,8 @@ public class PlayerMovement : MonoBehaviour
                                     speedMultiplier > 0.5 ? true : false;
         }
         else
-        {
             if ((charController.collisionFlags & CollisionFlags.Above) != 0)
                 verticalSpeed = 0;
-            if (outdoorsFootstepsSound.isPlaying)
-                outdoorsFootstepsSound.Stop();
-            if (indoorsFootstepsSound.isPlaying)
-                indoorsFootstepsSound.Stop();
-        }
     }
 
     void OnControllerColliderHit(ControllerColliderHit hit)
@@ -88,32 +89,17 @@ public class PlayerMovement : MonoBehaviour
             Vector3 pushDirection = new Vector3(hit.moveDirection.x, 0, hit.moveDirection.z);
             hitRigidbody.velocity = pushDirection * pushingForce;
         }
+        
+        WalkingSurface previousSurface = currentSurface;
 
         if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Terrain"))
-            PlayFootstepsSound(outdoorsFootstepsSound);
-        else
-            outdoorsFootstepsSound.Stop();
+            currentSurface = WalkingSurface.Outdoors;
+        if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Buildings") || 
+            hit.collider.gameObject.layer == LayerMask.NameToLayer("Decoration"))  
+            currentSurface = WalkingSurface.Indoors;
 
-        if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Buildings") ||
-            hit.collider.gameObject.layer == LayerMask.NameToLayer("Decoration"))
-            PlayFootstepsSound(indoorsFootstepsSound);
-        else
-            indoorsFootstepsSound.Stop();
-    }
-
-    void PlayFootstepsSound(AudioSource footsteps)
-    {
-        Vector3 horizontalVelocity = new Vector3(charController.velocity.x, 0, charController.velocity.z);
-
-        if (charController.isGrounded && horizontalVelocity.sqrMagnitude > 0)
-        {
-            footsteps.pitch = (horizontalVelocity.sqrMagnitude > movementSpeed * movementSpeed / 3) ? 2.0f : 1.0f;
-
-            if (!footsteps.isPlaying)
-                footsteps.Play();
-        }
-        else
-            footsteps.Stop();
+        if (currentSurface != previousSurface)
+            onSurfaceChange.Invoke();
     }
 
     public bool IsJumping()
@@ -121,8 +107,18 @@ public class PlayerMovement : MonoBehaviour
         return !(Physics.Raycast(transform.position, -Vector3.up, distanceToGround));
     }
 
+    public int GetCurrentSurfaceIndex()
+    {
+        return (int)currentSurface;
+    }
+
     public float MovementSpeed
     {
         get { return movementSpeed;}
+    }
+
+    public UnityEvent OnSurfaceChange
+    {
+        get { return onSurfaceChange; }
     }
 }

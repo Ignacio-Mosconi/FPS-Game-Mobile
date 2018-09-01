@@ -51,6 +51,6 @@ public class InputMobile : IInput
 
 	public bool GetPauseButton()
 	{
-		return Input.GetButton("Cancel");
+		return Input.GetButtonDown("Cancel");
 	}
 }

@@ -53,11 +53,10 @@ GameObject:
   - component: {fileID: 4131947183002670}
   - component: {fileID: 33844493710714320}
   - component: {fileID: 23634707393753014}
-  - component: {fileID: 114720990784513648}
-  - component: {fileID: 114953861978075440}
-  - component: {fileID: 82423361211648654}
   - component: {fileID: 82931816935659628}
   - component: {fileID: 82198567399042090}
+  - component: {fileID: 82423361211648654}
+  - component: {fileID: 114720990784513648}
   m_Layer: 12
   m_Name: M9 Pistol
   m_TagString: Untagged
@@ -293,6 +292,7 @@ GameObject:
   - component: {fileID: 4013558155818774}
   - component: {fileID: 95941765352269300}
   - component: {fileID: 114796286262304684}
+  - component: {fileID: 114723857998289264}
   m_Layer: 12
   m_Name: Arms
   m_TagString: Untagged
@@ -355,11 +355,10 @@ GameObject:
   - component: {fileID: 4308841097066674}
   - component: {fileID: 33679392065597742}
   - component: {fileID: 23938579067257596}
-  - component: {fileID: 82634988410498372}
   - component: {fileID: 82501798396606486}
   - component: {fileID: 82269420301096620}
+  - component: {fileID: 82634988410498372}
   - component: {fileID: 114769815251028996}
-  - component: {fileID: 114731529380770508}
   m_Layer: 12
   m_Name: AK-47
   m_TagString: Untagged
@@ -1609,7 +1608,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1452382057879526}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 164, y: 1, z: -3.39}
+  m_LocalPosition: {x: 63.58, y: 1, z: 88.26}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4050524811194710}
@@ -2926,7 +2925,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d92258efac1a7c943afcc75d0d3430bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fpsCamera: {fileID: 4050524811194710}
   rotationSpeed: 360
   verticalViewRange: 80
 --- !u!114 &114720990784513648
@@ -2943,29 +2941,15 @@ MonoBehaviour:
   damage: 10
   range: 100
   fireRate: 2
-  impactForce: 50
-  onShot:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  shotSound: {fileID: 82931816935659628}
-  emptyMagSound: {fileID: 82423361211648654}
+  impactForce: 350
+  magSize: 17
+  ammoLeft: 68
   shootAnimation: {fileID: 7400000, guid: f5bdebd7b6c1ace478419a8044d916e0, type: 2}
---- !u!114 &114731529380770508
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1404680370223506}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44b43fee0aa6255419f03028e3af31af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  magSize: 30
-  ammoLeft: 360
-  onAmmoChange:
+  reloadAnimation: {fileID: 7400000, guid: cfd34b1f10136434780ab531747f1d7f, type: 2}
+  shootSound: {fileID: 0}
+  reloadSound: {fileID: 82423361211648654}
+  emptyMagSound: {fileID: 82423361211648654}
+  onShot:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
@@ -2975,8 +2959,22 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  reloadSound: {fileID: 82269420301096620}
-  reloadAnimation: {fileID: 7400000, guid: 50fe7a78ad2a941498058e10f96f6da8, type: 2}
+  onEmptyMag:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &114723857998289264
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1302834317824318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5e4c70ade1ba784b9d478c13b098068, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114769815251028996
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2991,15 +2989,29 @@ MonoBehaviour:
   damage: 25
   range: 200
   fireRate: 10
-  impactForce: 70
+  impactForce: 700
+  magSize: 30
+  ammoLeft: 360
+  shootAnimation: {fileID: 7400000, guid: 1238c5a207f263e4e8805a51101822a9, type: 2}
+  reloadAnimation: {fileID: 7400000, guid: 50fe7a78ad2a941498058e10f96f6da8, type: 2}
+  shootSound: {fileID: 82501798396606486}
+  reloadSound: {fileID: 82269420301096620}
+  emptyMagSound: {fileID: 82634988410498372}
   onShot:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  shotSound: {fileID: 82501798396606486}
-  emptyMagSound: {fileID: 82634988410498372}
-  shootAnimation: {fileID: 7400000, guid: 1238c5a207f263e4e8805a51101822a9, type: 2}
+  onReload:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  onEmptyMag:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114796286262304684
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3063,31 +3075,6 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &114953861978075440
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1045463500260470}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44b43fee0aa6255419f03028e3af31af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  magSize: 17
-  ammoLeft: 68
-  onAmmoChange:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  onReload:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  reloadSound: {fileID: 82198567399042090}
-  reloadAnimation: {fileID: 7400000, guid: cfd34b1f10136434780ab531747f1d7f, type: 2}
 --- !u!124 &124319593150179410
 Behaviour:
   m_ObjectHideFlags: 1

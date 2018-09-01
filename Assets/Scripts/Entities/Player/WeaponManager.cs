@@ -16,9 +16,8 @@ enum WeaponType
 public class WeaponManager : MonoBehaviour
 {
     [SerializeField] UnityEvent onWeaponSwap;
-    WeaponShooting currentWeaponShooting;
-    WeaponReloading currentWeaponReloading;
-    WeaponType currentWeapon = WeaponType.LongGun;
+    Weapon currentWeapon;
+    WeaponType currentWeaponType = WeaponType.LongGun;
 
 	void Awake ()
     {
@@ -38,11 +37,10 @@ public class WeaponManager : MonoBehaviour
         int i = 0;
         foreach (Transform weapon in transform)
         {
-            weapon.gameObject.SetActive(i == (int)currentWeapon);
-            if (i == (int)currentWeapon)
+            weapon.gameObject.SetActive(i == (int)currentWeaponType);
+            if (i == (int)currentWeaponType)
             {
-                currentWeaponShooting = weapon.gameObject.GetComponent<WeaponShooting>();
-                currentWeaponReloading = weapon.gameObject.GetComponent<WeaponReloading>();
+                currentWeapon = weapon.gameObject.GetComponent<Weapon>();
                 onWeaponSwap.Invoke();
             }
             i++;
@@ -51,45 +49,40 @@ public class WeaponManager : MonoBehaviour
 
     void SwapWeapon(ScrollWheelDir dir)
     {
-        WeaponType previousWeapon = currentWeapon;
+        WeaponType previousWeaponType = currentWeaponType;
 
         if (dir == ScrollWheelDir.Up)
         {
-            if ((int)currentWeapon < transform.childCount - 1)
-                currentWeapon++;
+            if ((int)currentWeaponType < transform.childCount - 1)
+                currentWeaponType++;
             else
-                currentWeapon = WeaponType.LongGun;
+                currentWeaponType = WeaponType.LongGun;
         }
         else
         {
-            if ((int)currentWeapon > 0)
-                currentWeapon--;
+            if ((int)currentWeaponType > 0)
+                currentWeaponType--;
             else
-                currentWeapon = WeaponType.HandGun;
+                currentWeaponType = WeaponType.HandGun;
         }
 
-        if (currentWeapon != previousWeapon)
+        if (currentWeaponType != previousWeaponType)
             SetEquippedWeapon();
     }
 
     bool CanSwapWeapon()
     {
-        return (currentWeaponShooting.enabled && currentWeaponReloading.enabled);
+        return (currentWeapon.enabled);
     }
 
     public int GetCurrentWeaponIndex()
     {
-        return (int)currentWeapon;
+        return (int)currentWeaponType;
     }
 
-    public WeaponShooting CurrentWeaponShooting
+    public Weapon CurrentWeapon
     {
-        get { return currentWeaponShooting; }
-    }
-
-    public WeaponReloading CurrentWeaponReloading
-    {
-        get { return currentWeaponReloading; }
+        get { return currentWeapon; }
     }
 
     public UnityEvent OnWeaponSwap

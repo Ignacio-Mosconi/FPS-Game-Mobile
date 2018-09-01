@@ -11,7 +11,7 @@ public class PauseMenu : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown("Cancel"))
+        if (InputManager.Instance.GetPauseButton())
         {
             if (!isPaused)
                 Pause();

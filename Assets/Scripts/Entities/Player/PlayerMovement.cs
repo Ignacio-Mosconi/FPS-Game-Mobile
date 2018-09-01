@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
     {
         charController = GetComponent<CharacterController>();
         life = GetComponent<Life>();
-        distanceToGround = GetComponent<MeshFilter>().mesh.bounds.extents.y + 0.5f;
+        distanceToGround = GetComponent<MeshFilter>().mesh.bounds.extents.y + 0.5f;      
         jumpedWhileSprinting = false;
     }
 

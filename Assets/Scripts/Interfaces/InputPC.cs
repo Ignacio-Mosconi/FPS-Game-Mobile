@@ -48,4 +48,9 @@ public class InputPC : IInput
 	{
 		return Input.GetButton("Sprint");
 	}
+
+    public bool GetPauseButton()
+    {
+        return Input.GetButtonDown("Cancel");
+    }
 }

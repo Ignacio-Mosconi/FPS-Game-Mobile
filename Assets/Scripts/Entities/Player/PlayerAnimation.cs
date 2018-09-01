@@ -25,8 +25,8 @@ public class PlayerAnimation : MonoBehaviour
         weaponManager.OnWeaponSwap.AddListener(ChangeWeaponAnimations);
         foreach (Transform weapon in weaponManager.transform)
         {
-            weapon.gameObject.GetComponent<WeaponShooting>().OnShot.AddListener(HasShot);
-            weapon.gameObject.GetComponent<WeaponReloading>().OnReload.AddListener(HasReloaded);
+            weapon.gameObject.GetComponent<Weapon>().OnShot.AddListener(HasShot);
+            weapon.gameObject.GetComponent<Weapon>().OnReload.AddListener(HasReloaded);
         }
 
         ChangeWeaponAnimations();
@@ -39,19 +39,15 @@ public class PlayerAnimation : MonoBehaviour
         float verticalVelocity = charController.velocity.y;
         bool jumping = playerMovement.IsJumping();
 
-        if (!jumping && !animator.GetBool("Is Reloading") && normalizedVelocity < 0.6)
+        if (!jumping && !weaponManager.CurrentWeapon.IsReloading && normalizedVelocity < 0.6)
         {
-            if (!weaponManager.CurrentWeaponShooting.enabled)
+            if (!weaponManager.CurrentWeapon.enabled)
                 EnableShooting();
-            if (!weaponManager.CurrentWeaponReloading.enabled)
-                EnableReloading();
         }
         else
         {
-            if (weaponManager.CurrentWeaponShooting.enabled)
+            if (weaponManager.CurrentWeapon.enabled)
                 DisableShooting();
-            if (weaponManager.CurrentWeaponReloading.enabled)
-                DisableReloading();
         }
 
         animator.SetFloat("Horizontal Velocity", normalizedVelocity, 0.2f, Time.deltaTime);
@@ -66,42 +62,25 @@ public class PlayerAnimation : MonoBehaviour
 
     void HasReloaded()
     {
-        animator.SetBool("Is Reloading", true);
-        Invoke("IsNotReloading", weaponManager.CurrentWeaponReloading.ReloadTime);
-    }
-
-    void IsNotReloading()
-    {
-        animator.SetBool("Is Reloading", false);
-    }
-
-    void DisableShooting()
-    {
-        weaponManager.CurrentWeaponShooting.enabled = false;
-        onShootingEnabledToggle.Invoke();
+        animator.SetTrigger("Has Reloaded");
     }
 
     void EnableShooting()
     {
-        weaponManager.CurrentWeaponShooting.enabled = true;
+        weaponManager.CurrentWeapon.enabled = true;
         onShootingEnabledToggle.Invoke();
     }
-
-    void DisableReloading()
+    void DisableShooting()
     {
-        weaponManager.CurrentWeaponReloading.enabled = false;
-    }
-
-    void EnableReloading()
-    {
-        weaponManager.CurrentWeaponReloading.enabled = true;
+        weaponManager.CurrentWeapon.enabled = false;
+        onShootingEnabledToggle.Invoke();
     }
 
     void ChangeWeaponAnimations()
     {
         animator.runtimeAnimatorController = animatorOverrideController;
-        animatorOverrideController["DEFAULT SHOOTING"] = weaponManager.CurrentWeaponShooting.ShootAnimation;
-        animatorOverrideController["DEFAULT RELOADING"] = weaponManager.CurrentWeaponReloading.ReloadAnimation;
+        animatorOverrideController["DEFAULT SHOOTING"] = weaponManager.CurrentWeapon.ShootAnimation;
+        animatorOverrideController["DEFAULT RELOADING"] = weaponManager.CurrentWeapon.ReloadAnimation;
 
         switch (weaponManager.GetCurrentWeaponIndex())
         {

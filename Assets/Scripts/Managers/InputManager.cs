@@ -13,10 +13,10 @@ public class InputManager : MonoBehaviour
 		{
 			DontDestroyOnLoad(gameObject);
 			
-			#if UNITY_ANDROID
-				input = new InputAndroid();
-			#else
+			#if UNITY_STANDALONE
 				input = new InputPC();
+			#else
+				input = new InputMobile();
 			#endif
 		}
 	}
@@ -65,6 +65,12 @@ public class InputManager : MonoBehaviour
 	{
 		return input.GetSprintButton();
 	}
+
+	public bool GetPauseButton()
+	{
+		return input.GetPauseButton();
+	}
+
 	static public InputManager Instance
 	{
 		get

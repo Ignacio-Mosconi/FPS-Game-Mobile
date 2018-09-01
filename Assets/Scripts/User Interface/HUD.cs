@@ -19,18 +19,21 @@ public class HUD : MonoBehaviour
         playerLife.OnHit.AddListener(ChangeHealthDisplay);
         weaponManager.OnWeaponSwap.AddListener(ChangeAmmoDisplay);
         foreach (Transform weapon in weaponManager.transform)
-           weapon.gameObject.GetComponent<WeaponReloading>().OnAmmoChange.AddListener(ChangeAmmoDisplay);
+        {
+           weapon.gameObject.GetComponent<Weapon>().OnShot.AddListener(ChangeAmmoDisplay);
+           weapon.gameObject.GetComponent<Weapon>().OnReload.AddListener(ChangeAmmoDisplay);
+        }
 	}
 
     void CrosshairEnabledToggle()
     {
-        crosshair.enabled = weaponManager.CurrentWeaponShooting.enabled;
+        crosshair.enabled = weaponManager.CurrentWeapon.enabled;
     }
 
     void ChangeAmmoDisplay()
     {
-        string bulletsInMag = weaponManager.CurrentWeaponReloading.BulletsInMag.ToString();
-        string ammoLeft = weaponManager.CurrentWeaponReloading.AmmoLeft.ToString();
+        string bulletsInMag = weaponManager.CurrentWeapon.BulletsInMag.ToString();
+        string ammoLeft = weaponManager.CurrentWeapon.AmmoLeft.ToString();
 
         ammoText.text = bulletsInMag + "/" + ammoLeft;
     }

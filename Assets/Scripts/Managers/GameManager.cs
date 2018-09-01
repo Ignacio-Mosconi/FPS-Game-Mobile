@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    static GameManager instance;
+    [Header("Settings Values")]
     [SerializeField] float volumeSliderValue;
+    static GameManager instance;
 
     void Awake()
     {

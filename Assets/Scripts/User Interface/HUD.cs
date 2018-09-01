@@ -32,6 +32,7 @@ public class HUD : MonoBehaviour
         {
            weapon.gameObject.GetComponent<Weapon>().OnShot.AddListener(ChangeAmmoDisplay);
            weapon.gameObject.GetComponent<Weapon>().OnReload.AddListener(ChangeAmmoDisplay);
+           weapon.gameObject.GetComponent<Weapon>().OnShot.AddListener(ScaleCrosshair);
         }
         
         criticalLife = playerLife.MaxHealth * criticalLifePercentage;
@@ -75,5 +76,12 @@ public class HUD : MonoBehaviour
     {
         criticalMagAmmo = (int)(weaponManager.CurrentWeapon.MagSize * criticalMagAmmoPercentage);
         criticalAmmoLeft = weaponManager.CurrentWeapon.MagSize;
+    }
+
+    void ScaleCrosshair()
+    {
+        float newScale = weaponManager.CurrentWeapon.CrossHairScaling;
+        
+        crosshair.transform.localScale = new Vector2(newScale, newScale); 
     }
 }

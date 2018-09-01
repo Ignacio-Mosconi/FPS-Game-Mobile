@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
+    [Header("References")]
     [SerializeField] Life playerLife;
     [SerializeField] GameObject failLevelUI;
     [SerializeField] GameObject hudUI;

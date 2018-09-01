@@ -13,6 +13,9 @@ public class Weapon : MonoBehaviour
     [SerializeField] [Range(1, 1000)] float impactForce;
     [SerializeField] [Range(1, 100)] int magSize;
     [SerializeField] [Range(1, 1000)] int maxAmmo;
+    [SerializeField] [Range(1, 10)] int regularSwayLevel;
+    [SerializeField] [Range(1, 10)] int recoilSwayLevel;
+    [SerializeField] [Range(0, 5)] float recoilDuration;
     [Header("Weapon Anmimations")]
     [SerializeField] AnimationClip shootAnimation;
     [SerializeField] AnimationClip reloadAnimation;
@@ -26,10 +29,14 @@ public class Weapon : MonoBehaviour
     [SerializeField] UnityEvent onEmptyMag;
     Transform fpsCamera;
     ParticleSystem muzzleFlash;
-    float nextFireTime = 0;
+    float lastFireTime = 0;
     int bulletsInMag = 0;
     int ammoLeft = 0;
+    float regularSway = 0;
+    float recoilSway = 0;
     bool isReloading = false;
+    float crosshairScaling = 1;
+    const float baseSway = 0.01f;
 
     void Awake()
     {
@@ -38,6 +45,8 @@ public class Weapon : MonoBehaviour
         
         bulletsInMag = magSize;
         ammoLeft = maxAmmo;
+        regularSway = baseSway * regularSwayLevel;
+        recoilSway = baseSway * recoilSwayLevel;
     }
 
     void Update() 
@@ -61,12 +70,22 @@ public class Weapon : MonoBehaviour
     {
         muzzleFlash.Play();
 
-        nextFireTime = Time.time + 1 / fireRate;
+        float horSway = lastFireTime < Time.time - recoilDuration ? 
+                        Random.Range(-regularSway, regularSway) : Random.Range(-recoilSway, recoilSway);
+
+        float verSway = lastFireTime < Time.time - recoilDuration ? 
+                        Random.Range(-regularSway, regularSway) : Random.Range(-recoilSway, recoilSway);
+
+        Vector3 sway = new Vector3(horSway, verSway, 0);
+
+        crosshairScaling = lastFireTime < Time.time - recoilDuration ? 1 : 1 + sway.magnitude * 10;
+        
+        lastFireTime = Time.time;
         bulletsInMag--;
 
         RaycastHit hit;
         
-        if (Physics.Raycast(fpsCamera.position, fpsCamera.forward, out hit, range))
+        if (Physics.Raycast(fpsCamera.position, (fpsCamera.forward + sway).normalized, out hit, range))
         {
             Life targetLife = hit.transform.GetComponent<Life>();
             Rigidbody targetRigidbody = hit.transform.GetComponent<Rigidbody>();
@@ -116,12 +135,12 @@ public class Weapon : MonoBehaviour
 
     bool CanShoot()
     {
-        return !isReloading && Time.time >= nextFireTime && !PauseMenu.IsPaused && !LevelManager.Instance.GameOver;
+        return !isReloading && Time.time >= lastFireTime + 1 / fireRate && !PauseMenu.IsPaused && !LevelManager.Instance.GameOver;
     }
 
     bool CanReload()
     {
-        return !isReloading && bulletsInMag < magSize + 1 && ammoLeft > 0 && Time.time >= nextFireTime &&
+        return !isReloading && bulletsInMag < magSize + 1 && ammoLeft > 0 && Time.time >= lastFireTime + 1 / fireRate &&
                 !PauseMenu.IsPaused && !LevelManager.Instance.GameOver;
     }
 
@@ -148,6 +167,11 @@ public class Weapon : MonoBehaviour
     public bool IsReloading
     {
         get { return isReloading; }
+    }
+
+    public float CrossHairScaling
+    {
+        get { return crosshairScaling; }
     }
 
     public AnimationClip ShootAnimation

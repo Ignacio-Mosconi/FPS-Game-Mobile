@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class FirstPersonCamera : MonoBehaviour
 {
-    [SerializeField] float rotationSpeed;
-    [SerializeField] float verticalViewRange;
+    [Header("Viewing Attributes")]
+    [SerializeField] [Range(45, 360)] float rotationSpeed;
+    [SerializeField] [Range(45, 90)] float verticalViewRange;
     Transform fpsCamera;
     float verAngle = 0;
     float horAngle = 0;

@@ -15,6 +15,7 @@ enum WeaponType
 
 public class WeaponManager : MonoBehaviour
 {
+    [Header("Events")]
     [SerializeField] UnityEvent onWeaponSwap;
     Weapon currentWeapon;
     WeaponType currentWeaponType = WeaponType.LongGun;

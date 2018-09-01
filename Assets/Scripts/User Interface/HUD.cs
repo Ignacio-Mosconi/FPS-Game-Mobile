@@ -6,23 +6,37 @@ using TMPro;
 
 public class HUD : MonoBehaviour 
 {
+    [Header("HUD Elements")]
     [SerializeField] Image crosshair;
     [SerializeField] TextMeshProUGUI ammoText;
     [SerializeField] TextMeshProUGUI healthText;
+    [Header("References")]
     [SerializeField] PlayerAnimation playerAnimation;
     [SerializeField] Life playerLife;
     [SerializeField] WeaponManager weaponManager;
+    float criticalLife = 0;
+    int criticalMagAmmo = 0;
+    int criticalAmmoLeft = 0;
+    const float criticalLifePercentage = 0.25f;
+    const float criticalMagAmmoPercentage = 0.25f;
 
     void Start() 
 	{
         playerAnimation.OnShootingEnabledToggle.AddListener(CrosshairEnabledToggle);
         playerLife.OnHit.AddListener(ChangeHealthDisplay);
+        weaponManager.OnWeaponSwap.AddListener(ChangeWeaponCriticalAmmo);
         weaponManager.OnWeaponSwap.AddListener(ChangeAmmoDisplay);
+
+        
         foreach (Transform weapon in weaponManager.transform)
         {
            weapon.gameObject.GetComponent<Weapon>().OnShot.AddListener(ChangeAmmoDisplay);
            weapon.gameObject.GetComponent<Weapon>().OnReload.AddListener(ChangeAmmoDisplay);
         }
+        
+        criticalLife = playerLife.MaxHealth * criticalLifePercentage;
+        criticalMagAmmo = (int)(weaponManager.CurrentWeapon.MagSize * criticalMagAmmoPercentage);
+        criticalAmmoLeft = weaponManager.CurrentWeapon.MagSize;
 	}
 
     void CrosshairEnabledToggle()
@@ -36,6 +50,16 @@ public class HUD : MonoBehaviour
         string ammoLeft = weaponManager.CurrentWeapon.AmmoLeft.ToString();
 
         ammoText.text = bulletsInMag + "/" + ammoLeft;
+
+        if (weaponManager.CurrentWeapon.BulletsInMag > criticalMagAmmo && weaponManager.CurrentWeapon.AmmoLeft > criticalAmmoLeft)
+            ammoText.color = Color.white;
+        else
+        {
+            if (weaponManager.CurrentWeapon.AmmoLeft > criticalAmmoLeft)
+                ammoText.color = Color.yellow;
+            else
+                ammoText.color = Color.red;
+        }
     }
 
     void ChangeHealthDisplay()
@@ -44,6 +68,12 @@ public class HUD : MonoBehaviour
         string health = hp.ToString();
 
         healthText.text = health;
-        healthText.color = (playerLife.Health > 25) ? Color.white : Color.red;
+        healthText.color = (playerLife.Health > criticalLife) ? Color.white : Color.red;
+    }
+
+    void ChangeWeaponCriticalAmmo()
+    {
+        criticalMagAmmo = (int)(weaponManager.CurrentWeapon.MagSize * criticalMagAmmoPercentage);
+        criticalAmmoLeft = weaponManager.CurrentWeapon.MagSize;
     }
 }

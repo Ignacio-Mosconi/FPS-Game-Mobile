@@ -6,18 +6,24 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class PlayerAudio : MonoBehaviour 
 {
+	[Header("Audio Sources")]
 	[SerializeField] AudioSource[] indoorFootsteps;
 	[SerializeField] AudioSource[] outdoorFootsteps;
 	AudioSource[] currentFootsteps;
 	Animator animator;
 	PlayerMovement playerMovement;
 	WeaponManager weaponManager;
+	Life playerLife;
+	const float walkingVelocity = 0.25f;
+	const float sprintingVelocity = 0.6f;
 
 	void Awake()
 	{
 		animator = GetComponent<Animator>();
 		playerMovement = GetComponentInParent<PlayerMovement>();
 		weaponManager = GetComponentInChildren<WeaponManager>();
+		playerLife = GetComponentInParent<Life>();
+		
 		foreach (Transform weapon in weaponManager.transform)
 		{
 			weapon.gameObject.GetComponent<Weapon>().OnShot.AddListener(PlayShootSound);
@@ -30,6 +36,7 @@ public class PlayerAudio : MonoBehaviour
 	{
 		ChangeFootstepsSounds();
 		playerMovement.OnSurfaceChange.AddListener(ChangeFootstepsSounds);
+		playerLife.OnHit.AddListener(PlayHitSound);
 	}
 
 	void PlayShootSound()
@@ -52,14 +59,20 @@ public class PlayerAudio : MonoBehaviour
 	{
 		float currentVelocity = animator.GetFloat("Horizontal Velocity");
 
-        if (currentVelocity > 0.25 && currentVelocity <= 0.6)
+        if (currentVelocity > walkingVelocity && currentVelocity <= sprintingVelocity)
             currentFootsteps[stepNumber].Play();
     }
 
 	void PlaySprintingSound(int stepNumber)
 	{
-		if (animator.GetFloat("Horizontal Velocity") > 0.6)
+		if (animator.GetFloat("Horizontal Velocity") > sprintingVelocity)
 			currentFootsteps[stepNumber].Play();
+	}
+
+	void PlayHitSound()
+	{
+		if (!playerLife.HitSound.isPlaying)
+			playerLife.HitSound.Play();
 	}
 
 	void ChangeFootstepsSounds()

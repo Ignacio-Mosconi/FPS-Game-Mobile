@@ -3096,7 +3096,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31405455b9b3b18498e358ef599f0f46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  maxHealth: 100
   deathAnimation: {fileID: 0}
   onHit:
     m_PersistentCalls:
@@ -3138,7 +3138,7 @@ MonoBehaviour:
   fireRate: 2
   impactForce: 350
   magSize: 17
-  ammoLeft: 68
+  maxAmmo: 85
   shootAnimation: {fileID: 7400000, guid: f5bdebd7b6c1ace478419a8044d916e0, type: 2}
   reloadAnimation: {fileID: 7400000, guid: cfd34b1f10136434780ab531747f1d7f, type: 2}
   shootSound: {fileID: 82931816935659628}
@@ -3192,7 +3192,7 @@ MonoBehaviour:
   fireRate: 10
   impactForce: 700
   magSize: 30
-  ammoLeft: 360
+  maxAmmo: 360
   shootAnimation: {fileID: 7400000, guid: 1238c5a207f263e4e8805a51101822a9, type: 2}
   reloadAnimation: {fileID: 7400000, guid: 50fe7a78ad2a941498058e10f96f6da8, type: 2}
   shootSound: {fileID: 82501798396606486}
@@ -3224,11 +3224,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12ca86fc2d7fcbf41a17263d2c9be425, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onShootingEnabledToggle:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   weaponManager: {fileID: 114873735163913450}
   animatorOverrideController: {fileID: 22100000, guid: 2094c5f2ced91ad4cb4a8f50002782c7,
     type: 2}
@@ -3242,6 +3237,11 @@ MonoBehaviour:
   - {fileID: 7400000, guid: c98c77818d54d544b8f7ffa7ff444ec8, type: 2}
   - {fileID: 7400000, guid: 9afeffc2ca534b84bbd64b8a9799e74e, type: 2}
   - {fileID: 7400000, guid: 35346add94256a24d8d74e0d8591f7b0, type: 2}
+  onShootingEnabledToggle:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114849298132393636
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3258,6 +3258,11 @@ MonoBehaviour:
   gravity: 10
   pushingForce: 5
   maxFallingDistance: 5
+  onSurfaceChange:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114873735163913450
 MonoBehaviour:
   m_ObjectHideFlags: 1

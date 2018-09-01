@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float gravity;
     [SerializeField] float pushingForce;
     [SerializeField] float maxFallingDistance;
+    [Header("Events")]
     [SerializeField] UnityEvent onSurfaceChange;
     Life life;
     CharacterController charController;
@@ -29,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
     float fallingDistance;
     float lastPositionY;
     WalkingSurface currentSurface;
+    const float fallingDamageMultiplier = 10;
 
     void Awake()
     {
@@ -66,14 +68,14 @@ public class PlayerMovement : MonoBehaviour
         if (charController.isGrounded)
         {
             if (fallingDistance >= maxFallingDistance)
-                life.TakeDamage(10 * fallingDistance);
+                life.TakeDamage(fallingDamageMultiplier * fallingDistance);
 
             fallingDistance = 0;
             lastPositionY = 0;
 
             verticalSpeed = InputManager.Instance.GetJumpButton() ? jumpingSpeed : 0;
             jumpedWhileSprinting = InputManager.Instance.GetJumpButton() && fwdMovement > 0 && 
-                                    speedMultiplier > 0.5 ? true : false;
+                                    speedMultiplier > 0.5f ? true : false;
         }
         else
             if ((charController.collisionFlags & CollisionFlags.Above) != 0)

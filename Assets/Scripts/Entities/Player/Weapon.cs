@@ -12,7 +12,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] [Range(1, 12)] float fireRate;
     [SerializeField] [Range(1, 1000)] float impactForce;
     [SerializeField] [Range(1, 100)] int magSize;
-    [SerializeField] [Range(1, 1000)] int ammoLeft;
+    [SerializeField] [Range(1, 1000)] int maxAmmo;
     [Header("Weapon Anmimations")]
     [SerializeField] AnimationClip shootAnimation;
     [SerializeField] AnimationClip reloadAnimation;
@@ -28,6 +28,7 @@ public class Weapon : MonoBehaviour
     ParticleSystem muzzleFlash;
     float nextFireTime = 0;
     int bulletsInMag = 0;
+    int ammoLeft = 0;
     bool isReloading = false;
 
     void Awake()
@@ -36,6 +37,7 @@ public class Weapon : MonoBehaviour
         muzzleFlash = GetComponentInChildren<ParticleSystem>();
         
         bulletsInMag = magSize;
+        ammoLeft = maxAmmo;
     }
 
     void Update() 
@@ -114,12 +116,13 @@ public class Weapon : MonoBehaviour
 
     bool CanShoot()
     {
-        return (!isReloading && Time.time >= nextFireTime && !PauseMenu.IsPaused && !LevelManager.Instance.GameOver);
+        return !isReloading && Time.time >= nextFireTime && !PauseMenu.IsPaused && !LevelManager.Instance.GameOver;
     }
 
     bool CanReload()
     {
-        return (!isReloading && bulletsInMag < magSize + 1 && ammoLeft > 0) && !PauseMenu.IsPaused && !LevelManager.Instance.GameOver;
+        return !isReloading && bulletsInMag < magSize + 1 && ammoLeft > 0 && Time.time >= nextFireTime &&
+                !PauseMenu.IsPaused && !LevelManager.Instance.GameOver;
     }
 
     public int BulletsInMag
@@ -130,6 +133,16 @@ public class Weapon : MonoBehaviour
     public int AmmoLeft
     {
         get { return ammoLeft; }
+    }
+
+    public int MagSize
+    {
+        get { return magSize; }
+    }
+
+    public int MaxAmmo
+    {
+        get { return maxAmmo; }
     }
 
     public bool IsReloading

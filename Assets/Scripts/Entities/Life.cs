@@ -5,17 +5,23 @@ using UnityEngine.Events;
 
 public class Life : MonoBehaviour 
 {
-    [SerializeField] float health;
+    [SerializeField] float maxHealth;
     [SerializeField] AnimationClip deathAnimation;
     [SerializeField] UnityEvent onHit;
     [SerializeField] UnityEvent onDeath;
     [SerializeField] AudioSource hitSound;
+    float health = 0;
+
+    public void Start()
+    {
+        health = maxHealth;
+    }
 
     public void TakeDamage(float amount)
     {
         if (health > 0)
         {
-            hitSound.Play();
+            Debug.Log(health);
             health -= amount;
             if (health <= 0)
             {
@@ -40,6 +46,10 @@ public class Life : MonoBehaviour
         Destroy(gameObject, deathDuration);
     }
 
+    public AudioSource HitSound
+    {
+        get { return hitSound; }
+    }
     public UnityEvent OnHit
     {
         get { return onHit; }
@@ -53,5 +63,10 @@ public class Life : MonoBehaviour
     public float Health
     {
         get { return health; }
+    }
+
+    public float MaxHealth
+    {
+        get { return maxHealth; }
     }
 }

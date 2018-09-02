@@ -73,7 +73,7 @@ public class WeaponManager : MonoBehaviour
 
     bool CanSwapWeapon()
     {
-        return (currentWeapon.enabled);
+        return currentWeapon.enabled && !PauseMenu.IsPaused && !LevelManager.Instance.GameOver;
     }
 
     public int GetCurrentWeaponIndex()

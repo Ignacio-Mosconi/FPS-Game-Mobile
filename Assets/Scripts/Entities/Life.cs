@@ -19,10 +19,10 @@ public class Life : MonoBehaviour
 
     public void TakeDamage(float amount)
     {
-        if (health > 0)
+        if (health > 1)
         {
             health -= amount;
-            if (health <= 0)
+            if (health < 1)
             {
                 if (deathAnimation)
                     Die(deathAnimation.length);

@@ -49,6 +49,7 @@ public class Weapon : MonoBehaviour
         ammoLeft = maxAmmo;
         regularSway = baseSway * regularSwayLevel;
         recoilSway = baseSway * recoilSwayLevel;
+        recoilDuration += 1 / fireRate;
     }
 
     void OnDisable()
@@ -104,7 +105,7 @@ public class Weapon : MonoBehaviour
         }
 
         sway = new Vector3(horSway, verSway, 0);
-        crosshairScaling = 1 + recoilSway * consecutiveShots; 
+        crosshairScaling = 1 + recoilSway * consecutiveShots;
         onCrosshairScale.Invoke();
         
         lastFireTime = Time.time;

@@ -28,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
     float verticalSpeed;
     float distanceToGround;
     bool jumpedWhileSprinting;
+    bool pressedSprintModifier;
     float fallingDistance;
     float lastPositionY;
     WalkingSurface currentSurface;
@@ -50,7 +51,8 @@ public class PlayerMovement : MonoBehaviour
         float fwdMovement = InputManager.Instance.GetVerticalAxis();
         float horMovement = InputManager.Instance.GetHorizontalAxis();
         float speedMultiplier = (fwdMovement > 0 && InputManager.Instance.GetSprintButton() &&
-                                !IsJumping()) ||  jumpedWhileSprinting ? 1.0f : 0.5f;
+                                !IsJumping()) ||  jumpedWhileSprinting  ||
+                                 (pressedSprintModifier && fwdMovement > 0 ) ? 1.0f : 0.5f;
 
         Vector3 inputVector = new Vector3(horMovement, 0, fwdMovement);
         inputVector.Normalize();
@@ -76,6 +78,8 @@ public class PlayerMovement : MonoBehaviour
             verticalSpeed = InputManager.Instance.GetJumpButton() ? jumpingSpeed : 0;
             jumpedWhileSprinting = InputManager.Instance.GetJumpButton() && fwdMovement > 0 && 
                                     speedMultiplier > 0.5f ? true : false;
+            pressedSprintModifier = InputManager.Instance.GetSprintButtonModifier() ||
+                                    (pressedSprintModifier && speedMultiplier == 1.0f) ? true : false;
         }
         else
             if ((charController.collisionFlags & CollisionFlags.Above) != 0)

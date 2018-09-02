@@ -31,7 +31,7 @@ public class InputMobile : IInput
 
 	public bool GetFireButton()
 	{
-		return Input.GetButton("Fire1");
+		return Input.GetButton("Fire");
 	}
 
 	public bool GetReloadButton()
@@ -47,6 +47,16 @@ public class InputMobile : IInput
 	public bool GetSprintButton()
 	{
 		return Input.GetButton("Sprint");
+	}
+
+	public bool GetSprintButtonModifier()
+	{
+		return Input.GetButton("Sprint Modifier");
+	}
+
+	public bool GetSwapWeaponButton()
+	{
+		return Input.GetButton("Swap Weapon");
 	}
 
 	public bool GetPauseButton()

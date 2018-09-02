@@ -31,6 +31,8 @@ public class WeaponManager : MonoBehaviour
             SwapWeapon(ScrollWheelDir.Up);
         if (InputManager.Instance.GetWeaponSwapAxis() < 0 && CanSwapWeapon())
             SwapWeapon(ScrollWheelDir.Down);
+        if (InputManager.Instance.GetSwapWeaponButton() && CanSwapWeapon())
+            SwapWeapon();
 	}
 
     void SetEquippedWeapon()
@@ -69,6 +71,14 @@ public class WeaponManager : MonoBehaviour
 
         if (currentWeaponType != previousWeaponType)
             SetEquippedWeapon();
+    }
+
+    void SwapWeapon()
+    {
+        if ((int)currentWeaponType < transform.childCount - 1)
+            currentWeaponType++;
+        else
+            currentWeaponType = WeaponType.LongGun;
     }
 
     bool CanSwapWeapon()

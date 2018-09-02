@@ -66,6 +66,16 @@ public class InputManager : MonoBehaviour
 		return input.GetSprintButton();
 	}
 
+	public bool GetSprintButtonModifier()
+	{
+		return input.GetSprintButtonModifier();
+	}
+
+	public bool GetSwapWeaponButton()
+	{
+		return input.GetSwapWeaponButton();
+	}
+
 	public bool GetPauseButton()
 	{
 		return input.GetPauseButton();

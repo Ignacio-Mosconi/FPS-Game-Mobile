@@ -13,5 +13,7 @@ interface IInput
 	bool GetReloadButton();
 	bool GetJumpButton();
 	bool GetSprintButton();
+	bool GetSprintButtonModifier();
+	bool GetSwapWeaponButton();
 	bool GetPauseButton();
 }

@@ -15,11 +15,11 @@ public class PlayerAnimation : MonoBehaviour
     [SerializeField] AnimationClip[] handGunAnimations;
     [Header("Events")]
     [SerializeField] UnityEvent onShootingEnabledToggle;
+    const float animationDampTime = 0.2f;
+    const float sprintingVelocity = 0.6f;
     Animator animator;
     CharacterController charController;
     PlayerMovement playerMovement;
-    const float animationDampTime = 0.2f;
-    const float sprintingVelocity = 0.6f;
 
     void Start()
     {

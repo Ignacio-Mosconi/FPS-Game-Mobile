@@ -10,12 +10,12 @@ public class PlayerAudio : MonoBehaviour
 	[SerializeField] AudioSource[] indoorFootsteps;
 	[SerializeField] AudioSource[] outdoorFootsteps;
 	AudioSource[] currentFootsteps;
+	const float walkingVelocity = 0.25f;
+	const float sprintingVelocity = 0.6f;
 	Animator animator;
 	PlayerMovement playerMovement;
 	WeaponManager weaponManager;
 	Life playerLife;
-	const float walkingVelocity = 0.25f;
-	const float sprintingVelocity = 0.6f;
 
 	void Awake()
 	{

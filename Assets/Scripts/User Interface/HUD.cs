@@ -14,17 +14,17 @@ public class HUD : MonoBehaviour
     [SerializeField] PlayerAnimation playerAnimation;
     [SerializeField] Life playerLife;
     [SerializeField] WeaponManager weaponManager;
+    const float criticalLifePercentage = 0.25f;
+    const float criticalMagAmmoPercentage = 0.25f;
     float criticalLife = 0;
     int criticalMagAmmo = 0;
     int criticalAmmoLeft = 0;
-    const float criticalLifePercentage = 0.25f;
-    const float criticalMagAmmoPercentage = 0.25f;
 
     void Start() 
 	{
         playerAnimation.OnShootingEnabledToggle.AddListener(CrosshairEnabledToggle);
         playerLife.OnHit.AddListener(ChangeHealthDisplay);
-        weaponManager.OnWeaponSwap.AddListener(ChangeWeaponCriticalAmmo);
+        weaponManager.OnWeaponSwap.AddListener(ChangeWeaponWeaponInfo);
         weaponManager.OnWeaponSwap.AddListener(ChangeAmmoDisplay);
 
         
@@ -32,12 +32,10 @@ public class HUD : MonoBehaviour
         {
            weapon.gameObject.GetComponent<Weapon>().OnShot.AddListener(ChangeAmmoDisplay);
            weapon.gameObject.GetComponent<Weapon>().OnReload.AddListener(ChangeAmmoDisplay);
-           weapon.gameObject.GetComponent<Weapon>().OnShot.AddListener(ScaleCrosshair);
+           weapon.gameObject.GetComponent<Weapon>().OnCrossHairScale.AddListener(ScaleCrosshair);
         }
         
         criticalLife = playerLife.MaxHealth * criticalLifePercentage;
-        criticalMagAmmo = (int)(weaponManager.CurrentWeapon.MagSize * criticalMagAmmoPercentage);
-        criticalAmmoLeft = weaponManager.CurrentWeapon.MagSize;
 	}
 
     void CrosshairEnabledToggle()
@@ -72,7 +70,7 @@ public class HUD : MonoBehaviour
         healthText.color = (playerLife.Health > criticalLife) ? Color.white : Color.red;
     }
 
-    void ChangeWeaponCriticalAmmo()
+    void ChangeWeaponWeaponInfo()
     {
         criticalMagAmmo = (int)(weaponManager.CurrentWeapon.MagSize * criticalMagAmmoPercentage);
         criticalAmmoLeft = weaponManager.CurrentWeapon.MagSize;
@@ -80,8 +78,8 @@ public class HUD : MonoBehaviour
 
     void ScaleCrosshair()
     {
-        float newScale = weaponManager.CurrentWeapon.CrossHairScaling;
+        float newScale = weaponManager.CurrentWeapon.CrosshairScaling;
         
-        crosshair.transform.localScale = new Vector2(newScale, newScale); 
+        crosshair.transform.localScale = new Vector2(newScale, newScale);
     }
 }

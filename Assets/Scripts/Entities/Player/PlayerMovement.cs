@@ -24,13 +24,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] UnityEvent onSurfaceChange;
     Life life;
     CharacterController charController;
+    const float fallingDamageMultiplier = 10;
     float verticalSpeed;
     float distanceToGround;
     bool jumpedWhileSprinting;
     float fallingDistance;
     float lastPositionY;
     WalkingSurface currentSurface;
-    const float fallingDamageMultiplier = 10;
 
     void Awake()
     {

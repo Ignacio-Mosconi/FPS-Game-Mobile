@@ -27,6 +27,8 @@ public class Weapon : MonoBehaviour
     [SerializeField] UnityEvent onShot;
     [SerializeField] UnityEvent onReload;
     [SerializeField] UnityEvent onEmptyMag;
+    [SerializeField] UnityEvent onCrosshairScale;
+    const float baseSway = 0.01f;
     Transform fpsCamera;
     ParticleSystem muzzleFlash;
     float lastFireTime = 0;
@@ -36,7 +38,7 @@ public class Weapon : MonoBehaviour
     float recoilSway = 0;
     bool isReloading = false;
     float crosshairScaling = 1;
-    const float baseSway = 0.01f;
+    int consecutiveShots = 0;
 
     void Awake()
     {
@@ -49,8 +51,23 @@ public class Weapon : MonoBehaviour
         recoilSway = baseSway * recoilSwayLevel;
     }
 
+    void OnDisable()
+    {
+        crosshairScaling = 1;
+        consecutiveShots = 0;
+        lastFireTime = 0;
+    }
+
     void Update() 
 	{
+        if (lastFireTime < Time.time - recoilDuration)
+        {
+            if (consecutiveShots != 0)
+                consecutiveShots = 0;
+            crosshairScaling = Mathf.Lerp(crosshairScaling, 1, recoilDuration);
+            onCrosshairScale.Invoke();
+        }
+
         if (InputManager.Instance.GetFireButton() && CanShoot())
         {
             if (bulletsInMag > 0)
@@ -70,15 +87,25 @@ public class Weapon : MonoBehaviour
     {
         muzzleFlash.Play();
 
-        float horSway = lastFireTime < Time.time - recoilDuration ? 
-                        Random.Range(-regularSway, regularSway) : Random.Range(-recoilSway, recoilSway);
+        Vector3 sway;
+        float horSway;
+        float verSway;
 
-        float verSway = lastFireTime < Time.time - recoilDuration ? 
-                        Random.Range(-regularSway, regularSway) : Random.Range(-recoilSway, recoilSway);
+        if (lastFireTime < Time.time - recoilDuration)
+        {
+            horSway = Random.Range(-regularSway, regularSway);
+            verSway = Random.Range(-regularSway, regularSway);
+        }
+        else
+        {
+            horSway = Random.Range(-recoilSway, recoilSway);
+            verSway = Random.Range(-recoilSway, recoilSway);
+            consecutiveShots++;
+        }
 
-        Vector3 sway = new Vector3(horSway, verSway, 0);
-
-        crosshairScaling = lastFireTime < Time.time - recoilDuration ? 1 : 1 + sway.magnitude * 10;
+        sway = new Vector3(horSway, verSway, 0);
+        crosshairScaling = 1 + recoilSway * consecutiveShots; 
+        onCrosshairScale.Invoke();
         
         lastFireTime = Time.time;
         bulletsInMag--;
@@ -144,6 +171,11 @@ public class Weapon : MonoBehaviour
                 !PauseMenu.IsPaused && !LevelManager.Instance.GameOver;
     }
 
+    public bool HasFinishedFiring()
+    {
+        return consecutiveShots == 0;
+    }
+
     public int BulletsInMag
     {
         get { return bulletsInMag; }
@@ -159,17 +191,12 @@ public class Weapon : MonoBehaviour
         get { return magSize; }
     }
 
-    public int MaxAmmo
-    {
-        get { return maxAmmo; }
-    }
-
     public bool IsReloading
     {
         get { return isReloading; }
     }
 
-    public float CrossHairScaling
+    public float CrosshairScaling
     {
         get { return crosshairScaling; }
     }
@@ -211,5 +238,10 @@ public class Weapon : MonoBehaviour
     public UnityEvent OnEmptyMag
     {
         get { return onEmptyMag; }
+    }
+
+    public UnityEvent OnCrossHairScale
+    {
+        get { return onCrosshairScale; }
     }
 }

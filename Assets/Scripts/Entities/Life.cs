@@ -21,7 +21,6 @@ public class Life : MonoBehaviour
     {
         if (health > 0)
         {
-            Debug.Log(health);
             health -= amount;
             if (health <= 0)
             {

@@ -56,7 +56,7 @@ public class InputMobile : IInput
 
 	public bool GetSwapWeaponButton()
 	{
-		return Input.GetButton("Swap Weapon");
+		return Input.GetButtonDown("Swap Weapon");
 	}
 
 	public bool GetPauseButton()

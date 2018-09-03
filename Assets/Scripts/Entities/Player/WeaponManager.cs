@@ -75,10 +75,15 @@ public class WeaponManager : MonoBehaviour
 
     void SwapWeapon()
     {
+        WeaponType previousWeaponType = currentWeaponType;
+
         if ((int)currentWeaponType < transform.childCount - 1)
             currentWeaponType++;
         else
             currentWeaponType = WeaponType.LongGun;
+
+        if (previousWeaponType != currentWeaponType)
+            SetEquippedWeapon();
     }
 
     bool CanSwapWeapon()

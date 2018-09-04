@@ -21,7 +21,7 @@ public class InputMobile : IInput
 
 	public float GetVerticalViewAxis()
 	{
-		return Input.GetAxis("Mouse Y");
+		return Input.GetAxis("Mouse Y Mobile");
 	}
 
 	public float GetWeaponSwapAxis()
@@ -36,12 +36,12 @@ public class InputMobile : IInput
 
 	public bool GetReloadButton()
 	{
-		return Input.GetButton("Reload");
+		return Input.GetButton("Reload Mobile");
 	}
 
 	public bool GetJumpButton()
 	{
-		return Input.GetButton("Jump");
+		return Input.GetButton("Jump Mobile");
 	}
 
 	public bool GetSprintButton()
@@ -51,7 +51,7 @@ public class InputMobile : IInput
 
 	public bool GetSprintButtonModifier()
 	{
-		return Input.GetButton("Sprint Modifier");
+		return Input.GetButton("Sprint Modifier Mobile");
 	}
 
 	public bool GetSwapWeaponButton()
@@ -61,6 +61,6 @@ public class InputMobile : IInput
 
 	public bool GetPauseButton()
 	{
-		return Input.GetButtonDown("Cancel");
+		return Input.GetButtonDown("Cancel Mobile");
 	}
 }

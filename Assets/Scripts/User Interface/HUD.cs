@@ -10,23 +10,28 @@ public class HUD : MonoBehaviour
     [SerializeField] Image crosshair;
     [SerializeField] TextMeshProUGUI ammoText;
     [SerializeField] TextMeshProUGUI healthText;
+    [SerializeField] TextMeshProUGUI crateText;
     [Header("References")]
     [SerializeField] PlayerAnimation playerAnimation;
     [SerializeField] Life playerLife;
     [SerializeField] WeaponManager weaponManager;
+    [SerializeField] PickUpTheObject crateDetection;
     const float criticalLifePercentage = 0.25f;
     const float criticalMagAmmoPercentage = 0.25f;
     float criticalLife = 0;
     int criticalMagAmmo = 0;
     int criticalAmmoLeft = 0;
-
+    
     void Start() 
 	{
+        ChangeAmmoDisplay();
+
         playerAnimation.OnShootingEnabledToggle.AddListener(CrosshairEnabledToggle);
         playerLife.OnHit.AddListener(ChangeHealthDisplay);
         weaponManager.OnWeaponSwap.AddListener(ChangeWeaponWeaponInfo);
         weaponManager.OnWeaponSwap.AddListener(ChangeAmmoDisplay);
-
+        crateDetection.OnDetected.AddListener(ChangeTextSituation);
+        crateDetection.OnPressed.AddListener(ChangeAmmoDisplay);
         
         foreach (Transform weapon in weaponManager.transform)
         {
@@ -36,6 +41,8 @@ public class HUD : MonoBehaviour
         }
         
         criticalLife = playerLife.MaxHealth * criticalLifePercentage;
+
+        crateText.enabled = false;
 	}
 
     void CrosshairEnabledToggle()
@@ -68,6 +75,11 @@ public class HUD : MonoBehaviour
 
         healthText.text = health;
         healthText.color = (playerLife.Health > criticalLife) ? Color.white : Color.red;
+    }
+
+    void ChangeTextSituation()
+    {
+        crateText.enabled = !crateText.enabled;
     }
 
     void ChangeWeaponWeaponInfo()

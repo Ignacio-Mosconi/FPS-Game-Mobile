@@ -41,7 +41,7 @@ public class InputMobile : IInput
 
 	public bool GetJumpButton()
 	{
-		return Input.GetButton("Jump Controller Mobile");
+		return Input.GetButtonDown("Jump Controller Mobile");
 	}
 
 	public bool GetSprintButton()

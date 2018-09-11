@@ -20,9 +20,24 @@ public class GameManager : MonoBehaviour
             GameObject gameObj = new GameObject("EventSystem");
             eventSystem = gameObj.AddComponent<EventSystem>();
             StandaloneInputModule inputModule = gameObj.AddComponent<StandaloneInputModule>();
-            inputModule.verticalAxis = "Vertical UI";
-            inputModule.submitButton = "Select";
-            inputModule.cancelButton = "Return";
+            #if UNITY_ANDROID
+            if (CheckControllerConnection())
+            {
+                inputModule.verticalAxis = "Vertical UI Controller Mobile";
+                inputModule.submitButton = "Select Controller Mobile";
+                inputModule.cancelButton = "Return Controller Mobile";
+            }
+            else
+            {
+                inputModule.verticalAxis = "Vertical UI";
+                inputModule.submitButton = "Select";
+                inputModule.cancelButton = "Return";
+            }
+            #else
+                inputModule.verticalAxis = "Vertical UI";
+                inputModule.submitButton = "Select";
+                inputModule.cancelButton = "Return";
+            #endif
         }
         DontDestroyOnLoad(eventSystem.gameObject);
     }
@@ -37,7 +52,7 @@ public class GameManager : MonoBehaviour
     {
         bool controllerConnected = false;
         string[] controllers = Input.GetJoystickNames();
-
+        
         for (int i = 0; i < controllers.Length; i++)
         {
             if (!string.IsNullOrEmpty(controllers[i]))

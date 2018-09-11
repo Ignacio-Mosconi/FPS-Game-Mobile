@@ -185,6 +185,9 @@ public class Weapon : MonoBehaviour
     public int AmmoLeft
     {
         get { return ammoLeft; }
+        set{
+            ammoLeft += value;
+        }
     }
 
     public int MagSize

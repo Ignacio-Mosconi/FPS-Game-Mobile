@@ -41,7 +41,7 @@ public class InputPC : IInput
 
 	public bool GetJumpButton()
 	{
-		return Input.GetButton("Jump");
+		return Input.GetButtonDown("Jump");
 	}
 
 	public bool GetSprintButton()
@@ -51,7 +51,7 @@ public class InputPC : IInput
 
 	public bool GetSprintButtonModifier()
 	{
-		return Input.GetButton("Sprint Modifier");
+		return Input.GetButton("Sprint Controller");
 	}
 
 	public bool GetSwapWeaponButton()

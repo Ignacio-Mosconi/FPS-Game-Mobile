@@ -7,6 +7,7 @@ public class PauseMenu : MonoBehaviour
 {
     [SerializeField] GameObject pauseMenuUI;
     [SerializeField] GameObject hudUI;
+    [SerializeField] GameObject firstMenuElement;
     static bool isPaused = false;
 
     void Update()
@@ -25,6 +26,7 @@ public class PauseMenu : MonoBehaviour
         if (!LevelManager.Instance.GameOver)
         {
             Cursor.visible = true;
+            GameManager.Instance.ChangeFirstMenuItemSelected(firstMenuElement);
             pauseMenuUI.SetActive(true);
             hudUI.SetActive(false);
             Time.timeScale = 0.0f;

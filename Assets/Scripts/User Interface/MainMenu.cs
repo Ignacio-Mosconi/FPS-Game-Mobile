@@ -5,9 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    [SerializeField] GameObject firstMenuElement;
+
 	void Start()
     {
-        Cursor.visible = true;
+        if (GameManager.Instance.CheckControllerConnection())
+            GameManager.Instance.ChangeFirstMenuItemSelected(firstMenuElement);
+        else
+            Cursor.visible = true;
 	}
 	
 	public void PlayGame()

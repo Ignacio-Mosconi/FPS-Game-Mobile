@@ -25,12 +25,14 @@ public class PauseMenu : MonoBehaviour
     {
         if (!LevelManager.Instance.GameOver)
         {
-            Cursor.visible = true;
-            GameManager.Instance.ChangeFirstMenuItemSelected(firstMenuElement);
             pauseMenuUI.SetActive(true);
             hudUI.SetActive(false);
             Time.timeScale = 0.0f;
             isPaused = true;
+            if (GameManager.Instance.CheckControllerConnection())
+                GameManager.Instance.ChangeFirstMenuItemSelected(firstMenuElement);
+            else
+                Cursor.visible = true;
         }
     }
 
@@ -41,6 +43,7 @@ public class PauseMenu : MonoBehaviour
         hudUI.SetActive(true);
         Time.timeScale = 1.0f;
         isPaused = false;
+        GameManager.Instance.ChangeFirstMenuItemSelected(null);
     }
 
     public void LoadMenu()

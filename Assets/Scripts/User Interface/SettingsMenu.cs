@@ -11,14 +11,14 @@ public class SettingsMenu : MonoBehaviour
     [SerializeField] AudioMixer audioMixer;
     [SerializeField] Slider volumeSlider;
 
-    void Start()
+    void OnEnable()
     {
-        volumeSlider.value = GameManager.Instance.VolumeSliderValue;
+        volumeSlider.value = GameManager.Instance.VolumeValue;
     }
 
     public void SetVolume(float volume)
     {
-        GameManager.Instance.VolumeSliderValue = volume;
+        GameManager.Instance.VolumeValue = volume;
         audioMixer.SetFloat("Volume", Mathf.Log(volume) * 12);
     }
 

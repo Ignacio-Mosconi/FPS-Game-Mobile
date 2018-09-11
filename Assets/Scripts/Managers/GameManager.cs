@@ -5,10 +5,9 @@ using UnityEngine.EventSystems;
 
 public class GameManager : MonoBehaviour
 {
-    [Header("Settings Values")]
-    [SerializeField] float volumeSliderValue;
     static GameManager instance;
     EventSystem eventSystem;
+    float volumeValue = 0.75f;
 
     void Awake()
     {
@@ -34,6 +33,23 @@ public class GameManager : MonoBehaviour
         eventSystem.SetSelectedGameObject(firstMenuElement);
     }
 
+    public bool CheckControllerConnection()
+    {
+        bool controllerConnected = false;
+        string[] controllers = Input.GetJoystickNames();
+
+        for (int i = 0; i < controllers.Length; i++)
+        {
+            if (!string.IsNullOrEmpty(controllers[i]))
+            {
+                controllerConnected = true;
+                break;
+            }
+        }
+
+        return controllerConnected;
+    }
+
     public static GameManager Instance
     {
         get
@@ -49,10 +65,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public float VolumeSliderValue
+    public float VolumeValue
     {
-        get { return volumeSliderValue; }
-        set { volumeSliderValue = value; }
+        get { return volumeValue; }
+        set { volumeValue = value; }
     }
 }
-

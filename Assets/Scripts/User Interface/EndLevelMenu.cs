@@ -5,10 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class EndLevelMenu : MonoBehaviour
 {
-    void Awake()
+    [SerializeField] GameObject firstMenuElement;
+
+    void Start()
     {
-        Cursor.visible = true;
         Time.timeScale = 0.0f;
+        if (GameManager.Instance.CheckControllerConnection())
+            GameManager.Instance.ChangeFirstMenuItemSelected(firstMenuElement);
+        else
+            Cursor.visible = true;
     }
 
     public void Restart()

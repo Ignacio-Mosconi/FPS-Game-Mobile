@@ -670,6 +670,11 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 114638421148449420, guid: 4a54558b9bda3c24282c422809e1dc60,
+        type: 2}
+      propertyPath: firstMenuElement
+      value: 
+      objectReference: {fileID: 1694360687}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a54558b9bda3c24282c422809e1dc60, type: 2}
   m_IsPrefabAsset: 0
@@ -705,7 +710,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b072ab3cdd436104ab4ec9ae8c75be90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volumeSliderValue: 0.75
+  defaultVolumeValue: 0.75
 --- !u!4 &1820969012
 Transform:
   m_ObjectHideFlags: 0

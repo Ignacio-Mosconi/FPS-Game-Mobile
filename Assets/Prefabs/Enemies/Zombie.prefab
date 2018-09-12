@@ -2731,7 +2731,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
+  m_DynamicOccludee: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -3177,7 +3177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31405455b9b3b18498e358ef599f0f46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 0
+  maxHealth: 125
   deathAnimation: {fileID: 7400000, guid: 789913e6f3f7cc549916e2b2502daccd, type: 2}
   onHit:
     m_PersistentCalls:

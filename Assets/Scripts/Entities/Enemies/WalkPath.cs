@@ -1,9 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class WalkPath : MonoBehaviour
 {
+    const float locationDiffRadius = 1.5f;
+
+    void Start()
+    {
+        foreach (Transform waypoint in transform)
+            waypoint.position = RandomPoint(waypoint);
+    }
     public int GetNumberOfWaypoints()
     {
         return transform.childCount;
@@ -12,5 +20,14 @@ public class WalkPath : MonoBehaviour
     public Vector3 GetWaypointPosition(int index)
     {
         return transform.GetChild(index).position;
+    }
+
+    Vector3 RandomPoint(Transform point)
+    {
+        Vector3 randomPoint = Random.insideUnitSphere * locationDiffRadius + point.position;
+        NavMeshHit navMeshHit;
+        NavMesh.SamplePosition(randomPoint, out navMeshHit, locationDiffRadius * 10, -1);
+        
+        return new Vector3(navMeshHit.position.x, point.position.y, navMeshHit.position.z);
     }
 }

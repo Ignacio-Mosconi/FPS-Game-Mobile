@@ -10,8 +10,9 @@ public class ZombieMovement : MonoBehaviour
 {
     [SerializeField] Transform[] possibleTargets;
     [SerializeField] float timeBetweenSearches;
-    [SerializeField] float differenceRadius;
-    [SerializeField] float detectionRadius;
+    [SerializeField] float chasingDiffDistance;
+    [SerializeField] float viewDistance;
+    [SerializeField] float fieldOfView;
     [SerializeField] float attackRange;
     [SerializeField] GameObject walkPath;
     [SerializeField] UnityEvent onAttackRange;
@@ -22,7 +23,7 @@ public class ZombieMovement : MonoBehaviour
     GameObject currentPath;
     WalkPath path;
     NavMeshAgent agent;
-    Transform followingTarget;
+    Transform currentTarget;
     int currentWaypointIndex;
     float maxSpeed;
 
@@ -31,13 +32,11 @@ public class ZombieMovement : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         zombieAttacking = GetComponent<ZombieAttacking>();
         maxSpeed = agent.speed;
-
-        InvokeRepeating("SearchTarget", 0, timeBetweenSearches);
 	}
 	
 	void Update()
     {
-        if (followingTarget)
+        if (currentTarget)
         {
             if (path)
             {
@@ -48,7 +47,7 @@ public class ZombieMovement : MonoBehaviour
                 path = null;
                 agent.speed = maxSpeed;
             }
-            if ((transform.position - followingTarget.position).sqrMagnitude <= attackRange * attackRange)
+            if ((transform.position - currentTarget.position).sqrMagnitude <= attackRange * attackRange)
             {
                 if (!zombieAttacking.IsAttacking)
                 {
@@ -75,41 +74,53 @@ public class ZombieMovement : MonoBehaviour
                 zombieChaseSound.Stop();
                 zombieBreathSound.Play();
 
-                currentPath = Instantiate(walkPath, transform.position, Quaternion.LookRotation(transform.forward));
+                currentPath = Instantiate(walkPath, transform.position, Quaternion.LookRotation(transform.forward), transform.parent);
                 path = currentPath.GetComponent<WalkPath>();
                 agent.speed = maxSpeed / 3;
                 agent.destination = transform.position;
                 currentWaypointIndex = 0;
             }
             Wander();
+            SearchTarget();
         }
 	}
 
     void SearchTarget()
     {
-        float closestDistance = detectionRadius;
+        float closestTargetDistance = viewDistance;
 
-        for (int i = 0; i < possibleTargets.Length; i++)
+        foreach (Transform possibleTarget in possibleTargets)
         {
-            float distance = Vector3.Distance(transform.position, possibleTargets[i].position);
-
-            if (distance < closestDistance)
+            if (Vector3.Angle(Vector3.forward, transform.InverseTransformPoint(possibleTarget.position)) < fieldOfView / 2f)
             {
-                closestDistance = distance;
-                followingTarget = possibleTargets[i];
+                float distanceToTarget = Vector3.Distance(possibleTarget.position, transform.position);
+                
+                if (distanceToTarget < closestTargetDistance)
+                {
+                    RaycastHit hit;
+
+                    if (Physics.Linecast(transform.position, possibleTarget.position, out hit))
+                        if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Player"))
+                        {
+                            closestTargetDistance = distanceToTarget;
+                            currentTarget = possibleTarget;
+                        }
+                }
             }
         }
-
-        if (closestDistance == detectionRadius)
-            followingTarget = null;
-    }
+    }  
 
     void ChaseTarget()
     {
-        Vector3 targetDiff = followingTarget.position - agent.destination;
+        if (Vector3.Distance(transform.position, currentTarget.position) > viewDistance)
+            currentTarget = null;
+        else
+        {
+            Vector3 targetDiff = currentTarget.position - agent.destination;
 
-        if (targetDiff.sqrMagnitude > differenceRadius * differenceRadius)
-            agent.destination = followingTarget.position;
+            if (targetDiff.sqrMagnitude > chasingDiffDistance * chasingDiffDistance)
+                agent.destination = currentTarget.position;
+        }
     }
 
     void Wander()
@@ -129,7 +140,7 @@ public class ZombieMovement : MonoBehaviour
 
     public Transform FollowingTarget
     {
-        get { return followingTarget; }
+        get { return currentTarget; }
     }
 
     public UnityEvent OnAttackRange

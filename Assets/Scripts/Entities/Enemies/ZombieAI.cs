@@ -57,8 +57,8 @@ public class ZombieAI : MonoBehaviour
 	
     void Update()
     {
-
         Debug.Log(currentState);
+
         switch (currentState)
         {
             case ZombieState.Wandering:
@@ -108,22 +108,26 @@ public class ZombieAI : MonoBehaviour
                 if (!IsOnAttackRange())
                 {
                     LeaveTarget();
-                    Invoke("MoveAgain", 1);
+                    if (!IsInvoking("MoveAgain"))
+                        Invoke("MoveAgain", 1);
                 }
 
                 break;
 
             case ZombieState.BeingHit:
 
-                agent.isStopped = true;
-                Invoke("MoveAgain", 1);
+                if (!agent.isStopped)
+                    agent.isStopped = true;
+                if (!IsInvoking("MoveAgain"))
+                    Invoke("MoveAgain", 1);
 
                 break;
+
             case ZombieState.Dead:
 
-                CancelInvoke("MoveAgain");
-                agent.destination = transform.position;
                 agent.isStopped = true;
+                if (IsInvoking("MoveAgain"))
+                    CancelInvoke("MoveAgain");
 
                 break;
         }

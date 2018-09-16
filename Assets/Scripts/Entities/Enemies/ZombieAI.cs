@@ -57,8 +57,6 @@ public class ZombieAI : MonoBehaviour
 	
     void Update()
     {
-        Debug.Log(currentState);
-
         switch (currentState)
         {
             case ZombieState.Wandering:

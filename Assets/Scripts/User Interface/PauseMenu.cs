@@ -12,7 +12,7 @@ public class PauseMenu : MonoBehaviour
 
     void Update()
     {
-        if (InputManager.Instance.GetPauseButton())
+        if (InputManager.Instance.GetPauseButton() && !LevelManager.Instance.GameOver)
         {
             if (!isPaused)
                 Pause();
@@ -23,19 +23,16 @@ public class PauseMenu : MonoBehaviour
 
     void Pause()
     {
-        if (!LevelManager.Instance.GameOver)
+        pauseMenuUI.SetActive(true);
+        hudUI.SetActive(false);
+        Time.timeScale = 0.0f;
+        isPaused = true;
+        if (GameManager.Instance.CheckControllerConnection())
+            GameManager.Instance.ChangeFirstMenuItemSelected(firstMenuElement);
+        else
         {
-            pauseMenuUI.SetActive(true);
-            hudUI.SetActive(false);
-            Time.timeScale = 0.0f;
-            isPaused = true;
-            if (GameManager.Instance.CheckControllerConnection())
-                GameManager.Instance.ChangeFirstMenuItemSelected(firstMenuElement);
-            else
-            {
-                Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = true;
-            }
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
     }
 

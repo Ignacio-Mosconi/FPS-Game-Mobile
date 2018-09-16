@@ -509,6 +509,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1382851467158058
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4026780202321354}
+  - component: {fileID: 65402272204068178}
+  - component: {fileID: 114575074832159536}
+  m_Layer: 11
+  m_Name: Attack Box
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1387917729854816
 GameObject:
   m_ObjectHideFlags: 1
@@ -1221,6 +1238,7 @@ GameObject:
   - component: {fileID: 82387938424232372}
   - component: {fileID: 82543826481699810}
   - component: {fileID: 82045266426880530}
+  - component: {fileID: 114118375606764646}
   m_Layer: 11
   m_Name: Zombie
   m_TagString: Untagged
@@ -1450,6 +1468,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4907347797601578}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4026780202321354
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1382851467158058}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.15, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4995248164857850}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4029451229518328
 Transform:
@@ -2334,7 +2365,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1772508593585714}
   m_LocalRotation: {x: 0.07936088, y: -0.03303696, z: 0.026331576, w: 0.99595034}
-  m_LocalPosition: {x: 0.010777399, y: 0.84346944, z: -0.13089767}
+  m_LocalPosition: {x: 0.010777399, y: 0.8434694, z: -0.13089767}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4045297339792248}
@@ -2720,15 +2751,28 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1804514630719326}
   m_LocalRotation: {x: -0, y: -0.057705004, z: -0, w: 0.9983337}
-  m_LocalPosition: {x: 60.8, y: 0, z: 111.8}
+  m_LocalPosition: {x: 92.5, y: 0.375, z: 146}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4747852073307732}
   - {fileID: 4685984910123826}
   - {fileID: 224627360299850022}
+  - {fileID: 4026780202321354}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -6.616, z: 0}
+--- !u!65 &65402272204068178
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1382851467158058}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.25, y: 0.25, z: 1.2}
+  m_Center: {x: 0, y: 0, z: 0.6}
 --- !u!82 &82045266426880530
 AudioSource:
   m_ObjectHideFlags: 1
@@ -3031,7 +3075,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 0.75
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -3154,6 +3198,20 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114118375606764646
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1804514630719326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f82250556cbdc5f4cbe676502fa1b715, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  breathSound: {fileID: 82387938424232372}
+  chaseSound: {fileID: 82338514301803412}
+  attackSound: {fileID: 82543826481699810}
   hitSound: {fileID: 82045266426880530}
 --- !u!114 &114173077217165622
 MonoBehaviour:
@@ -3166,9 +3224,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 179c6bec4c666c94c9569301c3b5a769, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDamage: 10
   attackAnimation: {fileID: 7400000, guid: 87d73776719a4e04192da63a9f805907, type: 2}
-  zombieAttackSound: {fileID: 82543826481699810}
+  onAttack:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114365347457325794
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3217,6 +3278,18 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &114575074832159536
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1382851467158058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9f0152f16a02e146a187df76bdb588e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackDamage: 10
 --- !u!114 &114582838893229636
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3230,12 +3303,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   possibleTargets:
   - {fileID: 0}
-  timeBetweenSearches: 2.5
-  differenceRadius: 2
   viewDistance: 12
   fieldOfView: 120
-  attackRange: 2.1
+  attackRange: 2
   walkPath: {fileID: 1527905510322570, guid: fd7ae868b897b6a458ca5b730e746d90, type: 2}
+  onChaseStart:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  onChaseFinish:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   onAttackRange:
     m_PersistentCalls:
       m_Calls: []
@@ -3246,8 +3327,6 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  zombieBreathSound: {fileID: 82387938424232372}
-  zombieChaseSound: {fileID: 82338514301803412}
 --- !u!114 &114671476119120228
 MonoBehaviour:
   m_ObjectHideFlags: 1

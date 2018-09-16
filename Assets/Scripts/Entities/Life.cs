@@ -9,7 +9,6 @@ public class Life : MonoBehaviour
     [SerializeField] AnimationClip deathAnimation;
     [SerializeField] UnityEvent onHit;
     [SerializeField] UnityEvent onDeath;
-    [SerializeField] AudioSource hitSound;
     float health = 0;
 
     public void Start()
@@ -44,11 +43,7 @@ public class Life : MonoBehaviour
         onDeath.Invoke();
         Destroy(gameObject, deathDuration);
     }
-
-    public AudioSource HitSound
-    {
-        get { return hitSound; }
-    }
+    
     public UnityEvent OnHit
     {
         get { return onHit; }

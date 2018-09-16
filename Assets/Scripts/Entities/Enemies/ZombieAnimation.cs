@@ -13,6 +13,7 @@ public class ZombieAnimation : MonoBehaviour
     Animator animator;
     NavMeshAgent agent;
     ZombieMovement zombieMovement;
+    ZombieAttacking zombieAttacking;
     Life zombieLife;
 
 	void Awake()
@@ -20,15 +21,18 @@ public class ZombieAnimation : MonoBehaviour
         animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
         zombieMovement = GetComponent<ZombieMovement>();
+        zombieAttacking = GetComponent<ZombieAttacking>();
         zombieLife = GetComponent<Life>();
 
+	}
+    
+	void Start()
+    {
         zombieLife.OnHit.AddListener(HitAnimation);
         zombieLife.OnDeath.AddListener(DeathAnimation);
+        zombieAttacking.OnAttack.AddListener(AttackAnimation);
+    }
 
-        zombieMovement.OnAttackRange.AddListener(AttackAnimation);
-        zombieMovement.OutOfAttackRange.AddListener(StopAttacking);
-	}
-	
 	void Update()
     {
         Vector3 horizontalVelocity = new Vector3(agent.velocity.x, 0, agent.velocity.z);
@@ -58,11 +62,6 @@ public class ZombieAnimation : MonoBehaviour
 
     void AttackAnimation()
     {
-        animator.SetBool("Is Attacking", true);
-    }
-
-    void StopAttacking()
-    {
-        animator.SetBool("Is Attacking", false);
+        animator.SetTrigger("Has Attacked");
     }
 }

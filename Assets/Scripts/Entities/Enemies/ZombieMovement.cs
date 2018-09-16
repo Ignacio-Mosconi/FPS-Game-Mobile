@@ -8,21 +8,22 @@ using UnityEngine.Events;
 
 public class ZombieMovement : MonoBehaviour
 {
+    [Header("Zombie Attributes")]
     [SerializeField] Transform[] possibleTargets;
-    [SerializeField] float timeBetweenSearches;
-    [SerializeField] float chasingDiffDistance;
-    [SerializeField] float viewDistance;
-    [SerializeField] float fieldOfView;
-    [SerializeField] float attackRange;
+    [SerializeField] [Range(0, 100)] float viewDistance;
+    [SerializeField] [Range(0, 180)] float fieldOfView;
+    [SerializeField] [Range(2, 5)] float attackRange;
     [SerializeField] GameObject walkPath;
+    [Header("Events")]
+    [SerializeField] UnityEvent onChaseStart;
+    [SerializeField] UnityEvent onChaseFinish;
     [SerializeField] UnityEvent onAttackRange;
     [SerializeField] UnityEvent outOfAttackRange;
-    [SerializeField] AudioSource zombieBreathSound;
-    [SerializeField] AudioSource zombieChaseSound;
+    [Header("Sounds")]
+    NavMeshAgent agent;
     ZombieAttacking zombieAttacking;
     GameObject currentPath;
     WalkPath path;
-    NavMeshAgent agent;
     Transform currentTarget;
     int currentWaypointIndex;
     float maxSpeed;
@@ -31,7 +32,7 @@ public class ZombieMovement : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         zombieAttacking = GetComponent<ZombieAttacking>();
-        maxSpeed = agent.speed;
+        maxSpeed = agent.speed + Random.Range(-0.5f, 0.5f);
 	}
 	
 	void Update()
@@ -40,8 +41,7 @@ public class ZombieMovement : MonoBehaviour
         {
             if (path)
             {
-                zombieBreathSound.Stop();
-                zombieChaseSound.Play();
+                onChaseStart.Invoke();
 
                 Destroy(currentPath);
                 path = null;
@@ -52,16 +52,16 @@ public class ZombieMovement : MonoBehaviour
                 if (!zombieAttacking.IsAttacking)
                 {
                     onAttackRange.Invoke();
-                    zombieChaseSound.Stop();
                     agent.isStopped = true;
                 }
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, 
+                                    Quaternion.LookRotation(currentTarget.position - transform.position), 10);
             }
             else
             {
                 if (zombieAttacking.IsAttacking)
                 {
                     outOfAttackRange.Invoke();
-                    zombieChaseSound.Play();
                     agent.isStopped = false;
                 }
                 ChaseTarget();
@@ -71,8 +71,7 @@ public class ZombieMovement : MonoBehaviour
         {
             if (!path)
             {
-                zombieChaseSound.Stop();
-                zombieBreathSound.Play();
+                OnChaseFinish.Invoke();
 
                 currentPath = Instantiate(walkPath, transform.position, Quaternion.LookRotation(transform.forward), transform.parent);
                 path = currentPath.GetComponent<WalkPath>();
@@ -115,12 +114,7 @@ public class ZombieMovement : MonoBehaviour
         if (Vector3.Distance(transform.position, currentTarget.position) > viewDistance)
             currentTarget = null;
         else
-        {
-            Vector3 targetDiff = currentTarget.position - agent.destination;
-
-            if (targetDiff.sqrMagnitude > chasingDiffDistance * chasingDiffDistance)
-                agent.destination = currentTarget.position;
-        }
+            agent.destination = currentTarget.position;
     }
 
     void Wander()
@@ -138,9 +132,19 @@ public class ZombieMovement : MonoBehaviour
         get { return maxSpeed; }
     }
 
-    public Transform FollowingTarget
+    public Transform CurrentTarget
     {
         get { return currentTarget; }
+    }
+
+    public UnityEvent OnChaseStart
+    {
+        get { return onChaseStart; }
+    }
+
+    public UnityEvent OnChaseFinish
+    {
+        get { return onChaseFinish; }
     }
 
     public UnityEvent OnAttackRange

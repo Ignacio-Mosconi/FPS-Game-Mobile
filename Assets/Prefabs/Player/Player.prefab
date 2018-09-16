@@ -496,7 +496,7 @@ GameObject:
   - component: {fileID: 114213157468384956}
   m_Layer: 12
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3171,7 +3171,6 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  hitSound: {fileID: 82257893908685706}
 --- !u!114 &114541303858802696
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3244,6 +3243,7 @@ MonoBehaviour:
   indoorFootsteps:
   - {fileID: 82223543964691156}
   - {fileID: 82598429964533708}
+  hitSound: {fileID: 82257893908685706}
   outdoorFootsteps:
   - {fileID: 82255425642643336}
   - {fileID: 82498897108384270}

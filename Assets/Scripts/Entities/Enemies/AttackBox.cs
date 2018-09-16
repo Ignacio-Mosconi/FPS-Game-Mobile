@@ -14,7 +14,6 @@ public class AttackBox : MonoBehaviour
 	{
 		if (other.transform.gameObject.layer == LayerMask.NameToLayer("Player"))
 		{
-			Debug.Log("Hit");
 			Life targetLife = other.transform.GetComponent<Life>();
 			targetLife.TakeDamage(attackDamage + Random.Range(-attackDamageDelta, attackDamageDelta));
 			gameObject.SetActive(false);

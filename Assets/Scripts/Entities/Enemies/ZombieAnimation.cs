@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(Animator))]
-[RequireComponent(typeof(ZombieMovement))]
+[RequireComponent(typeof(ZombieAI))]
 [RequireComponent(typeof(Life))]
 
 public class ZombieAnimation : MonoBehaviour
@@ -12,31 +12,29 @@ public class ZombieAnimation : MonoBehaviour
     [SerializeField] AnimationClip hitAnimation;
     Animator animator;
     NavMeshAgent agent;
-    ZombieMovement zombieMovement;
-    ZombieAttacking zombieAttacking;
+    ZombieAI zombieAI;
     Life zombieLife;
 
 	void Awake()
     {
         animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
-        zombieMovement = GetComponent<ZombieMovement>();
-        zombieAttacking = GetComponent<ZombieAttacking>();
+        zombieAI = GetComponent<ZombieAI>();
         zombieLife = GetComponent<Life>();
 
 	}
-    
+
 	void Start()
     {
         zombieLife.OnHit.AddListener(HitAnimation);
         zombieLife.OnDeath.AddListener(DeathAnimation);
-        zombieAttacking.OnAttack.AddListener(AttackAnimation);
+        zombieAI.OnAttack.AddListener(AttackAnimation);
     }
 
 	void Update()
     {
         Vector3 horizontalVelocity = new Vector3(agent.velocity.x, 0, agent.velocity.z);
-        float normalizedVelocity = horizontalVelocity.magnitude / zombieMovement.MaxSpeed;
+        float normalizedVelocity = horizontalVelocity.magnitude / zombieAI.MaxSpeed;
 
         animator.SetFloat("Horizontal Velocity", normalizedVelocity, 0.2f, Time.deltaTime);
 	}

@@ -1233,12 +1233,11 @@ GameObject:
   - component: {fileID: 114582838893229636}
   - component: {fileID: 114671476119120228}
   - component: {fileID: 114099278923144750}
-  - component: {fileID: 114173077217165622}
+  - component: {fileID: 114118375606764646}
   - component: {fileID: 82338514301803412}
   - component: {fileID: 82387938424232372}
   - component: {fileID: 82543826481699810}
   - component: {fileID: 82045266426880530}
-  - component: {fileID: 114118375606764646}
   m_Layer: 11
   m_Name: Zombie
   m_TagString: Untagged
@@ -2751,7 +2750,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1804514630719326}
   m_LocalRotation: {x: -0, y: -0.057705004, z: -0, w: 0.9983337}
-  m_LocalPosition: {x: 92.5, y: 0.375, z: 146}
+  m_LocalPosition: {x: 60.8, y: 0, z: 96.14}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4747852073307732}
@@ -3213,23 +3212,6 @@ MonoBehaviour:
   chaseSound: {fileID: 82338514301803412}
   attackSound: {fileID: 82543826481699810}
   hitSound: {fileID: 82045266426880530}
---- !u!114 &114173077217165622
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1804514630719326}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 179c6bec4c666c94c9569301c3b5a769, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackAnimation: {fileID: 7400000, guid: 87d73776719a4e04192da63a9f805907, type: 2}
-  onAttack:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114365347457325794
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3303,10 +3285,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   possibleTargets:
   - {fileID: 0}
-  viewDistance: 12
-  fieldOfView: 120
-  attackRange: 2
+  viewDistance: 15
+  fieldOfView: 160
+  attackRange: 1.75
   walkPath: {fileID: 1527905510322570, guid: fd7ae868b897b6a458ca5b730e746d90, type: 2}
+  attackAnimation: {fileID: 7400000, guid: 87d73776719a4e04192da63a9f805907, type: 2}
   onChaseStart:
     m_PersistentCalls:
       m_Calls: []
@@ -3317,12 +3300,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  onAttackRange:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  outOfAttackRange:
+  onAttack:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,

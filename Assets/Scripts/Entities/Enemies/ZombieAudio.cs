@@ -3,31 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
-[RequireComponent(typeof(ZombieMovement))]
-[RequireComponent(typeof(ZombieAttacking))]
+[RequireComponent(typeof(ZombieAI))]
 public class ZombieAudio : MonoBehaviour
 {
 	[SerializeField] AudioSource breathSound;
 	[SerializeField] AudioSource chaseSound;
 	[SerializeField] AudioSource attackSound;
 	[SerializeField] AudioSource hitSound;
-
-	ZombieMovement zombieMovement;
-	ZombieAttacking zombieAttacking;
+	ZombieAI zombieAI;
 	Life zombieLife;
 
 	void Awake()
 	{
-		zombieMovement = GetComponent<ZombieMovement>();
-		zombieAttacking = GetComponent<ZombieAttacking>();
+		zombieAI = GetComponent<ZombieAI>();
 		zombieLife = GetComponent<Life>();
 	}
 
 	void Start()
 	{
-		zombieMovement.OnChaseStart.AddListener(PlayChaseSound);
-		zombieMovement.OnChaseFinish.AddListener(PlayBreathSound);
-		zombieAttacking.OnAttack.AddListener(PlayAttackSound);
+		zombieAI.OnChaseStart.AddListener(PlayChaseSound);
+		zombieAI.OnChaseFinish.AddListener(PlayBreathSound);
+		zombieAI.OnAttack.AddListener(PlayAttackSound);
 		zombieLife.OnHit.AddListener(PlayHitSound);
 	}
 

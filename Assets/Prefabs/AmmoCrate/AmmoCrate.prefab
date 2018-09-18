@@ -22,7 +22,8 @@ GameObject:
   - component: {fileID: 95289020991684548}
   - component: {fileID: 65327032882742808}
   - component: {fileID: 82321041316119182}
-  m_Layer: 15
+  - component: {fileID: 114107278561276576}
+  m_Layer: 13
   m_Name: AmmoCrate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,8 +101,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1032392104348514}
-  m_LocalRotation: {x: 0.000000021855694, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: 163.123, y: 0.25, z: 23.986206}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -60.05, y: 0.262, z: 56.511}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4779937073829580}
@@ -109,7 +110,7 @@ Transform:
   - {fileID: 4762246944723990}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!4 &4762246944723990
 Transform:
   m_ObjectHideFlags: 1
@@ -388,6 +389,32 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114107278561276576
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1032392104348514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 434409d2a1781014593af7ff13aa1803, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distanceToInteract: 3
+  possibleTargets:
+    serializedVersion: 2
+    m_Bits: 8192
+  weaponTarget: {fileID: 0}
+  onDetected:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  onPressed:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114164334619067132
 MonoBehaviour:
   m_ObjectHideFlags: 1

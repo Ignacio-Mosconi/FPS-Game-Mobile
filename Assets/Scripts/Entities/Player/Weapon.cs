@@ -186,7 +186,8 @@ public class Weapon : MonoBehaviour
     {
         get { return ammoLeft; }
         set{
-            ammoLeft += value;
+            if(ammoLeft <= maxAmmo - magSize)
+                ammoLeft += value;
         }
     }
 

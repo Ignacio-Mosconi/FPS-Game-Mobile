@@ -15,7 +15,8 @@ public class HUD : MonoBehaviour
     [SerializeField] PlayerAnimation playerAnimation;
     [SerializeField] Life playerLife;
     [SerializeField] WeaponManager weaponManager;
-    [SerializeField] PickUpTheObject crateDetection;
+    [SerializeField] Transform cratesHolder;
+    PickUpTheObject[] crates;
     const float criticalLifePercentage = 0.25f;
     const float criticalMagAmmoPercentage = 0.25f;
     float criticalLife = 0;
@@ -30,9 +31,15 @@ public class HUD : MonoBehaviour
         playerLife.OnHit.AddListener(ChangeHealthDisplay);
         weaponManager.OnWeaponSwap.AddListener(ChangeWeaponWeaponInfo);
         weaponManager.OnWeaponSwap.AddListener(ChangeAmmoDisplay);
-        crateDetection.OnDetected.AddListener(ChangeTextSituation);
-        crateDetection.OnPressed.AddListener(ChangeAmmoDisplay);
-        
+
+        crates = cratesHolder.GetComponentsInChildren<PickUpTheObject>();
+
+        foreach (PickUpTheObject crate in crates)
+        {
+            crate.OnDetected.AddListener(ChangeTextSituation);
+            crate.OnPressed.AddListener(ChangeAmmoDisplay);
+        }
+
         foreach (Transform weapon in weaponManager.transform)
         {
            weapon.gameObject.GetComponent<Weapon>().OnShot.AddListener(ChangeAmmoDisplay);

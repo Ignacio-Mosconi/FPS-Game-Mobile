@@ -5,8 +5,8 @@ using UnityEngine.Events;
 
 public class PickUpTheObject : MonoBehaviour
 {
-    [SerializeField] Transform player;
-    [SerializeField] Transform firstPersonCamera;
+    Transform player;
+    Transform firstPersonCamera;
     [SerializeField] float distanceToInteract;
     [SerializeField] LayerMask possibleTargets;
     [SerializeField] Weapon weaponTarget;
@@ -20,11 +20,22 @@ public class PickUpTheObject : MonoBehaviour
     void Start()
     {
         pickUpSound = GetComponent<AudioSource>();
+        player = GameObject.Find("Player").transform;
+        firstPersonCamera = player.GetChild(0).transform;
+
+        if(weaponTarget.name == "AK-47")
+        {
+            MeshRenderer[] meshes = GetComponentsInChildren<MeshRenderer>();
+
+            for (int i = 0; i < meshes.Length; i++)
+                meshes[i].material.color = Color.cyan;
+        }
     }
 
     void Update()
     {
         Vector3 dist = player.position - transform.position;
+
 
         if (dist.magnitude < distanceToInteract)
         {
@@ -39,15 +50,12 @@ public class PickUpTheObject : MonoBehaviour
 
                 if (Input.GetButtonDown("Interact"))
                 {
-
                     weaponTarget.AmmoLeft = weaponTarget.MagSize;
                     
                     pickUpSound.Play();
 
                     onDetected.Invoke();
                     onPressed.Invoke();
-
-                    
 
                     Destroy(GetComponent("PickUpTheObject"));
                 }

@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class EndLevelMenu : MonoBehaviour
 {
@@ -13,7 +12,10 @@ public class EndLevelMenu : MonoBehaviour
         if (GameManager.Instance.CheckControllerConnection())
             GameManager.Instance.ChangeFirstMenuItemSelected(firstMenuElement);
         else
+        {
+            Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
+        }
     }
 
     public void Restart()
@@ -25,6 +27,6 @@ public class EndLevelMenu : MonoBehaviour
     public void LoadMenu()
     {
         Time.timeScale = 1.0f;
-        SceneManager.LoadScene(0);
+        LevelManager.Instance.LoadMenu();
     }
 }

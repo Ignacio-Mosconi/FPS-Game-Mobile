@@ -8,6 +8,7 @@ public class PlayerAudio : MonoBehaviour
 {
 	[Header("Audio Sources")]
 	[SerializeField] AudioSource[] indoorFootsteps;
+	[SerializeField] AudioSource hitSound;
 	[SerializeField] AudioSource[] outdoorFootsteps;
 	AudioSource[] currentFootsteps;
 	const float walkingVelocity = 0.25f;
@@ -71,8 +72,8 @@ public class PlayerAudio : MonoBehaviour
 
 	void PlayHitSound()
 	{
-		if (!playerLife.HitSound.isPlaying)
-			playerLife.HitSound.Play();
+		if (!hitSound.isPlaying)
+			hitSound.Play();
 	}
 
 	void ChangeFootstepsSounds()

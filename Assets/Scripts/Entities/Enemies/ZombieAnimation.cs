@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(Animator))]
-[RequireComponent(typeof(ZombieMovement))]
+[RequireComponent(typeof(ZombieAI))]
 [RequireComponent(typeof(Life))]
 
 public class ZombieAnimation : MonoBehaviour
@@ -12,27 +12,29 @@ public class ZombieAnimation : MonoBehaviour
     [SerializeField] AnimationClip hitAnimation;
     Animator animator;
     NavMeshAgent agent;
-    ZombieMovement zombieMovement;
+    ZombieAI zombieAI;
     Life zombieLife;
 
 	void Awake()
     {
         animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
-        zombieMovement = GetComponent<ZombieMovement>();
+        zombieAI = GetComponent<ZombieAI>();
         zombieLife = GetComponent<Life>();
 
+	}
+
+	void Start()
+    {
         zombieLife.OnHit.AddListener(HitAnimation);
         zombieLife.OnDeath.AddListener(DeathAnimation);
+        zombieAI.OnAttack.AddListener(AttackAnimation);
+    }
 
-        zombieMovement.OnAttackRange.AddListener(AttackAnimation);
-        zombieMovement.OutOfAttackRange.AddListener(StopAttacking);
-	}
-	
 	void Update()
     {
         Vector3 horizontalVelocity = new Vector3(agent.velocity.x, 0, agent.velocity.z);
-        float normalizedVelocity = horizontalVelocity.magnitude / zombieMovement.MaxSpeed;
+        float normalizedVelocity = horizontalVelocity.magnitude / zombieAI.MaxSpeed;
 
         animator.SetFloat("Horizontal Velocity", normalizedVelocity, 0.2f, Time.deltaTime);
 	}
@@ -58,11 +60,6 @@ public class ZombieAnimation : MonoBehaviour
 
     void AttackAnimation()
     {
-        animator.SetBool("Is Attacking", true);
-    }
-
-    void StopAttacking()
-    {
-        animator.SetBool("Is Attacking", false);
+        animator.SetTrigger("Has Attacked");
     }
 }

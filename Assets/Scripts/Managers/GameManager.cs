@@ -7,7 +7,8 @@ public class GameManager : MonoBehaviour
 {
     static GameManager instance;
     EventSystem eventSystem;
-    float volumeValue = 0.75f;
+    float sfxVolumeValue = 0.75f;
+    float musicVolumeValue = 0.75f;
 
     void Awake()
     {
@@ -44,8 +45,11 @@ public class GameManager : MonoBehaviour
 
     public void ChangeFirstMenuItemSelected(GameObject firstMenuElement)
     {
-        eventSystem.firstSelectedGameObject = firstMenuElement;
-        eventSystem.SetSelectedGameObject(firstMenuElement);
+        if (CheckControllerConnection())
+        {
+            eventSystem.firstSelectedGameObject = firstMenuElement;
+            eventSystem.SetSelectedGameObject(firstMenuElement);
+        }
     }
 
     public bool CheckControllerConnection()
@@ -80,9 +84,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public float VolumeValue
+    public float SfxVolumeValue
     {
-        get { return volumeValue; }
-        set { volumeValue = value; }
+        get { return sfxVolumeValue; }
+        set { sfxVolumeValue = value; }
+    }
+    public float MusicVolumeValue
+    {
+        get { return musicVolumeValue; }
+        set { musicVolumeValue = value; }
     }
 }

@@ -31,11 +31,13 @@ public class GameManager : MonoBehaviour
             else
             {
                 inputModule.verticalAxis = "Vertical UI";
+                inputModule.horizontalAxis = "Horizontal UI";
                 inputModule.submitButton = "Select";
                 inputModule.cancelButton = "Return";
             }
             #else
                 inputModule.verticalAxis = "Vertical UI";
+                inputModule.horizontalAxis = "Horizontal UI";
                 inputModule.submitButton = "Select";
                 inputModule.cancelButton = "Return";
             #endif

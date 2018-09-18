@@ -12,7 +12,10 @@ public class MainMenu : MonoBehaviour
         if (GameManager.Instance.CheckControllerConnection())
             GameManager.Instance.ChangeFirstMenuItemSelected(firstMenuElement);
         else
+        {
             Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
 	}
 	
 	public void PlayGame()

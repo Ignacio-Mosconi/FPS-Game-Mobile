@@ -8,25 +8,32 @@ using UnityEngine.EventSystems;
 public class SettingsMenu : MonoBehaviour
 {
     [Header("Audio Settings")]
-    [SerializeField] AudioMixer audioMixer;
-    [SerializeField] Slider volumeSlider;
+    [SerializeField] AudioMixer sfxMixer;
+    [SerializeField] AudioMixer musicMixer;
+    [SerializeField] Slider sfxVolumeSlider;
+    [SerializeField] Slider musicVolumeSlider;
 
     void OnEnable()
     {
-        volumeSlider.value = GameManager.Instance.VolumeValue;
+        sfxVolumeSlider.value = GameManager.Instance.SfxVolumeValue;
+        musicVolumeSlider.value = GameManager.Instance.MusicVolumeValue;
     }
 
-    public void SetVolume(float volume)
+    public void SetSfxVolume(float volume)
     {
-        GameManager.Instance.VolumeValue = volume;
-        audioMixer.SetFloat("Volume", Mathf.Log(volume) * 12);
+        GameManager.Instance.SfxVolumeValue = volume;
+        sfxMixer.SetFloat("Volume", Mathf.Log(volume) * 12);
+    }
+    public void SetMusicVolume(float volume)
+    {
+        GameManager.Instance.MusicVolumeValue = volume;
+        musicMixer.SetFloat("Volume", Mathf.Log(volume) * 12);
     }
 
-    float GetMixerLevel()
+    float GetMixerLevel(AudioMixer audioMixer)
     {
         float volume;
         bool result = audioMixer.GetFloat("Volume", out volume);
         return (result) ? volume : 0f;
     }
 }
-

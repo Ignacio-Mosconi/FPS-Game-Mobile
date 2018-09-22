@@ -50,6 +50,10 @@ public class HUD : MonoBehaviour
         criticalLife = playerLife.MaxHealth * criticalLifePercentage;
 
         crateText.enabled = false;
+
+        crateText.text = GameManager.Instance.CheckControllerConnection() ?
+                        "Hold 'Square' to pick up ammo" : "Press 'E' to pick up ammo";
+
 	}
 
     void CrosshairEnabledToggle()

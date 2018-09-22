@@ -13,6 +13,7 @@ public class PickUpTheObject : MonoBehaviour
     [SerializeField] UnityEvent onDetected;
     [SerializeField] UnityEvent onPressed;
     AudioSource pickUpSound;
+    Canvas iconCanvas; 
     static float holdInteractTime = 0;
     const float HOLD_INTERACT_TIME = 0.75f;
     bool isLooking = false;
@@ -20,6 +21,7 @@ public class PickUpTheObject : MonoBehaviour
     void Start()
     {
         pickUpSound = GetComponent<AudioSource>();
+        iconCanvas = GetComponentInChildren<Canvas>();
         player = GameObject.Find("Player").transform;
         firstPersonCamera = player.GetChild(0).transform;
 
@@ -54,6 +56,7 @@ public class PickUpTheObject : MonoBehaviour
                     weaponTarget.AmmoLeft = weaponTarget.MagSize;
                     
                     pickUpSound.Play();
+                    iconCanvas.enabled = false;
 
                     onDetected.Invoke();
                     onPressed.Invoke();

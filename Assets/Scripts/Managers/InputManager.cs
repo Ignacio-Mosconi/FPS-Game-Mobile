@@ -77,6 +77,16 @@ public class InputManager : MonoBehaviour
 		return input.GetSwapWeaponButton();
 	}
 
+	public bool GetInteractButton()
+	{
+		return input.GetInteractButton();
+	}
+
+	public bool GetInteractHoldButton()
+	{
+		return input.GetInteractHoldButton();
+	}
+
 	public bool GetPauseButton()
 	{
 		return input.GetPauseButton();

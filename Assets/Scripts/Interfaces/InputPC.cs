@@ -36,7 +36,7 @@ public class InputPC : IInput
 
 	public bool GetReloadButton()
 	{
-		return Input.GetButton("Reload");
+		return Input.GetButtonUp("Reload");
 	}
 
 	public bool GetJumpButton()
@@ -57,6 +57,16 @@ public class InputPC : IInput
 	public bool GetSwapWeaponButton()
 	{
 		return Input.GetButtonDown("Swap Weapon");
+	}
+
+	public bool GetInteractButton()
+	{
+		return Input.GetButtonDown("Interact");
+	}
+
+	public bool GetInteractHoldButton()
+	{
+		return Input.GetButton("Interact Controller");
 	}
 
     public bool GetPauseButton()

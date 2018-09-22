@@ -12,9 +12,9 @@ public class PickUpTheObject : MonoBehaviour
     [SerializeField] Weapon weaponTarget;
     [SerializeField] UnityEvent onDetected;
     [SerializeField] UnityEvent onPressed;
-
     AudioSource pickUpSound;
-
+    static float holdInteractTime = 0;
+    const float HOLD_INTERACT_TIME = 0.75f;
     bool isLooking = false;
 
     void Start()
@@ -36,7 +36,6 @@ public class PickUpTheObject : MonoBehaviour
     {
         Vector3 dist = player.position - transform.position;
 
-
         if (dist.magnitude < distanceToInteract)
         {
             RaycastHit hit;
@@ -48,7 +47,9 @@ public class PickUpTheObject : MonoBehaviour
                     onDetected.Invoke();
                 }
 
-                if (Input.GetButtonDown("Interact"))
+                holdInteractTime = InputManager.Instance.GetInteractHoldButton() ? holdInteractTime + Time.deltaTime : 0;
+
+                if (InputManager.Instance.GetInteractButton() || holdInteractTime > HOLD_INTERACT_TIME)
                 {
                     weaponTarget.AmmoLeft = weaponTarget.MagSize;
                     
@@ -56,7 +57,7 @@ public class PickUpTheObject : MonoBehaviour
 
                     onDetected.Invoke();
                     onPressed.Invoke();
-
+                    
                     Destroy(GetComponent("PickUpTheObject"));
                 }
             }

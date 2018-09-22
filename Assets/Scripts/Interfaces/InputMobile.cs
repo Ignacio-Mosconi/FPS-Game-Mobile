@@ -36,7 +36,7 @@ public class InputMobile : IInput
 
 	public bool GetReloadButton()
 	{
-		return Input.GetButton("Reload Controller Mobile");
+		return Input.GetButtonUp("Reload Controller Mobile");
 	}
 
 	public bool GetJumpButton()
@@ -57,6 +57,16 @@ public class InputMobile : IInput
 	public bool GetSwapWeaponButton()
 	{
 		return Input.GetButtonDown("Swap Weapon");
+	}
+
+	public bool GetInteractButton()
+	{
+		return Input.GetButtonDown("Interact");
+	}
+
+	public bool GetInteractHoldButton()
+	{
+		return Input.GetButton("Interact Controller Mobile");
 	}
 
 	public bool GetPauseButton()

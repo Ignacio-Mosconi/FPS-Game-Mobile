@@ -39,6 +39,7 @@ public class Weapon : MonoBehaviour
     bool isReloading = false;
     float crosshairScaling = 1;
     int consecutiveShots = 0;
+    float reloadButtonPressCounter = 0;
 
     void Awake()
     {
@@ -79,9 +80,12 @@ public class Weapon : MonoBehaviour
            else
                 onEmptyMag.Invoke();
         }
+        
 
         if (InputManager.Instance.GetReloadButton() && CanReload())
             StartCoroutine(Reload());
+
+        reloadButtonPressCounter = InputManager.Instance.GetInteractHoldButton() ? reloadButtonPressCounter + Time.deltaTime : 0;
 	}
 
     void Shoot()
@@ -169,7 +173,7 @@ public class Weapon : MonoBehaviour
     bool CanReload()
     {
         return !isReloading && bulletsInMag < magSize + 1 && ammoLeft > 0 && Time.time >= lastFireTime + 1 / fireRate &&
-                !PauseMenu.IsPaused && !LevelManager.Instance.GameOver;
+                !PauseMenu.IsPaused && !LevelManager.Instance.GameOver && reloadButtonPressCounter < 0.5f;
     }
 
     public bool HasFinishedFiring()

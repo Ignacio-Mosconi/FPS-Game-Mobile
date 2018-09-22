@@ -15,5 +15,7 @@ interface IInput
 	bool GetSprintButton();
 	bool GetSprintButtonModifier();
 	bool GetSwapWeaponButton();
+	bool GetInteractButton();
+	bool GetInteractHoldButton();
 	bool GetPauseButton();
 }

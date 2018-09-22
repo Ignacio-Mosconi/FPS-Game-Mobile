@@ -8,6 +8,7 @@ public class DisableObjectOnPickUp : MonoBehaviour
 
     void Start()
     {
+        Debug.Log(gameObject, gameObject);
         onPickUp = GetComponentInParent<PickUpTheObject>();
         onPickUp.OnPressed.AddListener(DisableMe);
     }

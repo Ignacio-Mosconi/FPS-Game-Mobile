@@ -15,20 +15,29 @@ MonoBehaviour:
   - pbCollapseVertexToFirst
   - pbFillHoleSelectsEntirePath
   - pbEnableBackfaceSelection
+  - pbGenerateUV2PerObject
   m_Int_keys:
   - pbDefaultEditLevel
   - pbDefaultSelectionMode
   - pb_GIWorkflowMode
+  - pbHandleAlignment
+  - pbMirrorObjectScale
   m_Float_keys:
   - pbBevelAmount
+  - pbEditorScroll.x
+  - pbEditorScroll.y
+  - pbWeldDistance
   m_String_keys:
   - pbCurrentMaterialPalette
   m_Color_keys: []
   m_Material_keys: []
-  m_Bool_values: 010001
-  m_Int_values: 000000000100000001000000
+  m_Bool_values: 01000101
+  m_Int_values: 0000000001000000010000000000000009000000
   m_Float_values:
   - 0.1
+  - 0
+  - 105.79993
+  - 0.00001
   m_String_values:
   - Assets/ProBuilder Data/Default Material Palette.asset
   m_Color_values: []

@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public class Life : MonoBehaviour 
 {
     [SerializeField] float maxHealth;
+    [SerializeField] float deadBodyDuration = 60f;
     [SerializeField] AnimationClip deathAnimation;
     [SerializeField] UnityEvent onHit;
     [SerializeField] UnityEvent onDeath;
@@ -36,12 +37,31 @@ public class Life : MonoBehaviour
     void Die()
     {
         onDeath.Invoke();
+        DisableComponents();
     }
 
     void Die(float deathDuration)
     {
         onDeath.Invoke();
-        Destroy(gameObject, deathDuration);
+        Destroy(gameObject, deathDuration + deadBodyDuration);
+        DisableComponents();
+    }
+
+    void DisableComponents()
+    {
+        Collider collider = GetComponent<Collider>();
+        AudioSource[] audioSources = GetComponents<AudioSource>();
+        Canvas canvas = GetComponentInChildren<Canvas>();
+
+        if (collider)
+            collider.enabled = false;
+
+        foreach (AudioSource audioSource in audioSources)
+            if (audioSource)
+                audioSource.enabled = false;
+
+        if (canvas)
+            canvas.enabled = false;
     }
     
     public UnityEvent OnHit

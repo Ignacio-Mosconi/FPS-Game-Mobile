@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4371260959728504}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Edge Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 33958470050328132}
   - component: {fileID: 114240203112342086}
   - component: {fileID: 64588947608187018}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 23734106638426084}
   - component: {fileID: 111993496406729300}
   - component: {fileID: 65484577620916968}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Stone Fence (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,9 +70,9 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1696357666987934}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 195.92531, y: 1.0054687, z: -1.123909}
-  m_LocalScale: {x: 1.0000005, y: 1, z: 1.0000005}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 11.925308, y: 1.0054687, z: -2.123909}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4407795243605118}
   - {fileID: 4521397207032992}
@@ -462,6 +462,14 @@ MonoBehaviour:
     angleError: 8
     areaError: 15
   dontDestroyMeshOnDelete: 0
-  m_selectedFaces: 
-  m_SelectedEdges: []
-  m_selectedTriangles: 
+  m_selectedFaces: 00000000
+  m_SelectedEdges:
+  - x: 1
+    y: 2
+  - x: 2
+    y: 3
+  - x: 3
+    y: 0
+  - x: 0
+    y: 1
+  m_selectedTriangles: 03000000010000000200000000000000

@@ -59,9 +59,9 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 5869092870930034e95a41c807c915e0, type: 2}
-  - {fileID: 0}
   - {fileID: 2100000, guid: c2aaf09ea4d29d743ae7fe41245c03d4, type: 2}
   - {fileID: 2100000, guid: 1b410be636a8a0a41bb86b6f8080797c, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1619,7 +1619,7 @@ MonoBehaviour:
       localPivot: {x: 0, y: 0}
       localSize: {x: 0, y: 0}
       anchor: 9
-    _mat: {fileID: 0}
+    _mat: {fileID: 2100000, guid: 5869092870930034e95a41c807c915e0, type: 2}
     manualUV: 1
     textureGroup: -1
   - _indices: e2030000e3030000e4030000
@@ -1645,7 +1645,7 @@ MonoBehaviour:
       localPivot: {x: 0, y: 0}
       localSize: {x: 0, y: 0}
       anchor: 9
-    _mat: {fileID: 0}
+    _mat: {fileID: 2100000, guid: 5869092870930034e95a41c807c915e0, type: 2}
     manualUV: 1
     textureGroup: -1
   - _indices: e9030000ea030000eb030000
@@ -1671,7 +1671,7 @@ MonoBehaviour:
       localPivot: {x: 0, y: 0}
       localSize: {x: 0, y: 0}
       anchor: 9
-    _mat: {fileID: 0}
+    _mat: {fileID: 2100000, guid: 5869092870930034e95a41c807c915e0, type: 2}
     manualUV: 1
     textureGroup: -1
   - _indices: f0030000f1030000f2030000
@@ -1697,7 +1697,7 @@ MonoBehaviour:
       localPivot: {x: 0, y: 0}
       localSize: {x: 0, y: 0}
       anchor: 9
-    _mat: {fileID: 0}
+    _mat: {fileID: 2100000, guid: 5869092870930034e95a41c807c915e0, type: 2}
     manualUV: 1
     textureGroup: -1
   - _indices: f7030000f8030000f9030000
@@ -1723,7 +1723,7 @@ MonoBehaviour:
       localPivot: {x: 0, y: 0}
       localSize: {x: 0, y: 0}
       anchor: 9
-    _mat: {fileID: 0}
+    _mat: {fileID: 2100000, guid: 5869092870930034e95a41c807c915e0, type: 2}
     manualUV: 1
     textureGroup: -1
   - _indices: fe030000ff03000000040000
@@ -1749,7 +1749,7 @@ MonoBehaviour:
       localPivot: {x: 0, y: 0}
       localSize: {x: 0, y: 0}
       anchor: 9
-    _mat: {fileID: 0}
+    _mat: {fileID: 2100000, guid: 5869092870930034e95a41c807c915e0, type: 2}
     manualUV: 1
     textureGroup: -1
   - _indices: 050400000604000007040000
@@ -1775,7 +1775,7 @@ MonoBehaviour:
       localPivot: {x: 0, y: 0}
       localSize: {x: 0, y: 0}
       anchor: 9
-    _mat: {fileID: 0}
+    _mat: {fileID: 2100000, guid: 5869092870930034e95a41c807c915e0, type: 2}
     manualUV: 1
     textureGroup: -1
   - _indices: 0c0400000d0400000e040000
@@ -1801,7 +1801,7 @@ MonoBehaviour:
       localPivot: {x: 0, y: 0}
       localSize: {x: 0, y: 0}
       anchor: 9
-    _mat: {fileID: 0}
+    _mat: {fileID: 2100000, guid: 5869092870930034e95a41c807c915e0, type: 2}
     manualUV: 1
     textureGroup: -1
   - _indices: 130400001404000015040000
@@ -1827,7 +1827,7 @@ MonoBehaviour:
       localPivot: {x: 0, y: 0}
       localSize: {x: 0, y: 0}
       anchor: 9
-    _mat: {fileID: 0}
+    _mat: {fileID: 2100000, guid: 5869092870930034e95a41c807c915e0, type: 2}
     manualUV: 1
     textureGroup: -1
   - _indices: 1a0400001b0400001c040000
@@ -1853,7 +1853,7 @@ MonoBehaviour:
       localPivot: {x: 0, y: 0}
       localSize: {x: 0, y: 0}
       anchor: 9
-    _mat: {fileID: 0}
+    _mat: {fileID: 2100000, guid: 5869092870930034e95a41c807c915e0, type: 2}
     manualUV: 1
     textureGroup: -1
   - _indices: 210400002204000023040000
@@ -1879,7 +1879,7 @@ MonoBehaviour:
       localPivot: {x: 0, y: 0}
       localSize: {x: 0, y: 0}
       anchor: 9
-    _mat: {fileID: 0}
+    _mat: {fileID: 2100000, guid: 5869092870930034e95a41c807c915e0, type: 2}
     manualUV: 1
     textureGroup: -1
   - _indices: 28040000290400002a040000
@@ -1905,7 +1905,7 @@ MonoBehaviour:
       localPivot: {x: 0, y: 0}
       localSize: {x: 0, y: 0}
       anchor: 9
-    _mat: {fileID: 0}
+    _mat: {fileID: 2100000, guid: 5869092870930034e95a41c807c915e0, type: 2}
     manualUV: 1
     textureGroup: -1
   - _indices: 2f0400003004000031040000
@@ -1931,7 +1931,7 @@ MonoBehaviour:
       localPivot: {x: 0, y: 0}
       localSize: {x: 0, y: 0}
       anchor: 9
-    _mat: {fileID: 0}
+    _mat: {fileID: 2100000, guid: 5869092870930034e95a41c807c915e0, type: 2}
     manualUV: 1
     textureGroup: -1
   - _indices: 360400003704000038040000
@@ -1957,7 +1957,7 @@ MonoBehaviour:
       localPivot: {x: 0, y: 0}
       localSize: {x: 0, y: 0}
       anchor: 9
-    _mat: {fileID: 0}
+    _mat: {fileID: 2100000, guid: 5869092870930034e95a41c807c915e0, type: 2}
     manualUV: 1
     textureGroup: -1
   - _indices: 3d0400003e0400003f040000
@@ -1983,7 +1983,7 @@ MonoBehaviour:
       localPivot: {x: 0, y: 0}
       localSize: {x: 0, y: 0}
       anchor: 9
-    _mat: {fileID: 0}
+    _mat: {fileID: 2100000, guid: 5869092870930034e95a41c807c915e0, type: 2}
     manualUV: 1
     textureGroup: -1
   - _indices: 440400004504000046040000
@@ -2009,7 +2009,7 @@ MonoBehaviour:
       localPivot: {x: 0, y: 0}
       localSize: {x: 0, y: 0}
       anchor: 9
-    _mat: {fileID: 0}
+    _mat: {fileID: 2100000, guid: 5869092870930034e95a41c807c915e0, type: 2}
     manualUV: 1
     textureGroup: -1
   - _indices: 4b0400004c0400004d040000
@@ -2035,7 +2035,7 @@ MonoBehaviour:
       localPivot: {x: 0, y: 0}
       localSize: {x: 0, y: 0}
       anchor: 9
-    _mat: {fileID: 0}
+    _mat: {fileID: 2100000, guid: 5869092870930034e95a41c807c915e0, type: 2}
     manualUV: 1
     textureGroup: -1
   - _indices: 520400005304000054040000
@@ -2061,7 +2061,7 @@ MonoBehaviour:
       localPivot: {x: 0, y: 0}
       localSize: {x: 0, y: 0}
       anchor: 9
-    _mat: {fileID: 0}
+    _mat: {fileID: 2100000, guid: 5869092870930034e95a41c807c915e0, type: 2}
     manualUV: 1
     textureGroup: -1
   - _indices: 590400005a0400005b040000
@@ -2087,7 +2087,7 @@ MonoBehaviour:
       localPivot: {x: 0, y: 0}
       localSize: {x: 0, y: 0}
       anchor: 9
-    _mat: {fileID: 0}
+    _mat: {fileID: 2100000, guid: 5869092870930034e95a41c807c915e0, type: 2}
     manualUV: 1
     textureGroup: -1
   - _indices: 000000000100000002000000010000000300000002000000
@@ -7267,7 +7267,7 @@ MonoBehaviour:
       localPivot: {x: 0, y: 0}
       localSize: {x: 0, y: 0}
       anchor: 9
-    _mat: {fileID: 0}
+    _mat: {fileID: 2100000, guid: 5869092870930034e95a41c807c915e0, type: 2}
     manualUV: 1
     textureGroup: -1
   - _indices: 8f03000090030000910300008f0300009103000092030000
@@ -7295,7 +7295,7 @@ MonoBehaviour:
       localPivot: {x: 0, y: 0}
       localSize: {x: 0, y: 0}
       anchor: 9
-    _mat: {fileID: 0}
+    _mat: {fileID: 2100000, guid: 5869092870930034e95a41c807c915e0, type: 2}
     manualUV: 1
     textureGroup: -1
   - _indices: 930300009403000095030000930300009503000096030000
@@ -7323,7 +7323,7 @@ MonoBehaviour:
       localPivot: {x: 0, y: 0}
       localSize: {x: 0, y: 0}
       anchor: 9
-    _mat: {fileID: 0}
+    _mat: {fileID: 2100000, guid: 5869092870930034e95a41c807c915e0, type: 2}
     manualUV: 1
     textureGroup: -1
   - _indices: 97030000980300009903000097030000990300009a030000
@@ -7351,7 +7351,7 @@ MonoBehaviour:
       localPivot: {x: 0, y: 0}
       localSize: {x: 0, y: 0}
       anchor: 9
-    _mat: {fileID: 0}
+    _mat: {fileID: 2100000, guid: 5869092870930034e95a41c807c915e0, type: 2}
     manualUV: 1
     textureGroup: -1
   - _indices: 9b0300009c0300009d0300009b0300009d0300009e030000
@@ -7379,7 +7379,7 @@ MonoBehaviour:
       localPivot: {x: 0, y: 0}
       localSize: {x: 0, y: 0}
       anchor: 9
-    _mat: {fileID: 0}
+    _mat: {fileID: 2100000, guid: 5869092870930034e95a41c807c915e0, type: 2}
     manualUV: 1
     textureGroup: -1
   - _indices: 9f030000a0030000a10300009f030000a1030000a2030000
@@ -7407,7 +7407,7 @@ MonoBehaviour:
       localPivot: {x: 0, y: 0}
       localSize: {x: 0, y: 0}
       anchor: 9
-    _mat: {fileID: 0}
+    _mat: {fileID: 2100000, guid: 5869092870930034e95a41c807c915e0, type: 2}
     manualUV: 1
     textureGroup: -1
   - _indices: a3030000a4030000a5030000a3030000a5030000a6030000
@@ -7435,7 +7435,7 @@ MonoBehaviour:
       localPivot: {x: 0, y: 0}
       localSize: {x: 0, y: 0}
       anchor: 9
-    _mat: {fileID: 0}
+    _mat: {fileID: 2100000, guid: 5869092870930034e95a41c807c915e0, type: 2}
     manualUV: 1
     textureGroup: -1
   - _indices: a7030000a8030000a9030000a7030000a9030000aa030000
@@ -7463,7 +7463,7 @@ MonoBehaviour:
       localPivot: {x: 0, y: 0}
       localSize: {x: 0, y: 0}
       anchor: 9
-    _mat: {fileID: 0}
+    _mat: {fileID: 2100000, guid: 5869092870930034e95a41c807c915e0, type: 2}
     manualUV: 1
     textureGroup: -1
   - _indices: ab030000ac030000ad030000ab030000ad030000ae030000
@@ -7491,7 +7491,7 @@ MonoBehaviour:
       localPivot: {x: 0, y: 0}
       localSize: {x: 0, y: 0}
       anchor: 9
-    _mat: {fileID: 0}
+    _mat: {fileID: 2100000, guid: 5869092870930034e95a41c807c915e0, type: 2}
     manualUV: 1
     textureGroup: -1
   - _indices: af030000b0030000b1030000af030000b1030000b2030000
@@ -7519,7 +7519,7 @@ MonoBehaviour:
       localPivot: {x: 0, y: 0}
       localSize: {x: 0, y: 0}
       anchor: 9
-    _mat: {fileID: 0}
+    _mat: {fileID: 2100000, guid: 5869092870930034e95a41c807c915e0, type: 2}
     manualUV: 1
     textureGroup: -1
   - _indices: b3030000b4030000b5030000b3030000b5030000b6030000
@@ -7547,7 +7547,7 @@ MonoBehaviour:
       localPivot: {x: 0, y: 0}
       localSize: {x: 0, y: 0}
       anchor: 9
-    _mat: {fileID: 0}
+    _mat: {fileID: 2100000, guid: 5869092870930034e95a41c807c915e0, type: 2}
     manualUV: 1
     textureGroup: -1
   - _indices: b7030000b8030000b9030000b7030000b9030000ba030000
@@ -7575,7 +7575,7 @@ MonoBehaviour:
       localPivot: {x: 0, y: 0}
       localSize: {x: 0, y: 0}
       anchor: 9
-    _mat: {fileID: 0}
+    _mat: {fileID: 2100000, guid: 5869092870930034e95a41c807c915e0, type: 2}
     manualUV: 1
     textureGroup: -1
   - _indices: bb030000bc030000bd030000bb030000bd030000be030000
@@ -7603,7 +7603,7 @@ MonoBehaviour:
       localPivot: {x: 0, y: 0}
       localSize: {x: 0, y: 0}
       anchor: 9
-    _mat: {fileID: 0}
+    _mat: {fileID: 2100000, guid: 5869092870930034e95a41c807c915e0, type: 2}
     manualUV: 1
     textureGroup: -1
   - _indices: bf030000c0030000c1030000bf030000c1030000c2030000
@@ -7631,7 +7631,7 @@ MonoBehaviour:
       localPivot: {x: 0, y: 0}
       localSize: {x: 0, y: 0}
       anchor: 9
-    _mat: {fileID: 0}
+    _mat: {fileID: 2100000, guid: 5869092870930034e95a41c807c915e0, type: 2}
     manualUV: 1
     textureGroup: -1
   - _indices: c3030000c4030000c5030000c3030000c5030000c6030000
@@ -7659,7 +7659,7 @@ MonoBehaviour:
       localPivot: {x: 0, y: 0}
       localSize: {x: 0, y: 0}
       anchor: 9
-    _mat: {fileID: 0}
+    _mat: {fileID: 2100000, guid: 5869092870930034e95a41c807c915e0, type: 2}
     manualUV: 1
     textureGroup: -1
   - _indices: c7030000c8030000c9030000c7030000c9030000ca030000
@@ -7687,7 +7687,7 @@ MonoBehaviour:
       localPivot: {x: 0, y: 0}
       localSize: {x: 0, y: 0}
       anchor: 9
-    _mat: {fileID: 0}
+    _mat: {fileID: 2100000, guid: 5869092870930034e95a41c807c915e0, type: 2}
     manualUV: 1
     textureGroup: -1
   - _indices: cb030000cc030000cd030000cb030000cd030000ce030000
@@ -7715,7 +7715,7 @@ MonoBehaviour:
       localPivot: {x: 0, y: 0}
       localSize: {x: 0, y: 0}
       anchor: 9
-    _mat: {fileID: 0}
+    _mat: {fileID: 2100000, guid: 5869092870930034e95a41c807c915e0, type: 2}
     manualUV: 1
     textureGroup: -1
   - _indices: cf030000d0030000d1030000cf030000d1030000d2030000
@@ -7743,7 +7743,7 @@ MonoBehaviour:
       localPivot: {x: 0, y: 0}
       localSize: {x: 0, y: 0}
       anchor: 9
-    _mat: {fileID: 0}
+    _mat: {fileID: 2100000, guid: 5869092870930034e95a41c807c915e0, type: 2}
     manualUV: 1
     textureGroup: -1
   - _indices: d3030000d4030000d5030000d6030000d3030000d5030000
@@ -7771,7 +7771,7 @@ MonoBehaviour:
       localPivot: {x: 0, y: 0}
       localSize: {x: 0, y: 0}
       anchor: 9
-    _mat: {fileID: 0}
+    _mat: {fileID: 2100000, guid: 5869092870930034e95a41c807c915e0, type: 2}
     manualUV: 1
     textureGroup: -1
   - _indices: d7030000d8030000d9030000d8030000dd030000d9030000
@@ -7799,7 +7799,7 @@ MonoBehaviour:
       localPivot: {x: 0, y: 0}
       localSize: {x: 0, y: 0}
       anchor: 9
-    _mat: {fileID: 0}
+    _mat: {fileID: 2100000, guid: 5869092870930034e95a41c807c915e0, type: 2}
     manualUV: 1
     textureGroup: -1
   - _indices: de030000df030000e0030000e1030000de030000e0030000
@@ -7827,7 +7827,7 @@ MonoBehaviour:
       localPivot: {x: 0, y: 0}
       localSize: {x: 0, y: 0}
       anchor: 9
-    _mat: {fileID: 0}
+    _mat: {fileID: 2100000, guid: 5869092870930034e95a41c807c915e0, type: 2}
     manualUV: 1
     textureGroup: -1
   - _indices: e5030000e6030000e7030000e8030000e5030000e7030000
@@ -7855,7 +7855,7 @@ MonoBehaviour:
       localPivot: {x: 0, y: 0}
       localSize: {x: 0, y: 0}
       anchor: 9
-    _mat: {fileID: 0}
+    _mat: {fileID: 2100000, guid: 5869092870930034e95a41c807c915e0, type: 2}
     manualUV: 1
     textureGroup: -1
   - _indices: ec030000ed030000ee030000ef030000ec030000ee030000
@@ -7883,7 +7883,7 @@ MonoBehaviour:
       localPivot: {x: 0, y: 0}
       localSize: {x: 0, y: 0}
       anchor: 9
-    _mat: {fileID: 0}
+    _mat: {fileID: 2100000, guid: 5869092870930034e95a41c807c915e0, type: 2}
     manualUV: 1
     textureGroup: -1
   - _indices: f3030000f4030000f5030000f6030000f3030000f5030000
@@ -7911,7 +7911,7 @@ MonoBehaviour:
       localPivot: {x: 0, y: 0}
       localSize: {x: 0, y: 0}
       anchor: 9
-    _mat: {fileID: 0}
+    _mat: {fileID: 2100000, guid: 5869092870930034e95a41c807c915e0, type: 2}
     manualUV: 1
     textureGroup: -1
   - _indices: fa030000fb030000fc030000fd030000fa030000fc030000
@@ -7939,7 +7939,7 @@ MonoBehaviour:
       localPivot: {x: 0, y: 0}
       localSize: {x: 0, y: 0}
       anchor: 9
-    _mat: {fileID: 0}
+    _mat: {fileID: 2100000, guid: 5869092870930034e95a41c807c915e0, type: 2}
     manualUV: 1
     textureGroup: -1
   - _indices: 010400000204000003040000040400000104000003040000
@@ -7967,7 +7967,7 @@ MonoBehaviour:
       localPivot: {x: 0, y: 0}
       localSize: {x: 0, y: 0}
       anchor: 9
-    _mat: {fileID: 0}
+    _mat: {fileID: 2100000, guid: 5869092870930034e95a41c807c915e0, type: 2}
     manualUV: 1
     textureGroup: -1
   - _indices: 08040000090400000a0400000b040000080400000a040000
@@ -7995,7 +7995,7 @@ MonoBehaviour:
       localPivot: {x: 0, y: 0}
       localSize: {x: 0, y: 0}
       anchor: 9
-    _mat: {fileID: 0}
+    _mat: {fileID: 2100000, guid: 5869092870930034e95a41c807c915e0, type: 2}
     manualUV: 1
     textureGroup: -1
   - _indices: 0f0400001004000011040000120400000f04000011040000
@@ -8023,7 +8023,7 @@ MonoBehaviour:
       localPivot: {x: 0, y: 0}
       localSize: {x: 0, y: 0}
       anchor: 9
-    _mat: {fileID: 0}
+    _mat: {fileID: 2100000, guid: 5869092870930034e95a41c807c915e0, type: 2}
     manualUV: 1
     textureGroup: -1
   - _indices: 160400001704000018040000190400001604000018040000
@@ -8051,7 +8051,7 @@ MonoBehaviour:
       localPivot: {x: 0, y: 0}
       localSize: {x: 0, y: 0}
       anchor: 9
-    _mat: {fileID: 0}
+    _mat: {fileID: 2100000, guid: 5869092870930034e95a41c807c915e0, type: 2}
     manualUV: 1
     textureGroup: -1
   - _indices: 1d0400001e0400001f040000200400001d0400001f040000
@@ -8079,7 +8079,7 @@ MonoBehaviour:
       localPivot: {x: 0, y: 0}
       localSize: {x: 0, y: 0}
       anchor: 9
-    _mat: {fileID: 0}
+    _mat: {fileID: 2100000, guid: 5869092870930034e95a41c807c915e0, type: 2}
     manualUV: 1
     textureGroup: -1
   - _indices: 240400002504000026040000270400002404000026040000
@@ -8107,7 +8107,7 @@ MonoBehaviour:
       localPivot: {x: 0, y: 0}
       localSize: {x: 0, y: 0}
       anchor: 9
-    _mat: {fileID: 0}
+    _mat: {fileID: 2100000, guid: 5869092870930034e95a41c807c915e0, type: 2}
     manualUV: 1
     textureGroup: -1
   - _indices: 2b0400002c0400002d0400002e0400002b0400002d040000
@@ -8135,7 +8135,7 @@ MonoBehaviour:
       localPivot: {x: 0, y: 0}
       localSize: {x: 0, y: 0}
       anchor: 9
-    _mat: {fileID: 0}
+    _mat: {fileID: 2100000, guid: 5869092870930034e95a41c807c915e0, type: 2}
     manualUV: 1
     textureGroup: -1
   - _indices: 320400003304000034040000350400003204000034040000
@@ -8163,7 +8163,7 @@ MonoBehaviour:
       localPivot: {x: 0, y: 0}
       localSize: {x: 0, y: 0}
       anchor: 9
-    _mat: {fileID: 0}
+    _mat: {fileID: 2100000, guid: 5869092870930034e95a41c807c915e0, type: 2}
     manualUV: 1
     textureGroup: -1
   - _indices: 390400003a0400003b0400003c040000390400003b040000
@@ -8191,7 +8191,7 @@ MonoBehaviour:
       localPivot: {x: 0, y: 0}
       localSize: {x: 0, y: 0}
       anchor: 9
-    _mat: {fileID: 0}
+    _mat: {fileID: 2100000, guid: 5869092870930034e95a41c807c915e0, type: 2}
     manualUV: 1
     textureGroup: -1
   - _indices: 400400004104000042040000430400004004000042040000
@@ -8219,7 +8219,7 @@ MonoBehaviour:
       localPivot: {x: 0, y: 0}
       localSize: {x: 0, y: 0}
       anchor: 9
-    _mat: {fileID: 0}
+    _mat: {fileID: 2100000, guid: 5869092870930034e95a41c807c915e0, type: 2}
     manualUV: 1
     textureGroup: -1
   - _indices: 4704000048040000490400004a0400004704000049040000
@@ -8247,7 +8247,7 @@ MonoBehaviour:
       localPivot: {x: 0, y: 0}
       localSize: {x: 0, y: 0}
       anchor: 9
-    _mat: {fileID: 0}
+    _mat: {fileID: 2100000, guid: 5869092870930034e95a41c807c915e0, type: 2}
     manualUV: 1
     textureGroup: -1
   - _indices: 4e0400004f04000050040000510400004e04000050040000
@@ -8275,7 +8275,7 @@ MonoBehaviour:
       localPivot: {x: 0, y: 0}
       localSize: {x: 0, y: 0}
       anchor: 9
-    _mat: {fileID: 0}
+    _mat: {fileID: 2100000, guid: 5869092870930034e95a41c807c915e0, type: 2}
     manualUV: 1
     textureGroup: -1
   - _indices: 550400005604000057040000580400005504000057040000
@@ -8303,7 +8303,7 @@ MonoBehaviour:
       localPivot: {x: 0, y: 0}
       localSize: {x: 0, y: 0}
       anchor: 9
-    _mat: {fileID: 0}
+    _mat: {fileID: 2100000, guid: 5869092870930034e95a41c807c915e0, type: 2}
     manualUV: 1
     textureGroup: -1
   _sharedIndices:
@@ -14184,6 +14184,568 @@ MonoBehaviour:
     angleError: 8
     areaError: 15
   dontDestroyMeshOnDelete: 0
-  m_selectedFaces: 
-  m_SelectedEdges: []
-  m_selectedTriangles: 
+  m_selectedFaces: 3a0000003b0000003c0000003d0000003e000000cb000000cd000000cf000000d1000000d3000000d5000000f6000000f7000000f8000000f9000000fa000000fb000000fc000000fd000000fe000000ff00000000010000010100000401000005010000060100000701000008010000090100000a0100000b0100000c0100000d0100000e0100000f0100001001000011010000120100001301000014010000150100001701000018010000190100001a0100001b0100001c0100001d0100001e0100001f0100002001000021010000220100002301000024010000250100002601000027010000280100002901000016010000390000003f000000400000004100000042000000430000004400000045000000460000004700000049000000480000004a0000004b000000
+  m_SelectedEdges:
+  - x: 994
+    y: 995
+  - x: 995
+    y: 996
+  - x: 996
+    y: 994
+  - x: 1001
+    y: 1002
+  - x: 1002
+    y: 1003
+  - x: 1003
+    y: 1001
+  - x: 1008
+    y: 1009
+  - x: 1009
+    y: 1010
+  - x: 1010
+    y: 1008
+  - x: 1015
+    y: 1016
+  - x: 1016
+    y: 1017
+  - x: 1017
+    y: 1015
+  - x: 1022
+    y: 1023
+  - x: 1023
+    y: 1024
+  - x: 1024
+    y: 1022
+  - x: 622
+    y: 623
+  - x: 623
+    y: 624
+  - x: 624
+    y: 625
+  - x: 625
+    y: 622
+  - x: 630
+    y: 631
+  - x: 631
+    y: 632
+  - x: 632
+    y: 633
+  - x: 633
+    y: 630
+  - x: 638
+    y: 639
+  - x: 639
+    y: 640
+  - x: 640
+    y: 641
+  - x: 641
+    y: 638
+  - x: 646
+    y: 647
+  - x: 647
+    y: 648
+  - x: 648
+    y: 649
+  - x: 649
+    y: 646
+  - x: 654
+    y: 655
+  - x: 655
+    y: 656
+  - x: 656
+    y: 657
+  - x: 657
+    y: 654
+  - x: 662
+    y: 663
+  - x: 663
+    y: 664
+  - x: 664
+    y: 665
+  - x: 665
+    y: 662
+  - x: 818
+    y: 819
+  - x: 819
+    y: 820
+  - x: 820
+    y: 821
+  - x: 821
+    y: 818
+  - x: 825
+    y: 826
+  - x: 826
+    y: 827
+  - x: 827
+    y: 828
+  - x: 828
+    y: 825
+  - x: 832
+    y: 833
+  - x: 833
+    y: 834
+  - x: 834
+    y: 835
+  - x: 835
+    y: 832
+  - x: 839
+    y: 840
+  - x: 840
+    y: 841
+  - x: 841
+    y: 842
+  - x: 842
+    y: 839
+  - x: 846
+    y: 847
+  - x: 847
+    y: 848
+  - x: 848
+    y: 849
+  - x: 849
+    y: 846
+  - x: 853
+    y: 854
+  - x: 854
+    y: 855
+  - x: 855
+    y: 856
+  - x: 856
+    y: 853
+  - x: 860
+    y: 861
+  - x: 861
+    y: 862
+  - x: 862
+    y: 863
+  - x: 863
+    y: 860
+  - x: 867
+    y: 868
+  - x: 868
+    y: 869
+  - x: 869
+    y: 870
+  - x: 870
+    y: 867
+  - x: 874
+    y: 875
+  - x: 875
+    y: 876
+  - x: 876
+    y: 877
+  - x: 877
+    y: 874
+  - x: 881
+    y: 882
+  - x: 882
+    y: 883
+  - x: 883
+    y: 884
+  - x: 884
+    y: 881
+  - x: 888
+    y: 889
+  - x: 889
+    y: 890
+  - x: 890
+    y: 891
+  - x: 891
+    y: 888
+  - x: 895
+    y: 896
+  - x: 896
+    y: 897
+  - x: 897
+    y: 898
+  - x: 898
+    y: 895
+  - x: 907
+    y: 908
+  - x: 908
+    y: 909
+  - x: 909
+    y: 910
+  - x: 910
+    y: 907
+  - x: 911
+    y: 912
+  - x: 912
+    y: 913
+  - x: 913
+    y: 914
+  - x: 914
+    y: 911
+  - x: 915
+    y: 916
+  - x: 916
+    y: 917
+  - x: 917
+    y: 918
+  - x: 918
+    y: 915
+  - x: 919
+    y: 920
+  - x: 920
+    y: 921
+  - x: 921
+    y: 922
+  - x: 922
+    y: 919
+  - x: 923
+    y: 924
+  - x: 924
+    y: 925
+  - x: 925
+    y: 926
+  - x: 926
+    y: 923
+  - x: 927
+    y: 928
+  - x: 928
+    y: 929
+  - x: 929
+    y: 930
+  - x: 930
+    y: 927
+  - x: 931
+    y: 932
+  - x: 932
+    y: 933
+  - x: 933
+    y: 934
+  - x: 934
+    y: 931
+  - x: 935
+    y: 936
+  - x: 936
+    y: 937
+  - x: 937
+    y: 938
+  - x: 938
+    y: 935
+  - x: 939
+    y: 940
+  - x: 940
+    y: 941
+  - x: 941
+    y: 942
+  - x: 942
+    y: 939
+  - x: 943
+    y: 944
+  - x: 944
+    y: 945
+  - x: 945
+    y: 946
+  - x: 946
+    y: 943
+  - x: 947
+    y: 948
+  - x: 948
+    y: 949
+  - x: 949
+    y: 950
+  - x: 950
+    y: 947
+  - x: 951
+    y: 952
+  - x: 952
+    y: 953
+  - x: 953
+    y: 954
+  - x: 954
+    y: 951
+  - x: 955
+    y: 956
+  - x: 956
+    y: 957
+  - x: 957
+    y: 958
+  - x: 958
+    y: 955
+  - x: 959
+    y: 960
+  - x: 960
+    y: 961
+  - x: 961
+    y: 962
+  - x: 962
+    y: 959
+  - x: 963
+    y: 964
+  - x: 964
+    y: 965
+  - x: 965
+    y: 966
+  - x: 966
+    y: 963
+  - x: 967
+    y: 968
+  - x: 968
+    y: 969
+  - x: 969
+    y: 970
+  - x: 970
+    y: 967
+  - x: 971
+    y: 972
+  - x: 972
+    y: 973
+  - x: 973
+    y: 974
+  - x: 974
+    y: 971
+  - x: 975
+    y: 976
+  - x: 976
+    y: 977
+  - x: 977
+    y: 978
+  - x: 978
+    y: 975
+  - x: 983
+    y: 984
+  - x: 985
+    y: 983
+  - x: 984
+    y: 989
+  - x: 989
+    y: 985
+  - x: 990
+    y: 991
+  - x: 991
+    y: 992
+  - x: 993
+    y: 990
+  - x: 992
+    y: 993
+  - x: 997
+    y: 998
+  - x: 998
+    y: 999
+  - x: 1000
+    y: 997
+  - x: 999
+    y: 1000
+  - x: 1004
+    y: 1005
+  - x: 1005
+    y: 1006
+  - x: 1007
+    y: 1004
+  - x: 1006
+    y: 1007
+  - x: 1011
+    y: 1012
+  - x: 1012
+    y: 1013
+  - x: 1014
+    y: 1011
+  - x: 1013
+    y: 1014
+  - x: 1018
+    y: 1019
+  - x: 1019
+    y: 1020
+  - x: 1021
+    y: 1018
+  - x: 1020
+    y: 1021
+  - x: 1025
+    y: 1026
+  - x: 1026
+    y: 1027
+  - x: 1028
+    y: 1025
+  - x: 1027
+    y: 1028
+  - x: 1032
+    y: 1033
+  - x: 1033
+    y: 1034
+  - x: 1035
+    y: 1032
+  - x: 1034
+    y: 1035
+  - x: 1039
+    y: 1040
+  - x: 1040
+    y: 1041
+  - x: 1042
+    y: 1039
+  - x: 1041
+    y: 1042
+  - x: 1046
+    y: 1047
+  - x: 1047
+    y: 1048
+  - x: 1049
+    y: 1046
+  - x: 1048
+    y: 1049
+  - x: 1053
+    y: 1054
+  - x: 1054
+    y: 1055
+  - x: 1056
+    y: 1053
+  - x: 1055
+    y: 1056
+  - x: 1060
+    y: 1061
+  - x: 1061
+    y: 1062
+  - x: 1063
+    y: 1060
+  - x: 1062
+    y: 1063
+  - x: 1067
+    y: 1068
+  - x: 1068
+    y: 1069
+  - x: 1070
+    y: 1067
+  - x: 1069
+    y: 1070
+  - x: 1074
+    y: 1075
+  - x: 1075
+    y: 1076
+  - x: 1077
+    y: 1074
+  - x: 1076
+    y: 1077
+  - x: 1081
+    y: 1082
+  - x: 1082
+    y: 1083
+  - x: 1084
+    y: 1081
+  - x: 1083
+    y: 1084
+  - x: 1088
+    y: 1089
+  - x: 1089
+    y: 1090
+  - x: 1091
+    y: 1088
+  - x: 1090
+    y: 1091
+  - x: 1095
+    y: 1096
+  - x: 1096
+    y: 1097
+  - x: 1098
+    y: 1095
+  - x: 1097
+    y: 1098
+  - x: 1102
+    y: 1103
+  - x: 1103
+    y: 1104
+  - x: 1105
+    y: 1102
+  - x: 1104
+    y: 1105
+  - x: 1109
+    y: 1110
+  - x: 1110
+    y: 1111
+  - x: 1112
+    y: 1109
+  - x: 1111
+    y: 1112
+  - x: 979
+    y: 980
+  - x: 980
+    y: 981
+  - x: 982
+    y: 979
+  - x: 981
+    y: 982
+  - x: 986
+    y: 987
+  - x: 987
+    y: 988
+  - x: 988
+    y: 986
+  - x: 1029
+    y: 1030
+  - x: 1030
+    y: 1031
+  - x: 1031
+    y: 1029
+  - x: 1036
+    y: 1037
+  - x: 1037
+    y: 1038
+  - x: 1038
+    y: 1036
+  - x: 1043
+    y: 1044
+  - x: 1044
+    y: 1045
+  - x: 1045
+    y: 1043
+  - x: 1050
+    y: 1051
+  - x: 1051
+    y: 1052
+  - x: 1052
+    y: 1050
+  - x: 1057
+    y: 1058
+  - x: 1058
+    y: 1059
+  - x: 1059
+    y: 1057
+  - x: 1064
+    y: 1065
+  - x: 1065
+    y: 1066
+  - x: 1066
+    y: 1064
+  - x: 1071
+    y: 1072
+  - x: 1072
+    y: 1073
+  - x: 1073
+    y: 1071
+  - x: 1078
+    y: 1079
+  - x: 1079
+    y: 1080
+  - x: 1080
+    y: 1078
+  - x: 1085
+    y: 1086
+  - x: 1086
+    y: 1087
+  - x: 1087
+    y: 1085
+  - x: 1099
+    y: 1100
+  - x: 1100
+    y: 1101
+  - x: 1101
+    y: 1099
+  - x: 1092
+    y: 1093
+  - x: 1093
+    y: 1094
+  - x: 1094
+    y: 1092
+  - x: 1106
+    y: 1107
+  - x: 1107
+    y: 1108
+  - x: 1108
+    y: 1106
+  - x: 1113
+    y: 1114
+  - x: 1114
+    y: 1115
+  - x: 1115
+    y: 1113
+  m_selectedTriangles: e2030000e3030000e4030000e9030000ea030000eb030000f0030000f1030000f2030000f7030000f8030000f9030000fe030000ff030000000400006e0200006f0200007002000071020000760200007702000078020000790200007e0200007f0200008002000081020000860200008702000088020000890200008e0200008f02000090020000910200009602000097020000980200009902000032030000330300003403000035030000390300003a0300003b0300003c030000400300004103000042030000430300004703000048030000490300004a0300004e0300004f0300005003000051030000550300005603000057030000580300005c0300005d0300005e0300005f030000630300006403000065030000660300006a0300006b0300006c0300006d0300007103000072030000730300007403000078030000790300007a0300007b0300007f0300008003000081030000820300008b0300008c0300008d0300008e0300008f030000900300009103000092030000930300009403000095030000960300009703000098030000990300009a0300009b0300009c0300009d0300009e0300009f030000a0030000a1030000a2030000a3030000a4030000a5030000a6030000a7030000a8030000a9030000aa030000ab030000ac030000ad030000ae030000af030000b0030000b1030000b2030000b3030000b4030000b5030000b6030000b7030000b8030000b9030000ba030000bb030000bc030000bd030000be030000bf030000c0030000c1030000c2030000c3030000c4030000c5030000c6030000c7030000c8030000c9030000ca030000cb030000cc030000cd030000ce030000cf030000d0030000d1030000d2030000d7030000d8030000d9030000dd030000de030000df030000e0030000e1030000e5030000e6030000e7030000e8030000ec030000ed030000ee030000ef030000f3030000f4030000f5030000f6030000fa030000fb030000fc030000fd0300000104000002040000030400000404000008040000090400000a0400000b0400000f040000100400001104000012040000160400001704000018040000190400001d0400001e0400001f04000020040000240400002504000026040000270400002b0400002c0400002d0400002e04000032040000330400003404000035040000390400003a0400003b0400003c040000400400004104000042040000430400004704000048040000490400004a0400004e0400004f040000500400005104000055040000560400005704000058040000d3030000d4030000d5030000d6030000da030000db030000dc0300000504000006040000070400000c0400000d0400000e0400001304000014040000150400001a0400001b0400001c04000021040000220400002304000028040000290400002a0400002f04000030040000310400003604000037040000380400003d0400003e0400003f0400004b0400004c0400004d040000440400004504000046040000520400005304000054040000590400005a0400005b040000

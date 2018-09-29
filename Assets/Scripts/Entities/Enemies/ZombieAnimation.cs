@@ -10,7 +10,6 @@ using UnityEngine.AI;
 public class ZombieAnimation : MonoBehaviour
 {
     [SerializeField] AnimatorOverrideController animatorOverrideController;
-    [SerializeField] AnimationClip hitAnimation;
     Animator animator;
     NavMeshAgent agent;
     ZombieAI zombieAI;

@@ -124,9 +124,12 @@ public class ZombieAI : MonoBehaviour
 
             case ZombieState.Dead:
 
-                agent.isStopped = true;
                 if (IsInvoking("MoveAgain"))
                     CancelInvoke("MoveAgain");
+                enabled = false;
+                agent.enabled = false;
+                if (currentPath)
+                    Destroy(currentPath);
 
                 break;
         }
@@ -252,7 +255,7 @@ public class ZombieAI : MonoBehaviour
     {
         if (currentState == ZombieState.Attacking)
             LeaveTarget();
-        currentState = zombieLife.Health > 1 ? ZombieState.BeingHit : ZombieState.Dead;
+        currentState = zombieLife.Health > 1f ? ZombieState.BeingHit : ZombieState.Dead;
     }
 
     void MoveAgain()

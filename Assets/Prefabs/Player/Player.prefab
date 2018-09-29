@@ -3160,6 +3160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  deadBodyDuration: 60
   deathAnimation: {fileID: 0}
   onHit:
     m_PersistentCalls:
@@ -12833,7 +12834,7 @@ RectTransform:
   m_GameObject: {fileID: 1417250706815788}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.19999999, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children:
   - {fileID: 224630078574087140}
   m_Father: {fileID: 4787296070014986}

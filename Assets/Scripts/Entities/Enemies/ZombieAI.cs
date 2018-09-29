@@ -18,6 +18,7 @@ public class ZombieAI : MonoBehaviour
     [SerializeField] [Range(0, 100)] float viewDistance;
     [SerializeField] [Range(0, 180)] float fieldOfView;
     [SerializeField] [Range(1.75f, 5f)] float attackRange;
+    [SerializeField] [Range(1, 5)] float nearDetectionDistance;
     [SerializeField] GameObject walkPath;
     [Header("Animations")]
     [SerializeField] AnimationClip attackAnimation;
@@ -159,10 +160,10 @@ public class ZombieAI : MonoBehaviour
 
         foreach (Transform possibleTarget in possibleTargets)
         {
+            float distanceToTarget = Vector3.Distance(possibleTarget.position, transform.position);
+
             if (Vector3.Angle(Vector3.forward, transform.InverseTransformPoint(possibleTarget.position)) < fieldOfView / 2f)
-            {
-                float distanceToTarget = Vector3.Distance(possibleTarget.position, transform.position);
-                
+            {              
                 if (distanceToTarget < closestTargetDistance)
                 {
                     RaycastHit hit;
@@ -173,6 +174,24 @@ public class ZombieAI : MonoBehaviour
                             closestTargetDistance = distanceToTarget;
                             currentTarget = possibleTarget;
                         }
+                }
+            }
+            else
+            {
+                if (distanceToTarget < nearDetectionDistance && 
+                    possibleTarget.GetComponentInChildren<Animator>().GetFloat("Horizontal Velocity") > 0.5f)
+                {
+                    if (distanceToTarget < closestTargetDistance)
+                    {
+                        RaycastHit hit;
+
+                        if (Physics.Linecast(transform.position, possibleTarget.position, out hit))
+                            if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Player"))
+                            {
+                                closestTargetDistance = distanceToTarget;
+                                currentTarget = possibleTarget;
+                            }
+                    }
                 }
             }
         }
@@ -222,7 +241,6 @@ public class ZombieAI : MonoBehaviour
     {
         attackBox.SetActive(true);
         Invoke("DisableAttackBox", attackAnimation.length / 4);
-
     }
 
     void DisableAttackBox()

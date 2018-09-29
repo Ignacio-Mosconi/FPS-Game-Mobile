@@ -1895,7 +1895,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1186911932948620}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 232.355, y: 0.214, z: 125.96}
+  m_LocalPosition: {x: 87.7, y: 1, z: 42.76629}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4637895707526460}
@@ -2419,7 +2419,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c91ca294ff5ac24899a198bdea5c12e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitAnimation: {fileID: 7400000, guid: 868f7038283deb443b91df9dd619a7bb, type: 2}
+  animatorOverrideController: {fileID: 22100000, guid: 6d889361a71d3a145857c12f601a4486,
+    type: 2}
+  hitAnimation: {fileID: 0}
 --- !u!114 &114612531158582420
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2448,6 +2450,7 @@ MonoBehaviour:
   viewDistance: 20
   fieldOfView: 180
   attackRange: 1.8
+  nearDetectionDistance: 4
   walkPath: {fileID: 1527905510322570, guid: fd7ae868b897b6a458ca5b730e746d90, type: 2}
   attackAnimation: {fileID: 7400000, guid: 87d73776719a4e04192da63a9f805907, type: 2}
   onChaseStart:
@@ -2477,7 +2480,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  deathAnimation: {fileID: 7400000, guid: 789913e6f3f7cc549916e2b2502daccd, type: 2}
+  deadBodyDuration: 60
+  deathAnimation: {fileID: 7400000, guid: 83750dc6a4f141c49bf3cff317770d64, type: 2}
   onHit:
     m_PersistentCalls:
       m_Calls: []

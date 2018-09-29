@@ -9,6 +9,7 @@ using UnityEngine.AI;
 
 public class ZombieAnimation : MonoBehaviour
 {
+    [SerializeField] AnimatorOverrideController animatorOverrideController;
     [SerializeField] AnimationClip hitAnimation;
     Animator animator;
     NavMeshAgent agent;
@@ -21,7 +22,6 @@ public class ZombieAnimation : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         zombieAI = GetComponent<ZombieAI>();
         zombieLife = GetComponent<Life>();
-
 	}
 
 	void Start()
@@ -29,6 +29,8 @@ public class ZombieAnimation : MonoBehaviour
         zombieLife.OnHit.AddListener(HitAnimation);
         zombieLife.OnDeath.AddListener(DeathAnimation);
         zombieAI.OnAttack.AddListener(AttackAnimation);
+
+        animator.runtimeAnimatorController = animatorOverrideController;
     }
 
 	void Update()
@@ -43,7 +45,7 @@ public class ZombieAnimation : MonoBehaviour
     {
         agent.isStopped = true;
         animator.SetTrigger("Was Hit");
-        Invoke("WalkAgain", hitAnimation.length);
+        //Invoke("WalkAgain", hitAnimation.length);
     }
 
     void DeathAnimation()

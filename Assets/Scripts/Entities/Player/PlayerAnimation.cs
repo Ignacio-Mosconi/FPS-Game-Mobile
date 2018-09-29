@@ -102,7 +102,6 @@ public class PlayerAnimation : MonoBehaviour
                 animatorOverrideController["DEFAULT WALKING"] = handGunAnimations[3];
                 break;
         }
-
     }
 
     public UnityEvent OnShootingEnabledToggle

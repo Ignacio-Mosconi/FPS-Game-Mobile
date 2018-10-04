@@ -2,15 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveCitizens : MonoBehaviour {
+public class MoveCitizens : MonoBehaviour
+{
+    Transform[] citizens;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    void Start()
+    {
+        citizens = GetComponentsInChildren<Transform>();
+    }
+
+    public void MoveThem()
+    {
+        foreach (Transform citizen in citizens)
+        {
+            if(citizen.CompareTag("Citizen"))
+            {
+                /*CitizenAI c = citizen.GetComponent<CitizenAI>();
+                c.enabled = true;
+                CitizenAnimation ca = citizen.GetComponentInChildren<CitizenAnimation>();*/
+
+                citizen.gameObject.AddComponent<CitizenAI>();
+                citizen.GetChild(0).gameObject.AddComponent<CitizenAnimation>();
+            }
+        }
+    }
 }

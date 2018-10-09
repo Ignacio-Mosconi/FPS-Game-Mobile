@@ -16,6 +16,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] [Range(1, 10)] int regularSwayLevel;
     [SerializeField] [Range(1, 10)] int recoilSwayLevel;
     [SerializeField] [Range(0, 5)] float recoilDuration;
+    [SerializeField] string[] shootingLayers;
     [Header("Weapon Anmimations")]
     [SerializeField] AnimationClip shootAnimation;
     [SerializeField] AnimationClip reloadAnimation;
@@ -40,6 +41,7 @@ public class Weapon : MonoBehaviour
     float crosshairScaling = 1;
     int consecutiveShots = 0;
     float reloadButtonPressCounter = 0;
+    int shootingLayerMask;
 
     void Awake()
     {
@@ -51,6 +53,7 @@ public class Weapon : MonoBehaviour
         regularSway = baseSway * regularSwayLevel;
         recoilSway = baseSway * recoilSwayLevel;
         recoilDuration += 1 / fireRate;
+        shootingLayerMask = LayerMask.GetMask(shootingLayers);
     }
 
     void OnDisable()
@@ -117,7 +120,7 @@ public class Weapon : MonoBehaviour
 
         RaycastHit hit;
         
-        if (Physics.Raycast(fpsCamera.position, (fpsCamera.forward + sway).normalized, out hit, range))
+        if (Physics.Raycast(fpsCamera.position, (fpsCamera.forward + sway).normalized, out hit, range, shootingLayerMask))
         {
             Life targetLife = hit.transform.GetComponent<Life>();
             Rigidbody targetRigidbody = hit.transform.GetComponent<Rigidbody>();

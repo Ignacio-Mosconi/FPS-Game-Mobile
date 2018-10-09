@@ -519,7 +519,7 @@ GameObject:
   - component: {fileID: 4026780202321354}
   - component: {fileID: 65402272204068178}
   - component: {fileID: 114575074832159536}
-  m_Layer: 11
+  m_Layer: 18
   m_Name: Attack Box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1094,6 +1094,22 @@ GameObject:
   - component: {fileID: 4176130259866168}
   m_Layer: 11
   m_Name: Zombie:RightHandPinky1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1735942985865276
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4309359863026640}
+  - component: {fileID: 136809347772660354}
+  m_Layer: 17
+  m_Name: Body Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1813,6 +1829,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4845256195328258}
   m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4309359863026640
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1735942985865276}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4995248164857850}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4330508289601102
 Transform:
@@ -2757,6 +2786,7 @@ Transform:
   - {fileID: 4685984910123826}
   - {fileID: 224627360299850022}
   - {fileID: 4026780202321354}
+  - {fileID: 4309359863026640}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -6.616, z: 0}
@@ -3320,7 +3350,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animatorOverrideController: {fileID: 22100000, guid: b4b642bf76f6eab41935c53addad3ac0,
     type: 2}
-  hitAnimation: {fileID: 0}
 --- !u!114 &114723386429638020
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3350,6 +3379,19 @@ CapsuleCollider:
   m_Height: 1.7073739
   m_Direction: 1
   m_Center: {x: 3.8153952e-10, y: 0.8391806, z: 0.034282982}
+--- !u!136 &136809347772660354
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1735942985865276}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.6
+  m_Height: 3
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.5, z: 0}
 --- !u!137 &137402947761542478
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

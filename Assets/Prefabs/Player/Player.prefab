@@ -3205,6 +3205,8 @@ MonoBehaviour:
   regularSwayLevel: 1
   recoilSwayLevel: 3
   recoilDuration: 0.75
+  shootingLayers:
+  - Zombies
   shootAnimation: {fileID: 7400000, guid: f5bdebd7b6c1ace478419a8044d916e0, type: 2}
   reloadAnimation: {fileID: 7400000, guid: cfd34b1f10136434780ab531747f1d7f, type: 2}
   shootSound: {fileID: 82931816935659628}
@@ -3268,6 +3270,8 @@ MonoBehaviour:
   regularSwayLevel: 2
   recoilSwayLevel: 5
   recoilDuration: 0.3
+  shootingLayers:
+  - Zombies
   shootAnimation: {fileID: 7400000, guid: 1238c5a207f263e4e8805a51101822a9, type: 2}
   reloadAnimation: {fileID: 7400000, guid: 50fe7a78ad2a941498058e10f96f6da8, type: 2}
   shootSound: {fileID: 82501798396606486}
@@ -3350,7 +3354,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 5
-  jumpingSpeed: 5
+  jumpingSpeed: 3.5
   gravity: 10
   pushingForce: 5
   maxFallingDistance: 5
@@ -3500,10 +3504,10 @@ CharacterController:
   serializedVersion: 2
   m_Height: 2
   m_Radius: 0.5
-  m_SlopeLimit: 45
+  m_SlopeLimit: 20
   m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
+  m_SkinWidth: 0.1
+  m_MinMoveDistance: 0.01
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!198 &198162629351304456
 ParticleSystem:

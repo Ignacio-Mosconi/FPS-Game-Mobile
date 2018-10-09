@@ -9,8 +9,8 @@ public class EndLevelMenu : MonoBehaviour
     void Start()
     {
         Time.timeScale = 0.0f;
-        if (GameManager.Instance.CheckControllerConnection())
-            GameManager.Instance.ChangeFirstMenuItemSelected(firstMenuElement);
+        if (InputManager.Instance.CheckControllerConnection())
+            InputManager.Instance.ChangeFirstMenuItemSelected(firstMenuElement);
         else
         {
             Cursor.lockState = CursorLockMode.None;

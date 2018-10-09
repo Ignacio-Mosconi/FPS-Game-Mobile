@@ -20,7 +20,7 @@ public class SettingsMenu : MonoBehaviour
         musicVolumeSlider.value = GameManager.Instance.MusicVolumeValue;
 
         foreach (GameObject sliderButton in sliderButtons)
-            sliderButton.SetActive(GameManager.Instance.CheckControllerConnection());
+            sliderButton.SetActive(InputManager.Instance.CheckControllerConnection());
     }
 
     float GetMixerLevel(AudioMixer audioMixer)

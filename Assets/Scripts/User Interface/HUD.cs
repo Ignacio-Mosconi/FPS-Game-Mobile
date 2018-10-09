@@ -51,7 +51,7 @@ public class HUD : MonoBehaviour
 
         crateText.enabled = false;
 
-        crateText.text = GameManager.Instance.CheckControllerConnection() ?
+        crateText.text = InputManager.Instance.CheckControllerConnection() ?
                         "Hold 'Square' to pick up ammo" : "Press 'E' to pick up ammo";
 
 	}

@@ -27,8 +27,8 @@ public class PauseMenu : MonoBehaviour
         hudUI.SetActive(false);
         Time.timeScale = 0.0f;
         isPaused = true;
-        if (GameManager.Instance.CheckControllerConnection())
-            GameManager.Instance.ChangeFirstMenuItemSelected(firstMenuElement);
+        if (InputManager.Instance.CheckControllerConnection())
+            InputManager.Instance.ChangeFirstMenuItemSelected(firstMenuElement);
         else
         {
             Cursor.lockState = CursorLockMode.None;
@@ -44,7 +44,7 @@ public class PauseMenu : MonoBehaviour
         hudUI.SetActive(true);
         Time.timeScale = 1.0f;
         isPaused = false;
-        GameManager.Instance.ChangeFirstMenuItemSelected(null);
+        InputManager.Instance.ChangeFirstMenuItemSelected(null);
     }
 
     public void LoadMenu()

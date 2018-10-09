@@ -9,8 +9,8 @@ public class MainMenu : MonoBehaviour
 
 	void Start()
     {
-        if (GameManager.Instance.CheckControllerConnection())
-            GameManager.Instance.ChangeFirstMenuItemSelected(firstMenuElement);
+        if (InputManager.Instance.CheckControllerConnection())
+            InputManager.Instance.ChangeFirstMenuItemSelected(firstMenuElement);
         else
         {
             Cursor.visible = true;

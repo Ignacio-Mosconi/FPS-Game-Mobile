@@ -253,12 +253,13 @@ public class ZombieAI : MonoBehaviour
 
     void StopMoving()
     {
+        currentState = zombieLife.Health > 1f ? ZombieState.BeingHit : ZombieState.Dead;
+
         if (currentState == ZombieState.Dead)
             return;
 
         if (currentState == ZombieState.Attacking)
             LeaveTarget();
-        currentState = zombieLife.Health > 1f ? ZombieState.BeingHit : ZombieState.Dead;
     }
 
     void MoveAgain()

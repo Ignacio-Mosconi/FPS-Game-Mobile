@@ -6,36 +6,56 @@ public class GroupsManager : MonoBehaviour
 {
     static GroupsManager instance;
 
-    [SerializeField] GameObject[] citizenGroups;
-    [SerializeField] GameObject[] enemyGroups;
+    [SerializeField] List<Transform> citizenGroups;
+    [SerializeField] List<Transform> enemyGroups;
 
     void Start()
     {
-        enemyGroups = GameObject.FindGameObjectsWithTag("ZombieGroup");
+        for (int i = 0; i < enemyGroups.Count; i++)
+        {
+            for (int j = 0; j < enemyGroups[i].childCount; j++)
+            {
+                Transform child = enemyGroups[i].GetChild(j);
 
-        Life[] lifes = FindObjectsOfType<Life>();
+                if (child.gameObject.layer == LayerMask.NameToLayer("Zombies"))
+                {
+                    Life life = child.GetComponent<Life>();
+
+                    if (!life) Debug.Log("No life component at " + life.name);
+
+                    life.OnDeath.AddListener(CheckEnemyGroupState);
+                }
+            }
+        }
+
+        /*Life[] lifes = FindObjectsOfType<Life>();
 
         foreach (Life life in lifes)
         {
             if (life.gameObject.layer == LayerMask.NameToLayer("Zombies"))
                 life.OnDeath.AddListener(CheckEnemyGroupState);
-        }
+        }*/
     }
 
     void CheckEnemyGroupState()
     {
-        for (int i = 0; i < enemyGroups.Length; i++)
+        for (int i = 0; i < enemyGroups.Count; i++)
         {
-            if (enemyGroups[i].transform.childCount == 0)
+            Debug.Log(enemyGroups[i].childCount);
+            if (enemyGroups[i].childCount == 0)
             {
-                CheckCitizenGrouState(i);
+                Debug.Log("Zombie group exterminated.");
+                CheckCitizenGroupState(i);
+                enemyGroups.RemoveAt(i);
+                return;
             }
         }
     }
 
-    void CheckCitizenGrouState(int index)
+    void CheckCitizenGroupState(int index)
     {
         citizenGroups[index].GetComponent<MoveCitizens>().MoveThem();
+        citizenGroups.RemoveAt(index);
     }
 
     public static GroupsManager Instance

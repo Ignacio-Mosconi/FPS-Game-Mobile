@@ -11,12 +11,18 @@ public class FirstPersonCamera : MonoBehaviour
     float verAngle = 0;
     float horAngle = 0;
 
+    void Awake()
+    {
+        // Cursor.lockState = CursorLockMode.Locked;
+        // Cursor.visible = false;
+        #if UNITY_ANDROID
+            rotationSpeed /= 2f;
+        #endif
+    }
+
     void Start()
     {
         fpsCamera = GetComponentInChildren<Camera>().transform;
-
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
     }
 
     void Update()

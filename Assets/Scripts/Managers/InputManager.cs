@@ -69,13 +69,6 @@ public class InputManager : MonoBehaviour
         return controllerConnected;
     }
 
-	public void SetMobileInputSticks(Joystick leftStick)
-	{
-		#if UNITY_ANDROID
-			input.SetSticks(leftStick);
-		#endif
-	}
-
 	public float GetHorizontalAxis()
 	{
 		return input.GetHorizontalAxis();

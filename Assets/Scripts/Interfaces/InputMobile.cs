@@ -1,83 +1,77 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class InputMobile : IInput
 {
-	Joystick leftStick;
-
-	public void SetSticks(Joystick leftStick)
-	{
-		this.leftStick = leftStick;
-	}
-
 	public float GetHorizontalAxis()
 	{
-		return leftStick.Horizontal;
+		return CrossPlatformInputManager.GetAxis("Horizontal");
 	}
 
 	public float GetVerticalAxis()
 	{
-		return leftStick.Vertical;
+		return CrossPlatformInputManager.GetAxis("Vertical");
 	}
 
 	public float GetHorizontalViewAxis()
 	{
-		return Input.GetAxis("Mouse X");
+		return CrossPlatformInputManager.GetAxis("Mouse X");
 	}
 
 	public float GetVerticalViewAxis()
 	{
-		return Input.GetAxis("Mouse Y Controller Mobile");
+		return CrossPlatformInputManager.GetAxis("Mouse Y");
 	}
 
 	public float GetWeaponSwapAxis()
 	{
-		return Input.GetAxis("Mouse ScrollWheel");
+		return 0f;
 	}
 
 	public bool GetFireButton()
 	{
-		return false;
+		return CrossPlatformInputManager.GetButton("Fire");
 	}
 
 	public bool GetReloadButton()
 	{
-		return Input.GetButtonUp("Reload Controller Mobile");
+		return CrossPlatformInputManager.GetButtonDown("Reload");
 	}
 
 	public bool GetJumpButton()
 	{
-		return Input.GetButtonDown("Jump Controller Mobile");
+		return CrossPlatformInputManager.GetButton("Jump");
 	}
 
 	public bool GetSprintButton()
 	{
-		return Input.GetButton("Sprint");
+		return false;
 	}
 
 	public bool GetSprintButtonModifier()
 	{
-		return Input.GetButton("Sprint Controller Mobile");
+		return (CrossPlatformInputManager.GetAxis("Vertical") > 0.7f);
 	}
 
 	public bool GetSwapWeaponButton()
 	{
-		return Input.GetButtonDown("Swap Weapon");
+		return CrossPlatformInputManager.GetButtonDown("Swap Weapon");
 	}
 
 	public bool GetInteractButton()
 	{
-		return Input.GetButtonDown("Interact");
+		return false;
 	}
 
 	public bool GetInteractHoldButton()
 	{
-		return Input.GetButton("Interact Controller Mobile");
+		return false;
 	}
 
 	public bool GetPauseButton()
 	{
-		return Input.GetButtonDown("Cancel Controller Mobile");
+		return CrossPlatformInputManager.GetButtonDown("Cancel");
 	}
 }

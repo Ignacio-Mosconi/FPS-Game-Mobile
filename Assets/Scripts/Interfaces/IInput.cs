@@ -4,8 +4,6 @@ using UnityEngine;
 
 interface IInput
 {
-	void SetSticks(Joystick leftStick);
-	
 	float GetHorizontalAxis();
 	float GetVerticalAxis();
 	float GetHorizontalViewAxis();

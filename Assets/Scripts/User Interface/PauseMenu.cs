@@ -27,19 +27,23 @@ public class PauseMenu : MonoBehaviour
         hudUI.SetActive(false);
         Time.timeScale = 0.0f;
         isPaused = true;
-        if (InputManager.Instance.CheckControllerConnection())
-            InputManager.Instance.ChangeFirstMenuItemSelected(firstMenuElement);
-        else
-        {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-        }
+        #if UNITY_STANDALONE
+            if (InputManager.Instance.CheckControllerConnection())
+                InputManager.Instance.ChangeFirstMenuItemSelected(firstMenuElement);
+            else
+            {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            }
+        #endif
     }
 
     public void Resume()
     {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        #if UNITY_STANDALONE
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        #endif
         pauseMenuUI.SetActive(false);
         hudUI.SetActive(true);
         Time.timeScale = 1.0f;

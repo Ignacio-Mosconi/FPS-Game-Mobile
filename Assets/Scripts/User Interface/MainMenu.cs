@@ -9,22 +9,26 @@ public class MainMenu : MonoBehaviour
 
 	void Start()
     {
-        if (InputManager.Instance.CheckControllerConnection())
-        {
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
-            InputManager.Instance.ChangeFirstMenuItemSelected(firstMenuElement);
-        }
-        else
-        {
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
-        }
+        #if UNITY_STANDALONE
+            if (InputManager.Instance.CheckControllerConnection())
+            {
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+                InputManager.Instance.ChangeFirstMenuItemSelected(firstMenuElement);
+            }
+            else
+            {
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
+            }
+        #endif
 	}
 	
 	public void PlayGame()
     {
-        Cursor.visible = false;
+        #if UNITY_STANDALONE
+            Cursor.visible = false;
+        #endif
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 	}
 

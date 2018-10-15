@@ -11,6 +11,7 @@ public class HUD : MonoBehaviour
     [SerializeField] TextMeshProUGUI ammoText;
     [SerializeField] TextMeshProUGUI healthText;
     [SerializeField] TextMeshProUGUI crateText;
+    [SerializeField] GameObject leftJoystick;
     [Header("References")]
     [SerializeField] PlayerAnimation playerAnimation;
     [SerializeField] Life playerLife;
@@ -22,6 +23,16 @@ public class HUD : MonoBehaviour
     float criticalLife = 0;
     int criticalMagAmmo = 0;
     int criticalAmmoLeft = 0;
+
+    void Awake()
+    {
+        #if UNITY_ANDROID
+            Joystick leftStick = leftJoystick.GetComponent<Joystick>(); 
+            InputManager.Instance.SetMobileInputSticks(leftStick);
+        #else          
+            joystick.SetActive(false);
+        #endif
+    }
     
     void Start() 
 	{

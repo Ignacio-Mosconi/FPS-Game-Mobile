@@ -4,14 +4,21 @@ using UnityEngine;
 
 public class InputMobile : IInput
 {
+	Joystick leftStick;
+
+	public void SetSticks(Joystick leftStick)
+	{
+		this.leftStick = leftStick;
+	}
+
 	public float GetHorizontalAxis()
 	{
-		return Input.GetAxis("Horizontal");
+		return leftStick.Horizontal;
 	}
 
 	public float GetVerticalAxis()
 	{
-		return Input.GetAxis("Vertical");
+		return leftStick.Vertical;
 	}
 
 	public float GetHorizontalViewAxis()
@@ -31,7 +38,7 @@ public class InputMobile : IInput
 
 	public bool GetFireButton()
 	{
-		return Input.GetButton("Fire");
+		return false;
 	}
 
 	public bool GetReloadButton()

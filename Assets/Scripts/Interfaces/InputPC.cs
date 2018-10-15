@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class InputPC : IInput 
 {
+	public void SetSticks(Joystick leftStick) {}
+
 	public float GetHorizontalAxis()
 	{
 		return Input.GetAxis("Horizontal");

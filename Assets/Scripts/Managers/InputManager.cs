@@ -28,38 +28,28 @@ public class InputManager : MonoBehaviour
 				GameObject gameObj = new GameObject("EventSystem");
 				eventSystem = gameObj.AddComponent<EventSystem>();
 				StandaloneInputModule inputModule = gameObj.AddComponent<StandaloneInputModule>();
-				#if UNITY_ANDROID
-					if (CheckControllerConnection())
-					{
-						inputModule.verticalAxis = "Vertical UI Controller Mobile";
-						inputModule.submitButton = "Select Controller Mobile";
-						inputModule.cancelButton = "Return Controller Mobile";
-					}
-					else
-					{
-						inputModule.verticalAxis = "Vertical UI";
-						inputModule.horizontalAxis = "Horizontal UI";
-						inputModule.submitButton = "Select";
-						inputModule.cancelButton = "Return";
-					}
-				#else
+				
+				#if UNITY_STANDALONE
 					inputModule.verticalAxis = "Vertical UI";
 					inputModule.horizontalAxis = "Horizontal UI";
 					inputModule.submitButton = "Select";
 					inputModule.cancelButton = "Return";
+				#else
+					inputModule.verticalAxis = "Vertical UI Controller Mobile";
+					inputModule.horizontalAxis = "Horizontal UI Controller Mobile";
+					inputModule.submitButton = "Select Controller Mobile";
+					inputModule.cancelButton = "Return Controller Mobile";
 				#endif
         	}
-        	DontDestroyOnLoad(eventSystem.gameObject);
+        	
+			DontDestroyOnLoad(eventSystem.gameObject);
 		}
 	}
 
 	public void ChangeFirstMenuItemSelected(GameObject firstMenuElement)
     {
-        if (CheckControllerConnection())
-        {
-            eventSystem.firstSelectedGameObject = firstMenuElement;
-            eventSystem.SetSelectedGameObject(firstMenuElement);
-        }
+		eventSystem.firstSelectedGameObject = firstMenuElement;
+		eventSystem.SetSelectedGameObject(firstMenuElement);
     }
 
     public bool CheckControllerConnection()
@@ -78,6 +68,13 @@ public class InputManager : MonoBehaviour
 
         return controllerConnected;
     }
+
+	public void SetMobileInputSticks(Joystick leftStick)
+	{
+		#if UNITY_ANDROID
+			input.SetSticks(leftStick);
+		#endif
+	}
 
 	public float GetHorizontalAxis()
 	{

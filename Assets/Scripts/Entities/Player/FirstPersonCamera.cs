@@ -13,7 +13,7 @@ public class FirstPersonCamera : MonoBehaviour
 
     void Awake()
     {
-        #if UNITY_STANSDALONE
+        #if UNITY_STANDALONE
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         #endif

@@ -31,6 +31,7 @@ public class MainMenu : MonoBehaviour
     {
         #if UNITY_STANDALONE
             Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
         #endif
         hasPressedPlay = true;
 	}

@@ -16,8 +16,9 @@ public class Weapon : MonoBehaviour
     [SerializeField] [Range(1, 10)] int regularSwayLevel;
     [SerializeField] [Range(1, 10)] int recoilSwayLevel;
     [SerializeField] [Range(0, 5)] float recoilDuration;
-    [SerializeField] string[] shootingLayers;
-    [Header("Weapon Anmimations")]
+    [Header("Others")]
+    [SerializeField] string[] layersToIgnore;
+    [Header("Weapon Animations")]
     [SerializeField] AnimationClip shootAnimation;
     [SerializeField] AnimationClip reloadAnimation;
     [Header("Weapon Audio Sources")]
@@ -41,7 +42,7 @@ public class Weapon : MonoBehaviour
     float crosshairScaling = 1;
     int consecutiveShots = 0;
     float reloadButtonPressCounter = 0;
-    int shootingLayerMask;
+    int shootingLayerMask = 0;
 
     void Awake()
     {
@@ -53,7 +54,7 @@ public class Weapon : MonoBehaviour
         regularSway = baseSway * regularSwayLevel;
         recoilSway = baseSway * recoilSwayLevel;
         recoilDuration += 1 / fireRate;
-        shootingLayerMask = LayerMask.GetMask(shootingLayers);
+        shootingLayerMask = ~LayerMask.GetMask(layersToIgnore);
     }
 
     void OnDisable()
@@ -170,7 +171,8 @@ public class Weapon : MonoBehaviour
 
     bool CanShoot()
     {
-        return !isReloading && Time.time >= lastFireTime + 1 / fireRate && !PauseMenu.IsPaused && !LevelManager.Instance.GameOver;
+        return !isReloading && Time.time >= lastFireTime + 1 / fireRate && !PauseMenu.IsPaused &&
+                !LevelManager.Instance.GameOver;
     }
 
     bool CanReload()

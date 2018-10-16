@@ -11,8 +11,8 @@ public class PlayerAudio : MonoBehaviour
 	[SerializeField] AudioSource hitSound;
 	[SerializeField] AudioSource[] outdoorFootsteps;
 	AudioSource[] currentFootsteps;
-	const float walkingVelocity = 0.25f;
-	const float sprintingVelocity = 0.6f;
+	const float WALKING_VELOCITY = 0.25f;
+	const float SPRINTING_VELOCITY = 0.6f;
 	Animator animator;
 	PlayerMovement playerMovement;
 	WeaponManager weaponManager;
@@ -60,13 +60,13 @@ public class PlayerAudio : MonoBehaviour
 	{
 		float currentVelocity = animator.GetFloat("Horizontal Velocity");
 
-        if (currentVelocity > walkingVelocity && currentVelocity <= sprintingVelocity)
+        if (currentVelocity > WALKING_VELOCITY && currentVelocity <= SPRINTING_VELOCITY)
             currentFootsteps[stepNumber].Play();
     }
 
 	void PlaySprintingSound(int stepNumber)
 	{
-		if (animator.GetFloat("Horizontal Velocity") > sprintingVelocity)
+		if (animator.GetFloat("Horizontal Velocity") > SPRINTING_VELOCITY)
 			currentFootsteps[stepNumber].Play();
 	}
 

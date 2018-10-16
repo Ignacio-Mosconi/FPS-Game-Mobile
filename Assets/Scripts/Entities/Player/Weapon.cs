@@ -30,7 +30,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] UnityEvent onReload;
     [SerializeField] UnityEvent onEmptyMag;
     [SerializeField] UnityEvent onCrosshairScale;
-    const float baseSway = 0.01f;
+    const float BASE_SWAY = 0.01f;
     Transform fpsCamera;
     ParticleSystem muzzleFlash;
     float lastFireTime = 0;
@@ -51,8 +51,8 @@ public class Weapon : MonoBehaviour
         
         bulletsInMag = magSize;
         ammoLeft = maxAmmo;
-        regularSway = baseSway * regularSwayLevel;
-        recoilSway = baseSway * recoilSwayLevel;
+        regularSway = BASE_SWAY * regularSwayLevel;
+        recoilSway = BASE_SWAY * recoilSwayLevel;
         recoilDuration += 1 / fireRate;
         shootingLayerMask = ~LayerMask.GetMask(layersToIgnore);
     }

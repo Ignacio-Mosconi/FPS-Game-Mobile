@@ -15,8 +15,8 @@ public class PlayerAnimation : MonoBehaviour
     [SerializeField] AnimationClip[] handGunAnimations;
     [Header("Events")]
     [SerializeField] UnityEvent onShootingEnabledToggle;
-    const float animationDampTime = 0.2f;
-    const float sprintingVelocity = 0.6f;
+    const float ANIMATION_DAMP_TIME = 0.2f;
+    const float SPRINTING_VELOCITY = 0.6f;
     Animator animator;
     CharacterController charController;
     PlayerMovement playerMovement;
@@ -44,7 +44,7 @@ public class PlayerAnimation : MonoBehaviour
         float verticalVelocity = charController.velocity.y;
         bool jumping = playerMovement.IsJumping();
 
-        if (!jumping && !weaponManager.CurrentWeapon.IsReloading && normalizedVelocity < sprintingVelocity)
+        if (!jumping && !weaponManager.CurrentWeapon.IsReloading && normalizedVelocity < SPRINTING_VELOCITY)
         {
             if (!weaponManager.CurrentWeapon.enabled)
                 EnableShooting();
@@ -55,8 +55,8 @@ public class PlayerAnimation : MonoBehaviour
                 DisableShooting();
         }
 
-        animator.SetFloat("Horizontal Velocity", normalizedVelocity,animationDampTime, Time.deltaTime);
-        animator.SetFloat("Vertical Velocity", verticalVelocity, animationDampTime, Time.deltaTime);
+        animator.SetFloat("Horizontal Velocity", normalizedVelocity,ANIMATION_DAMP_TIME, Time.deltaTime);
+        animator.SetFloat("Vertical Velocity", verticalVelocity, ANIMATION_DAMP_TIME, Time.deltaTime);
         animator.SetBool("Is Jumping", jumping);
 	}
 

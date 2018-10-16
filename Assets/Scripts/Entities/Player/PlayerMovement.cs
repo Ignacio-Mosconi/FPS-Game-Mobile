@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] UnityEvent onSurfaceChange;
     Life life;
     CharacterController charController;
-    const float fallingDamageMultiplier = 10;
+    const float FALLING_DAMAGE_MULTIPLIER = 10;
     float verticalSpeed;
     float distanceToGround;
     bool jumpedWhileSprinting;
@@ -70,7 +70,7 @@ public class PlayerMovement : MonoBehaviour
         if (charController.isGrounded)
         {
             if (fallingDistance >= maxFallingDistance)
-                life.TakeDamage(fallingDamageMultiplier * fallingDistance);
+                life.TakeDamage(FALLING_DAMAGE_MULTIPLIER * fallingDistance);
 
             fallingDistance = 0;
             lastPositionY = 0;

@@ -44,19 +44,12 @@ public class ZombieAnimation : MonoBehaviour
     {
         agent.isStopped = true;
         animator.SetTrigger("Was Hit");
-        //Invoke("WalkAgain", hitAnimation.length);
     }
 
     void DeathAnimation()
     {
         agent.isStopped = true;
         animator.SetTrigger("Death");
-    }
-
-    void WalkAgain()
-    {
-        if (zombieLife.Health > 0)
-            agent.isStopped = false;
     }
 
     void AttackAnimation()

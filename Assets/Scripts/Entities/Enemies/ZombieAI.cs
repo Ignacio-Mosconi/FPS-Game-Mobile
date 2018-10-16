@@ -26,7 +26,7 @@ public class ZombieAI : MonoBehaviour
     [SerializeField] UnityEvent onChaseStart;
     [SerializeField] UnityEvent onChaseFinish;
     [SerializeField] UnityEvent onAttack;
-    const float maxSpeedDelta = 0.5f;
+    const float MAX_SPEED_DELTA = 0.5f;
     NavMeshAgent agent;
     ZombieState currentState;
     Life zombieLife;
@@ -44,7 +44,7 @@ public class ZombieAI : MonoBehaviour
         zombieLife = GetComponent<Life>();
         attackBox = GetComponentInChildren<AttackBox>().gameObject;
         
-        maxSpeed = agent.speed + Random.Range(-maxSpeedDelta, maxSpeedDelta);
+        maxSpeed = agent.speed + Random.Range(-MAX_SPEED_DELTA, MAX_SPEED_DELTA);
         currentState = ZombieState.Wandering;
 	}
 

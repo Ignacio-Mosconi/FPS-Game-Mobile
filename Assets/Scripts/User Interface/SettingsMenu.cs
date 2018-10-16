@@ -35,6 +35,7 @@ public class SettingsMenu : MonoBehaviour
         GameManager.Instance.SfxVolumeValue = volume;
         sfxMixer.SetFloat("Volume", Mathf.Log(volume) * 12);
     }
+    
     public void SetMusicVolume(float volume)
     {
         GameManager.Instance.MusicVolumeValue = volume;

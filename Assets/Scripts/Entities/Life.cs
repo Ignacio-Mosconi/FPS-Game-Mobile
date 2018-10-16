@@ -36,8 +36,6 @@ public class Life : MonoBehaviour
 
     void Die()
     {
-        if (transform.gameObject.layer == LayerMask.NameToLayer("Zombies"))
-            transform.SetParent(transform.parent.parent); // The grandfather.
         onDeath.Invoke();
         DisableComponents();
     }

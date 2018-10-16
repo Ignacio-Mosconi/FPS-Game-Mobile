@@ -23,6 +23,8 @@ public class CitizenAI : MonoBehaviour
 
         maxSpeed = agent.speed + Random.Range(-maxSpeedDelta, maxSpeedDelta);
         agent.speed = maxSpeed;
+
+        agent.destination = path.position;
     }
 
     void Update()
@@ -33,11 +35,6 @@ public class CitizenAI : MonoBehaviour
 
             Destroy(gameObject);
         }
-    }
-
-    void OnEnabled()
-    {
-        agent.destination = path.position;
     }
 
     public float getMaxSpeed()

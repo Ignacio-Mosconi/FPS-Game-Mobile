@@ -27,22 +27,14 @@ public class GroupsManager : MonoBehaviour
                 }
             }
         }
-
-        /*Life[] lifes = FindObjectsOfType<Life>();
-
-        foreach (Life life in lifes)
-        {
-            if (life.gameObject.layer == LayerMask.NameToLayer("Zombies"))
-                life.OnDeath.AddListener(CheckEnemyGroupState);
-        }*/
     }
 
     void CheckEnemyGroupState()
     {
         for (int i = 0; i < enemyGroups.Count; i++)
         {
-            Debug.Log(enemyGroups[i].childCount);
-            if (enemyGroups[i].childCount == 0)
+            //Debug.Log(enemyGroups[i].childCount);
+            if (enemyGroups[i].childCount == 0 || enemyGroups[i].childCount == 1)
             {
                 Debug.Log("Zombie group exterminated.");
                 CheckCitizenGroupState(i);

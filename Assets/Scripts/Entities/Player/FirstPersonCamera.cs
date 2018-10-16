@@ -13,8 +13,8 @@ public class FirstPersonCamera : MonoBehaviour
 
     void Awake()
     {
-        // Cursor.lockState = CursorLockMode.Locked;
-        // Cursor.visible = false;
+         Cursor.lockState = CursorLockMode.Locked;
+         Cursor.visible = false;
         #if UNITY_ANDROID
             rotationSpeed /= 2f;
         #endif

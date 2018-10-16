@@ -833,6 +833,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firstMenuElement: {fileID: 1198076141607356}
+  firstLevelName: Forsaken School
 --- !u!114 &114722041640447638
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1217,7 +1218,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 1
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0

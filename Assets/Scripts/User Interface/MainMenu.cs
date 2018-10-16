@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     [SerializeField] GameObject firstMenuElement;
+    [SerializeField] string firstLevelName;
+    bool hasPressedPlay = false;
 
 	void Start()
     {
@@ -22,6 +24,7 @@ public class MainMenu : MonoBehaviour
                 Cursor.lockState = CursorLockMode.None;
             }
         #endif
+        StartCoroutine("LoadFirstLevelAsync");
 	}
 	
 	public void PlayGame()
@@ -29,11 +32,23 @@ public class MainMenu : MonoBehaviour
         #if UNITY_STANDALONE
             Cursor.visible = false;
         #endif
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        hasPressedPlay = true;
 	}
 
     public void Quit()
     {
         Application.Quit();
+    }
+
+    IEnumerator LoadFirstLevelAsync()
+    {
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(firstLevelName);
+        asyncLoad.allowSceneActivation = false;
+        while (!asyncLoad.isDone)
+        {
+            if (hasPressedPlay)
+                asyncLoad.allowSceneActivation = true;
+            yield return null;
+        }
     }
 }

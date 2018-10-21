@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 33017340727812532}
   - component: {fileID: 64196556957677354}
   - component: {fileID: 114041849349232394}
-  m_Layer: 9
+  m_Layer: 15
   m_Name: School Floor - Classroom 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140,18 +140,18 @@ MonoBehaviour:
     _mat: {fileID: 2100000, guid: ff1143b94ef36c9408f0b1f38fa375c2, type: 2}
     manualUV: 1
     textureGroup: 5
-  - _indices: 040000000500000007000000040000000700000006000000
-    _distinctIndices: 04000000050000000700000006000000
+  - _indices: 060000000500000004000000060000000700000005000000
+    _distinctIndices: 06000000050000000400000007000000
     _edges:
-    - x: 4
-      y: 5
     - x: 5
-      y: 7
-    - x: 7
+      y: 4
+    - x: 4
       y: 6
     - x: 6
-      y: 4
-    _smoothingGroup: 18
+      y: 7
+    - x: 7
+      y: 5
+    _smoothingGroup: 0
     _uv:
       useWorldSpace: 0
       flipU: 0
@@ -162,12 +162,12 @@ MonoBehaviour:
       offset: {x: 0, y: 0}
       rotation: 0
       justify: 0
-      localPivot: {x: 0, y: 0}
+      localPivot: {x: -0.031612396, y: -2.999999}
       localSize: {x: 0, y: 0}
       anchor: 9
-    _mat: {fileID: 2100000, guid: ff1143b94ef36c9408f0b1f38fa375c2, type: 2}
-    manualUV: 1
-    textureGroup: 5
+    _mat: {fileID: 2100000, guid: c2aaf09ea4d29d743ae7fe41245c03d4, type: 2}
+    manualUV: 0
+    textureGroup: -1
   - _indices: 0a00000009000000080000000a0000000b00000009000000
     _distinctIndices: 0a00000009000000080000000b000000
     _edges:
@@ -190,7 +190,7 @@ MonoBehaviour:
       offset: {x: 0, y: 0}
       rotation: 0
       justify: 0
-      localPivot: {x: -0.031612396, y: -2.999999}
+      localPivot: {x: -0.031612396, y: 2.5}
       localSize: {x: 0, y: 0}
       anchor: 9
     _mat: {fileID: 2100000, guid: c2aaf09ea4d29d743ae7fe41245c03d4, type: 2}
@@ -218,34 +218,30 @@ MonoBehaviour:
       offset: {x: 0, y: 0}
       rotation: 0
       justify: 0
-      localPivot: {x: -0.031612396, y: 2.5}
+      localPivot: {x: 0, y: -2.9602346}
       localSize: {x: 0, y: 0}
       anchor: 9
-    _mat: {fileID: 2100000, guid: c2aaf09ea4d29d743ae7fe41245c03d4, type: 2}
+    _mat: {fileID: 2100000, guid: ff1143b94ef36c9408f0b1f38fa375c2, type: 2}
     manualUV: 0
     textureGroup: -1
   _sharedIndices:
-  - array: 0100000006000000
+  - array: 010000000d000000
   - array: 02000000
   - array: 03000000
-  - array: 0000000004000000
-  - array: 05000000
-  - array: 07000000
-  - array: 080000000d000000
-  - array: 0f000000
-  - array: 0a000000
-  - array: 090000000c000000
+  - array: 000000000c000000
+  - array: 0400000009000000
   - array: 0b000000
+  - array: 06000000
+  - array: 0500000008000000
+  - array: 07000000
+  - array: 0a000000
   - array: 0e000000
+  - array: 0f000000
   _vertices:
   - {x: 11.5, y: 0.4999957, z: -0.5}
   - {x: -11.5, y: 0.5000143, z: -0.5}
   - {x: -11.5, y: 0.5000181, z: 5.5}
   - {x: 11.5, y: 0.5000019, z: 5.5}
-  - {x: 11.5, y: 0.4999957, z: -0.5}
-  - {x: 11.5, y: 0.4999895, z: -5.5}
-  - {x: -11.5, y: 0.5000143, z: -0.5}
-  - {x: -11.5, y: 0.5000019, z: -5.5}
   - {x: -11.436775, y: -0.500016, z: -0.5}
   - {x: 11.5, y: -0.5000105, z: -0.5}
   - {x: -11.436775, y: -0.50001585, z: -5.499998}
@@ -254,15 +250,15 @@ MonoBehaviour:
   - {x: -11.436775, y: -0.500016, z: -0.5}
   - {x: 11.5, y: -0.5000105, z: 5.5}
   - {x: -11.373543, y: -0.5000183, z: 5.5}
+  - {x: 11.5, y: 0.4999957, z: -0.5}
+  - {x: -11.5, y: 0.5000143, z: -0.5}
+  - {x: 11.5, y: -0.000011086464, z: -5.5}
+  - {x: -11.5, y: 0.49989033, z: -5.5}
   _uv:
   - {x: 79, y: -21.5}
   - {x: 56, y: -22}
   - {x: 56, y: -16}
   - {x: 79, y: -16}
-  - {x: 79, y: -21.5}
-  - {x: 79, y: -27}
-  - {x: 56, y: -22}
-  - {x: 67.5, y: -24.5}
   - {x: 11.436775, y: -0.5}
   - {x: -11.5, y: -0.5}
   - {x: 11.436775, y: -5.499998}
@@ -271,6 +267,10 @@ MonoBehaviour:
   - {x: 11.436775, y: -0.5}
   - {x: -11.5, y: 5.5}
   - {x: 11.373543, y: 5.5}
+  - {x: 11.5, y: -0.4477655}
+  - {x: -11.5, y: -0.4477655}
+  - {x: 11.5, y: -5.472704}
+  - {x: -11.5, y: -5.422963}
   _uv3:
   - {x: 0, y: 0, z: 0, w: 0}
   - {x: 0, y: 0, z: 0, w: 0}

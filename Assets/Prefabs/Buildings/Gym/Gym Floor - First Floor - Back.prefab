@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 33932865562566892}
   - component: {fileID: 64601874945491252}
   - component: {fileID: 114691055961995066}
-  m_Layer: 9
+  m_Layer: 15
   m_Name: Gym Floor - First Floor - Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}

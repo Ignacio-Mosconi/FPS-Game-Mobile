@@ -52,10 +52,15 @@ public class Life : MonoBehaviour
     void DisableComponents()
     {
         Collider[] colliders = GetComponents<Collider>();
+        Collider[] childrenColliders = GetComponentsInChildren<Collider>();
         AudioSource[] audioSources = GetComponents<AudioSource>();
         Canvas canvas = GetComponentInChildren<Canvas>();
 
         foreach (Collider collider in colliders)
+            if (collider)
+                collider.enabled = false;
+        
+        foreach (Collider collider in childrenColliders)
             if (collider)
                 collider.enabled = false;
 

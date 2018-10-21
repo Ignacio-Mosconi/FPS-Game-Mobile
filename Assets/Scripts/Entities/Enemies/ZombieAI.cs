@@ -20,13 +20,17 @@ public class ZombieAI : MonoBehaviour
     [SerializeField] [Range(1.75f, 5f)] float attackRange;
     [SerializeField] [Range(1, 5)] float nearDetectionDistance;
     [SerializeField] GameObject walkPath;
+    
     [Header("Animations")]
     [SerializeField] AnimationClip attackAnimation;
+    
     [Header("Events")]
     [SerializeField] UnityEvent onChaseStart;
     [SerializeField] UnityEvent onChaseFinish;
     [SerializeField] UnityEvent onAttack;
+    
     const float MAX_SPEED_DELTA = 0.5f;
+    
     NavMeshAgent agent;
     ZombieState currentState;
     Life zombieLife;
@@ -102,13 +106,13 @@ public class ZombieAI : MonoBehaviour
                     FocusOnTarget();
 
                 transform.rotation = Quaternion.RotateTowards(transform.rotation,
-                                    Quaternion.LookRotation(currentTarget.position - transform.position), 10);
+                                    Quaternion.LookRotation(currentTarget.position - transform.position), 10f);
 
                 if (!IsOnAttackRange())
                 {
                     LeaveTarget();
                     if (!IsInvoking("MoveAgain"))
-                        Invoke("MoveAgain", 1);
+                        Invoke("MoveAgain", 1f);
                 }
 
                 break;
@@ -118,7 +122,7 @@ public class ZombieAI : MonoBehaviour
                 if (!agent.isStopped)
                     agent.isStopped = true;
                 if (!IsInvoking("MoveAgain"))
-                    Invoke("MoveAgain", 1);
+                    Invoke("MoveAgain", 1f);
 
                 break;
 
@@ -145,7 +149,7 @@ public class ZombieAI : MonoBehaviour
     {
         currentPath = Instantiate(walkPath, transform.position, Quaternion.LookRotation(transform.forward), transform.parent);
         path = currentPath.GetComponent<WalkPath>();
-        agent.speed = maxSpeed / 3;
+        agent.speed = maxSpeed / 3f;
         agent.destination = transform.position;
         currentWaypointIndex = 0;
     }
@@ -218,18 +222,38 @@ public class ZombieAI : MonoBehaviour
         }
     }
 
+    void StopMoving()
+    {
+        currentState = zombieLife.Health > 1f ? ZombieState.BeingHit : ZombieState.Dead;
+
+        LeaveTarget();
+    }
+
+    void MoveAgain()
+    {
+        if (zombieLife.Health > 0f)
+        {
+            agent.isStopped = false;
+            
+            if (!currentTarget)
+                currentState = ZombieState.Wandering;
+            else
+                currentState = IsOnAttackRange() ? ZombieState.Attacking : ZombieState.Chasing;
+        }
+    }
+
     // Attacking Methods
     void FocusOnTarget()
     {
         isFocusedOnTarget = true;
-        InvokeRepeating("Attack", 0, attackAnimation.length / 2);
+        InvokeRepeating("Attack", 0, attackAnimation.length / 2f);
     }
 
 	void Attack()
     {
         onAttack.Invoke();
 
-        Invoke("EnableAttackBox", attackAnimation.length / 4);
+        Invoke("EnableAttackBox", attackAnimation.length / 4f);
 	}
 
     void LeaveTarget()
@@ -243,7 +267,7 @@ public class ZombieAI : MonoBehaviour
     void EnableAttackBox()
     {
         attackBox.SetActive(true);
-        Invoke("DisableAttackBox", attackAnimation.length / 4);
+        Invoke("DisableAttackBox", attackAnimation.length / 4f);
     }
 
     void DisableAttackBox()
@@ -251,27 +275,7 @@ public class ZombieAI : MonoBehaviour
         attackBox.SetActive(false);
     }
 
-    void StopMoving()
-    {
-        currentState = zombieLife.Health > 1f ? ZombieState.BeingHit : ZombieState.Dead;
-
-        if (currentState == ZombieState.Dead)
-            return;
-
-        if (currentState == ZombieState.Attacking)
-            LeaveTarget();
-    }
-
-    void MoveAgain()
-    {
-        agent.isStopped = false;
-        
-        if (!currentTarget)
-            currentState = ZombieState.Wandering;
-        else
-            currentState = IsOnAttackRange() ? ZombieState.Attacking : ZombieState.Chasing;
-    }
-
+    // Getters & Setters
     public float MaxSpeed
     {
         get { return maxSpeed; }

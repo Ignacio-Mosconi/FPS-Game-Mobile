@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 33286005979520690}
   - component: {fileID: 64385005554431076}
   - component: {fileID: 114114182878014818}
-  m_Layer: 9
+  m_Layer: 15
   m_Name: School Floor - Science Lab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -196,18 +196,18 @@ MonoBehaviour:
     _mat: {fileID: 2100000, guid: c2aaf09ea4d29d743ae7fe41245c03d4, type: 2}
     manualUV: 0
     textureGroup: -1
-  - _indices: 0d0000000e0000000f0000000d0000000f0000000c000000
-    _distinctIndices: 0d0000000e0000000f0000000c000000
+  - _indices: 0e0000000d0000000c0000000e0000000f0000000d000000
+    _distinctIndices: 0e0000000d0000000c0000000f000000
     _edges:
     - x: 13
+      y: 12
+    - x: 12
       y: 14
     - x: 14
       y: 15
     - x: 15
-      y: 12
-    - x: 12
       y: 13
-    _smoothingGroup: 18
+    _smoothingGroup: 0
     _uv:
       useWorldSpace: 0
       flipU: 0
@@ -218,12 +218,12 @@ MonoBehaviour:
       offset: {x: 0, y: 0}
       rotation: 0
       justify: 0
-      localPivot: {x: 0, y: 0}
+      localPivot: {x: -8, y: 0}
       localSize: {x: 0, y: 0}
       anchor: 9
     _mat: {fileID: 2100000, guid: 2770f436f58c48d408d1fbe6301f6f9b, type: 2}
-    manualUV: 1
-    textureGroup: 4
+    manualUV: 0
+    textureGroup: -1
   - _indices: 120000001100000010000000120000001300000011000000
     _distinctIndices: 12000000110000001000000013000000
     _edges:
@@ -246,7 +246,7 @@ MonoBehaviour:
       offset: {x: 0, y: 0}
       rotation: 0
       justify: 0
-      localPivot: {x: -8, y: 0}
+      localPivot: {x: 1.5, y: 0}
       localSize: {x: 0, y: 0}
       anchor: 9
     _mat: {fileID: 2100000, guid: 2770f436f58c48d408d1fbe6301f6f9b, type: 2}
@@ -256,15 +256,15 @@ MonoBehaviour:
   - array: 04000000
   - array: 0500000008000000
   - array: 09000000
-  - array: 0e000000
   - array: 0d000000
-  - array: 11000000
-  - array: 020000000f00000012000000
-  - array: 0100000013000000
+  - array: 020000000e00000011000000
+  - array: 010000000f000000
   - array: 00000000070000000a000000
   - array: 0b000000
   - array: 0300000006000000
   - array: 0c00000010000000
+  - array: 12000000
+  - array: 13000000
   _vertices:
   - {x: -6.5, y: -0.5000143, z: -9}
   - {x: -9.5, y: 0.50000477, z: -9}
@@ -279,13 +279,13 @@ MonoBehaviour:
   - {x: -6.5, y: -0.5000143, z: -9}
   - {x: 9.5, y: -0.50002337, z: -9}
   - {x: -6.5, y: 0.50000477, z: 9}
-  - {x: 9.5, y: 0.50000477, z: 9}
-  - {x: 9.5, y: 0.50002384, z: -9}
-  - {x: -6.5, y: 0.50001717, z: -9}
-  - {x: -6.5, y: 0.50000477, z: 9}
   - {x: -9.5, y: 0.50000477, z: 9}
   - {x: -6.5, y: 0.50001717, z: -9}
   - {x: -9.5, y: 0.50000477, z: -9}
+  - {x: -6.5, y: 0.50000477, z: 9}
+  - {x: -6.5, y: 0.50001717, z: -9}
+  - {x: 9.5, y: 0.5000057, z: 9}
+  - {x: 9.5, y: 0.5000057, z: -9}
   _uv:
   - {x: -76, y: -0.9999695}
   - {x: -79, y: 0.000049591064}
@@ -299,14 +299,14 @@ MonoBehaviour:
   - {x: -9.5, y: 9}
   - {x: 6.5, y: -9}
   - {x: -9.5, y: -9}
-  - {x: -69.5, y: 5.8125}
-  - {x: -60, y: 5.625}
-  - {x: -60, y: -12}
-  - {x: -76, y: -12}
   - {x: -6.5, y: 9}
   - {x: -9.5, y: 9}
   - {x: -6.5, y: -9}
   - {x: -9.5, y: -9}
+  - {x: -6.5, y: 9}
+  - {x: -6.5, y: -9}
+  - {x: 9.5, y: 9}
+  - {x: 9.5, y: -9}
   _uv3:
   - {x: 0, y: 0, z: 0, w: 0}
   - {x: 0, y: 0, z: 0, w: 0}

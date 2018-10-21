@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 33318985008427404}
   - component: {fileID: 64229601574228312}
   - component: {fileID: 114027310919042686}
-  m_Layer: 9
+  m_Layer: 15
   m_Name: School Floor - Classroom 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}

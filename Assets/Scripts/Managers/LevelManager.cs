@@ -29,14 +29,13 @@ public class LevelManager : MonoBehaviour
 
     public void RestartLevel()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        GameManager.Instance.HideCursor();
+        GameManager.Instance.FadeToScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void LoadMenu()
     {
-        SceneManager.LoadScene(0);
+        GameManager.Instance.FadeToScene(0);
     }
 
     public static LevelManager Instance

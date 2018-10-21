@@ -14,6 +14,9 @@ public class SettingsMenu : MonoBehaviour
     [SerializeField] Slider musicVolumeSlider;
     [SerializeField] GameObject[] sliderButtons;
 
+    const float MIXER_MULT = 20f;
+    const float SLIDER_INCREMENT_VALUE = 0.1f;
+
     void OnEnable()
     {
         sfxVolumeSlider.value = GameManager.Instance.SfxVolumeValue;
@@ -33,22 +36,22 @@ public class SettingsMenu : MonoBehaviour
     public void SetSfxVolume(float volume)
     {
         GameManager.Instance.SfxVolumeValue = volume;
-        sfxMixer.SetFloat("Volume", Mathf.Log(volume) * 12);
+        sfxMixer.SetFloat("Volume", Mathf.Log(volume) * MIXER_MULT);
     }
     
     public void SetMusicVolume(float volume)
     {
         GameManager.Instance.MusicVolumeValue = volume;
-        musicMixer.SetFloat("Volume", Mathf.Log(volume) * 12);
+        musicMixer.SetFloat("Volume", Mathf.Log(volume) * MIXER_MULT);
     }
 
     public void IncreaseSliderValue(Slider slider)
     {
-        slider.value += 0.1f;
+        slider.value += SLIDER_INCREMENT_VALUE;
     }
 
     public void DecreaseSliderValue(Slider slider)
     {
-        slider.value -= 0.1f;
+        slider.value -= SLIDER_INCREMENT_VALUE;
     }
 }

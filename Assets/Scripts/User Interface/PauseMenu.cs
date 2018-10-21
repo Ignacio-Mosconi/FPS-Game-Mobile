@@ -31,18 +31,14 @@ public class PauseMenu : MonoBehaviour
             if (InputManager.Instance.CheckControllerConnection())
                 InputManager.Instance.ChangeFirstMenuItemSelected(firstMenuElement);
             else
-            {
-                Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = true;
-            }
+                GameManager.Instance.ShowCursor();
         #endif
     }
 
     public void Resume()
     {
         #if UNITY_STANDALONE
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
+            GameManager.Instance.HideCursor();
         #endif
         pauseMenuUI.SetActive(false);
         hudUI.SetActive(true);
@@ -55,7 +51,7 @@ public class PauseMenu : MonoBehaviour
     {
         isPaused = false;
         Time.timeScale = 1.0f;
-        SceneManager.LoadScene(0);
+        GameManager.Instance.FadeToScene(0);
     }
 
     public static bool IsPaused

@@ -16,21 +16,27 @@ public class Weapon : MonoBehaviour
     [SerializeField] [Range(1, 10)] int regularSwayLevel;
     [SerializeField] [Range(1, 10)] int recoilSwayLevel;
     [SerializeField] [Range(0, 5)] float recoilDuration;
+    
     [Header("Others")]
     [SerializeField] string[] layersToIgnore;
+    
     [Header("Weapon Animations")]
     [SerializeField] AnimationClip shootAnimation;
     [SerializeField] AnimationClip reloadAnimation;
+    
     [Header("Weapon Audio Sources")]
     [SerializeField] AudioSource shootSound;
     [SerializeField] AudioSource reloadSound;
     [SerializeField] AudioSource emptyMagSound;
+    
     [Header("Weapon Events")]
     [SerializeField] UnityEvent onShot;
     [SerializeField] UnityEvent onReload;
     [SerializeField] UnityEvent onEmptyMag;
     [SerializeField] UnityEvent onCrosshairScale;
+    
     const float BASE_SWAY = 0.01f;
+    
     Transform fpsCamera;
     ParticleSystem muzzleFlash;
     float lastFireTime = 0;
@@ -41,6 +47,7 @@ public class Weapon : MonoBehaviour
     bool isReloading = false;
     float crosshairScaling = 1;
     int consecutiveShots = 0;
+    float recoilTimer = 0f;
     float reloadButtonPressCounter = 0;
     int shootingLayerMask = 0;
 
@@ -70,7 +77,10 @@ public class Weapon : MonoBehaviour
         {
             if (consecutiveShots != 0)
                 consecutiveShots = 0;
-            crosshairScaling = Mathf.Lerp(crosshairScaling, 1, recoilDuration);
+            crosshairScaling = Mathf.Lerp(crosshairScaling, 1, recoilTimer);
+            recoilTimer += Time.deltaTime;
+            if (recoilTimer >= recoilDuration)
+                recoilTimer = 0f;
             onCrosshairScale.Invoke();
         }
 
@@ -194,8 +204,9 @@ public class Weapon : MonoBehaviour
     public int AmmoLeft
     {
         get { return ammoLeft; }
-        set{
-            if(ammoLeft <= maxAmmo - magSize)
+        set
+        {
+            if (ammoLeft <= maxAmmo - magSize)
                 ammoLeft += value;
         }
     }

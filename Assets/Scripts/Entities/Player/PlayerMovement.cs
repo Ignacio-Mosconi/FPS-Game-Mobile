@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float maxFallingDistance;
     [Header("Events")]
     [SerializeField] UnityEvent onSurfaceChange;
-    Life life;
+    Life playerLife;
     CharacterController charController;
     const float FALLING_DAMAGE_MULTIPLIER = 10;
     float verticalSpeed;
@@ -36,10 +36,15 @@ public class PlayerMovement : MonoBehaviour
     void Awake()
     {
         charController = GetComponent<CharacterController>();
-        life = GetComponent<Life>();
+        playerLife = GetComponent<Life>();
         distanceToGround = GetComponent<MeshFilter>().mesh.bounds.extents.y + 0.5f;      
         jumpedWhileSprinting = false;
         currentSurface = WalkingSurface.Outdoors;
+    }
+
+    void Start()
+    {
+        playerLife.OnDeath.AddListener(DisableSelf);
     }
 
     void Update() 
@@ -70,7 +75,7 @@ public class PlayerMovement : MonoBehaviour
         if (charController.isGrounded)
         {
             if (fallingDistance >= maxFallingDistance)
-                life.TakeDamage(FALLING_DAMAGE_MULTIPLIER * fallingDistance);
+                playerLife.TakeDamage(FALLING_DAMAGE_MULTIPLIER * fallingDistance);
 
             fallingDistance = 0;
             lastPositionY = 0;
@@ -106,6 +111,11 @@ public class PlayerMovement : MonoBehaviour
 
         if (currentSurface != previousSurface)
             onSurfaceChange.Invoke();
+    }
+
+    void DisableSelf()
+    {
+        enabled = false;
     }
 
     public bool IsJumping()

@@ -55,6 +55,7 @@ public class Life : MonoBehaviour
         Collider[] childrenColliders = GetComponentsInChildren<Collider>();
         AudioSource[] audioSources = GetComponents<AudioSource>();
         Canvas canvas = GetComponentInChildren<Canvas>();
+        CharacterController characterController = GetComponent<CharacterController>();
 
         foreach (Collider collider in colliders)
             if (collider)
@@ -70,6 +71,9 @@ public class Life : MonoBehaviour
 
         if (canvas)
             canvas.enabled = false;
+
+        if (characterController)
+            characterController.enabled = false;
     }
     
     public UnityEvent OnHit

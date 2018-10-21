@@ -9,6 +9,7 @@ public class PlayerAudio : MonoBehaviour
 	[Header("Audio Sources")]
 	[SerializeField] AudioSource[] indoorFootsteps;
 	[SerializeField] AudioSource hitSound;
+	[SerializeField] AudioSource deathSound;
 	[SerializeField] AudioSource[] outdoorFootsteps;
 	AudioSource[] currentFootsteps;
 	const float WALKING_VELOCITY = 0.25f;
@@ -38,6 +39,7 @@ public class PlayerAudio : MonoBehaviour
 		ChangeFootstepsSounds();
 		playerMovement.OnSurfaceChange.AddListener(ChangeFootstepsSounds);
 		playerLife.OnHit.AddListener(PlayHitSound);
+		playerLife.OnDeath.AddListener(PlayDeathSound);
 	}
 
 	void PlayShootSound()
@@ -74,6 +76,17 @@ public class PlayerAudio : MonoBehaviour
 	{
 		if (!hitSound.isPlaying)
 			hitSound.Play();
+	}
+
+	void PlayDeathSound()
+	{
+		deathSound.Play();	
+	}
+
+	void DisableAudioAndAnimations()
+	{
+		enabled = false;
+		animator.enabled = false;
 	}
 
 	void ChangeFootstepsSounds()

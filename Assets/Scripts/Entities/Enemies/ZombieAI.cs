@@ -54,7 +54,7 @@ public class ZombieAI : MonoBehaviour
 
     void Start()
     {
-        zombieLife.OnDeath.AddListener(StopMoving);
+        zombieLife.OnDeath.AddListener(DisableSelf);
         zombieLife.OnHit.AddListener(StopMoving);
         
         CreatePath();
@@ -119,21 +119,9 @@ public class ZombieAI : MonoBehaviour
 
             case ZombieState.BeingHit:
 
-                if (!agent.isStopped)
-                    agent.isStopped = true;
-                if (!IsInvoking("MoveAgain"))
-                    Invoke("MoveAgain", 1f);
-
                 break;
 
             case ZombieState.Dead:
-
-                if (IsInvoking("MoveAgain"))
-                    CancelInvoke("MoveAgain");
-                enabled = false;
-                agent.enabled = false;
-                if (currentPath)
-                    Destroy(currentPath);
 
                 break;
         }
@@ -224,9 +212,12 @@ public class ZombieAI : MonoBehaviour
 
     void StopMoving()
     {
-        currentState = zombieLife.Health > 1f ? ZombieState.BeingHit : ZombieState.Dead;
-
+        currentState = ZombieState.BeingHit;
         LeaveTarget();
+        if (!agent.isStopped)
+            agent.isStopped = true;
+        if (!IsInvoking("MoveAgain"))
+            Invoke("MoveAgain", 1f);
     }
 
     void MoveAgain()
@@ -240,6 +231,17 @@ public class ZombieAI : MonoBehaviour
             else
                 currentState = IsOnAttackRange() ? ZombieState.Attacking : ZombieState.Chasing;
         }
+    }
+
+    void DisableSelf()
+    {
+        currentState = ZombieState.Dead;
+        if (IsInvoking("MoveAgain"))
+            CancelInvoke("MoveAgain");
+        if (currentPath)
+            Destroy(currentPath);
+        agent.enabled = false;
+        enabled = false;
     }
 
     // Attacking Methods

@@ -20,12 +20,14 @@ public class PlayerAnimation : MonoBehaviour
     Animator animator;
     CharacterController charController;
     PlayerMovement playerMovement;
+    Life playerLife;
 
     void Start()
     {
         animator = GetComponent<Animator>();
         charController = GetComponentInParent<CharacterController>();
         playerMovement = GetComponentInParent<PlayerMovement>();
+        playerLife = GetComponentInParent<Life>();
 
         weaponManager.OnWeaponSwap.AddListener(ChangeWeaponAnimations);
         foreach (Transform weapon in weaponManager.transform)
@@ -33,6 +35,7 @@ public class PlayerAnimation : MonoBehaviour
             weapon.gameObject.GetComponent<Weapon>().OnShot.AddListener(HasShot);
             weapon.gameObject.GetComponent<Weapon>().OnReload.AddListener(HasReloaded);
         }
+        playerLife.OnDeath.AddListener(DisableSelf);
 
         ChangeWeaponAnimations();
     }
@@ -79,6 +82,11 @@ public class PlayerAnimation : MonoBehaviour
     {
         weaponManager.CurrentWeapon.enabled = false;
         onShootingEnabledToggle.Invoke();
+    }
+
+    void DisableSelf()
+    {
+        enabled = false;
     }
 
     void ChangeWeaponAnimations()

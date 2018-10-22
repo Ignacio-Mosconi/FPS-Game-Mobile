@@ -83,10 +83,9 @@ public class PlayerAudio : MonoBehaviour
 		deathSound.Play();	
 	}
 
-	void DisableAudioAndAnimations()
+	void DisableSelf()
 	{
 		enabled = false;
-		animator.enabled = false;
 	}
 
 	void ChangeFootstepsSounds()

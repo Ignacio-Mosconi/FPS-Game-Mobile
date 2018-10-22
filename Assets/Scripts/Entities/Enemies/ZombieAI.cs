@@ -10,16 +10,17 @@ public class ZombieAI : MonoBehaviour
 {
     enum ZombieState
     {
-        Wandering, Chasing, Attacking, BeingHit, Dead
+        Wandering, Chasing, Attacking, Ivestigating, BeingHit
     }
 
     [Header("Zombie Attributes")]
     [SerializeField] Transform[] possibleTargets;
+    [SerializeField] GameObject walkPath;
     [SerializeField] [Range(0, 100)] float viewDistance;
     [SerializeField] [Range(0, 180)] float fieldOfView;
     [SerializeField] [Range(1.75f, 5f)] float attackRange;
     [SerializeField] [Range(1, 5)] float nearDetectionDistance;
-    [SerializeField] GameObject walkPath;
+    [SerializeField] [Range(2, 25)] float investigationDistance;
     
     [Header("Animations")]
     [SerializeField] AnimationClip attackAnimation;
@@ -30,6 +31,10 @@ public class ZombieAI : MonoBehaviour
     [SerializeField] UnityEvent onAttack;
     
     const float MAX_SPEED_DELTA = 0.5f;
+    const float BEING_HIT_WAIT_TIME = 1f;
+    const float ATTACK_RANGE_OUT_WAIT_TIME = 0.75f;
+    const float ROTATION_DEGREES_DELTA = 10f;
+    const float DETECTION_TARGET_VELOCITY = 0.5f;
     
     NavMeshAgent agent;
     ZombieState currentState;
@@ -40,6 +45,7 @@ public class ZombieAI : MonoBehaviour
     Transform currentTarget;
     int currentWaypointIndex;
     float maxSpeed;
+    float walkSpeed;
     bool isFocusedOnTarget;
 
 	void Awake()
@@ -49,13 +55,14 @@ public class ZombieAI : MonoBehaviour
         attackBox = GetComponentInChildren<AttackBox>().gameObject;
         
         maxSpeed = agent.speed + Random.Range(-MAX_SPEED_DELTA, MAX_SPEED_DELTA);
+        walkSpeed = maxSpeed / 3f;
         currentState = ZombieState.Wandering;
 	}
 
     void Start()
     {
         zombieLife.OnDeath.AddListener(DisableSelf);
-        zombieLife.OnHit.AddListener(StopMoving);
+        zombieLife.OnDamagerHit.AddListener(StopMoving);
         
         CreatePath();
     }
@@ -105,23 +112,34 @@ public class ZombieAI : MonoBehaviour
                 if (!isFocusedOnTarget)
                     FocusOnTarget();
 
-                transform.rotation = Quaternion.RotateTowards(transform.rotation,
-                                    Quaternion.LookRotation(currentTarget.position - transform.position), 10f);
+                RotateTowardsTarget();
 
                 if (!IsOnAttackRange())
                 {
                     LeaveTarget();
                     if (!IsInvoking("MoveAgain"))
-                        Invoke("MoveAgain", 1f);
+                        Invoke("MoveAgain", ATTACK_RANGE_OUT_WAIT_TIME);
                 }
 
                 break;
 
-            case ZombieState.BeingHit:
+            case ZombieState.Ivestigating:
+                
+                if (path)
+                    GetRidOfPath();
+
+                Investigate();
+                SearchTarget();
+
+                if (path)
+                    currentState = ZombieState.Wandering;
+                else
+                    if (currentTarget)
+                        currentState = ZombieState.Chasing;
 
                 break;
 
-            case ZombieState.Dead:
+            case ZombieState.BeingHit:
 
                 break;
         }
@@ -137,7 +155,7 @@ public class ZombieAI : MonoBehaviour
     {
         currentPath = Instantiate(walkPath, transform.position, Quaternion.LookRotation(transform.forward), transform.parent);
         path = currentPath.GetComponent<WalkPath>();
-        agent.speed = maxSpeed / 3f;
+        agent.speed = walkSpeed;
         agent.destination = transform.position;
         currentWaypointIndex = 0;
     }
@@ -174,7 +192,7 @@ public class ZombieAI : MonoBehaviour
             else
             {
                 if (distanceToTarget < nearDetectionDistance && 
-                    possibleTarget.GetComponentInChildren<Animator>().GetFloat("Horizontal Velocity") > 0.5f)
+                    possibleTarget.GetComponentInChildren<Animator>().GetFloat("Horizontal Velocity") > DETECTION_TARGET_VELOCITY)
                 {
                     if (distanceToTarget < closestTargetDistance)
                     {
@@ -210,14 +228,27 @@ public class ZombieAI : MonoBehaviour
         }
     }
 
-    void StopMoving()
+    void Investigate()
+    {
+        if (!agent.pathPending && agent.remainingDistance < agent.stoppingDistance)
+        {
+            agent.speed = walkSpeed;
+            CreatePath();
+            onChaseFinish.Invoke();
+        }
+    }
+
+    void StopMoving(Transform damager)
     {
         currentState = ZombieState.BeingHit;
-        LeaveTarget();
+        if (isFocusedOnTarget)
+            LeaveTarget();
         if (!agent.isStopped)
             agent.isStopped = true;
         if (!IsInvoking("MoveAgain"))
-            Invoke("MoveAgain", 1f);
+            Invoke("MoveAgain", BEING_HIT_WAIT_TIME);
+        if (!currentTarget)
+            agent.destination = Vector3.MoveTowards(transform.position, damager.position, investigationDistance);
     }
 
     void MoveAgain()
@@ -227,7 +258,11 @@ public class ZombieAI : MonoBehaviour
             agent.isStopped = false;
             
             if (!currentTarget)
-                currentState = ZombieState.Wandering;
+            {
+                agent.speed = maxSpeed;
+                onChaseStart.Invoke();
+                currentState = ZombieState.Ivestigating;
+            }
             else
                 currentState = IsOnAttackRange() ? ZombieState.Attacking : ZombieState.Chasing;
         }
@@ -235,7 +270,6 @@ public class ZombieAI : MonoBehaviour
 
     void DisableSelf()
     {
-        currentState = ZombieState.Dead;
         if (IsInvoking("MoveAgain"))
             CancelInvoke("MoveAgain");
         if (currentPath)
@@ -257,6 +291,14 @@ public class ZombieAI : MonoBehaviour
 
         Invoke("EnableAttackBox", attackAnimation.length / 4f);
 	}
+
+    void RotateTowardsTarget()
+    {
+        if (!PauseMenu.IsPaused && !LevelManager.Instance.GameOver)
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, 
+                                Quaternion.LookRotation(currentTarget.position - transform.position), 
+                                ROTATION_DEGREES_DELTA);
+    }
 
     void LeaveTarget()
     {

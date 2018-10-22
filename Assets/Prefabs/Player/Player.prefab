@@ -2737,7 +2737,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 95
+  Priority: 25
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -3025,7 +3025,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 95
+  Priority: 25
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -3248,6 +3248,7 @@ MonoBehaviour:
   - {fileID: 82223543964691156}
   - {fileID: 82598429964533708}
   hitSound: {fileID: 82257893908685706}
+  deathSound: {fileID: 0}
   outdoorFootsteps:
   - {fileID: 82255425642643336}
   - {fileID: 82498897108384270}

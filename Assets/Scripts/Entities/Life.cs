@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+[System.Serializable]
+public class HitEvent : UnityEvent<Transform> {}
+
 public class Life : MonoBehaviour 
 {
     [SerializeField] float maxHealth;
@@ -10,6 +13,7 @@ public class Life : MonoBehaviour
     [SerializeField] AnimationClip deathAnimation;
     [SerializeField] UnityEvent onHit;
     [SerializeField] UnityEvent onDeath;
+    [SerializeField] HitEvent onDamagerHit;
     float health = 0;
 
     public void Start()
@@ -17,7 +21,7 @@ public class Life : MonoBehaviour
         health = maxHealth;
     }
 
-    public void TakeDamage(float amount)
+    public void TakeDamage(float amount, Transform damager = null)
     {
         if (health > 1f)
         {
@@ -30,7 +34,10 @@ public class Life : MonoBehaviour
                     Die();
             }
             else
+            {
                 onHit.Invoke();
+                onDamagerHit.Invoke(damager);
+            }
         }
     }
 
@@ -84,6 +91,11 @@ public class Life : MonoBehaviour
     public UnityEvent OnDeath
     {
         get { return onDeath; }
+    }
+    
+    public HitEvent OnDamagerHit
+    {
+        get { return onDamagerHit; }
     }
 
     public float Health

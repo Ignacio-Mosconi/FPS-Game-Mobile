@@ -139,7 +139,7 @@ public class Weapon : MonoBehaviour
             if (targetLife)
             {
                 float damagePercentage = 1 - (hit.transform.position - transform.position).sqrMagnitude / (range * range);
-                targetLife.TakeDamage(damage * damagePercentage);
+                targetLife.TakeDamage(damage * damagePercentage, transform);
             }
             if (targetRigidbody)
             {

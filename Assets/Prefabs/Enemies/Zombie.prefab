@@ -3228,6 +3228,10 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  onDamagerHit:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: HitEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!114 &114118375606764646
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3256,11 +3260,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   possibleTargets:
   - {fileID: 0}
+  walkPath: {fileID: 1527905510322570, guid: fd7ae868b897b6a458ca5b730e746d90, type: 2}
   viewDistance: 15
   fieldOfView: 170
   attackRange: 1.8
   nearDetectionDistance: 3
-  walkPath: {fileID: 1527905510322570, guid: fd7ae868b897b6a458ca5b730e746d90, type: 2}
+  investigationDistance: 12
   attackAnimation: {fileID: 7400000, guid: 87d73776719a4e04192da63a9f805907, type: 2}
   onChaseStart:
     m_PersistentCalls:

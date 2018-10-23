@@ -48,8 +48,11 @@ public class InputManager : MonoBehaviour
 
 	public void ChangeFirstMenuItemSelected(GameObject firstMenuElement)
     {
-		eventSystem.firstSelectedGameObject = firstMenuElement;
-		eventSystem.SetSelectedGameObject(firstMenuElement);
+		if (CheckControllerConnection())
+		{
+			eventSystem.firstSelectedGameObject = firstMenuElement;
+			eventSystem.SetSelectedGameObject(firstMenuElement);
+		}
     }
 
     public bool CheckControllerConnection()

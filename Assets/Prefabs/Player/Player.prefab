@@ -3172,6 +3172,10 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  onDamagerHit:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: HitEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!114 &114541303858802696
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3183,7 +3187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d92258efac1a7c943afcc75d0d3430bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 130
+  rotationSpeed: 150
   verticalViewRange: 80
 --- !u!114 &114720990784513648
 MonoBehaviour:
@@ -3248,7 +3252,7 @@ MonoBehaviour:
   - {fileID: 82223543964691156}
   - {fileID: 82598429964533708}
   hitSound: {fileID: 82257893908685706}
-  deathSound: {fileID: 0}
+  deathSound: {fileID: 82257893908685706}
   outdoorFootsteps:
   - {fileID: 82255425642643336}
   - {fileID: 82498897108384270}

@@ -42,11 +42,6 @@ public class PlayerMovement : MonoBehaviour
         currentSurface = WalkingSurface.Outdoors;
     }
 
-    void Start()
-    {
-        playerLife.OnDeath.AddListener(DisableSelf);
-    }
-
     void Update() 
 	{
         Vector3 movement = new Vector3(0, 0, 0);
@@ -111,11 +106,6 @@ public class PlayerMovement : MonoBehaviour
 
         if (currentSurface != previousSurface)
             onSurfaceChange.Invoke();
-    }
-
-    void DisableSelf()
-    {
-        enabled = false;
     }
 
     public bool IsJumping()

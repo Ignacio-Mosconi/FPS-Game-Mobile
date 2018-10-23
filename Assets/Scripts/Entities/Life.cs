@@ -44,7 +44,7 @@ public class Life : MonoBehaviour
     void Die()
     {
         onDeath.Invoke();
-        DisableComponents();
+        DisableMainComponents();
     }
 
     void Die(float deathDuration)
@@ -53,16 +53,14 @@ public class Life : MonoBehaviour
             transform.SetParent(transform.parent.parent); // The grandfather.
         onDeath.Invoke();
         Destroy(gameObject, deathDuration + deadBodyDuration);
-        DisableComponents();
+        DisableMainComponents();
     }
 
-    void DisableComponents()
+    void DisableMainComponents()
     {
         Collider[] colliders = GetComponents<Collider>();
         Collider[] childrenColliders = GetComponentsInChildren<Collider>();
-        AudioSource[] audioSources = GetComponents<AudioSource>();
         Canvas canvas = GetComponentInChildren<Canvas>();
-        CharacterController characterController = GetComponent<CharacterController>();
 
         foreach (Collider collider in colliders)
             if (collider)
@@ -72,15 +70,8 @@ public class Life : MonoBehaviour
             if (collider)
                 collider.enabled = false;
 
-        foreach (AudioSource audioSource in audioSources)
-            if (audioSource)
-                audioSource.enabled = false;
-
         if (canvas)
             canvas.enabled = false;
-
-        if (characterController)
-            characterController.enabled = false;
     }
     
     public UnityEvent OnHit

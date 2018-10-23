@@ -14,8 +14,7 @@ public class FirstPersonCamera : MonoBehaviour
     void Awake()
     {
         #if UNITY_STANDALONE
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
+            GameManager.Instance.HideCursor();
         #endif
     }
 
@@ -26,11 +25,11 @@ public class FirstPersonCamera : MonoBehaviour
 
     void Update()
     {
-        float horRotation = InputManager.Instance.GetHorizontalViewAxis() * rotationSpeed * Time.deltaTime;
-        float verRotation = InputManager.Instance.GetVerticalViewAxis() * rotationSpeed * Time.deltaTime;
+        float horRotation = InputManager.Instance.GetHorizontalViewAxis() * rotationSpeed;
+        float verRotation = InputManager.Instance.GetVerticalViewAxis() * rotationSpeed;
 
-        horAngle += horRotation;
-        verAngle -= verRotation;
+        horAngle += horRotation * Time.deltaTime;
+        verAngle -= verRotation * Time.deltaTime;
 
         verAngle = Mathf.Clamp(verAngle, -verticalViewRange, verticalViewRange);
 

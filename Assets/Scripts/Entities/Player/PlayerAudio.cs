@@ -83,11 +83,6 @@ public class PlayerAudio : MonoBehaviour
 		deathSound.Play();	
 	}
 
-	void DisableSelf()
-	{
-		enabled = false;
-	}
-
 	void ChangeFootstepsSounds()
 	{
 		switch (playerMovement.GetCurrentSurfaceIndex())

@@ -44,6 +44,8 @@ public class InputManager : MonoBehaviour
         	
 			DontDestroyOnLoad(eventSystem.gameObject);
 		}
+		else
+			Destroy(gameObject);
 	}
 
 	public void ChangeFirstMenuItemSelected(GameObject firstMenuElement)

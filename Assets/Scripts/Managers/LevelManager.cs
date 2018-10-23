@@ -14,6 +14,12 @@ public class LevelManager : MonoBehaviour
 
     void Awake()
     {
+        if (Instance != this)
+            Destroy(gameObject);
+    }
+
+    void Start()
+    {
         playerLife.OnDeath.AddListener(FailLevel);
     }
 

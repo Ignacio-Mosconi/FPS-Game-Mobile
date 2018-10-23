@@ -31,15 +31,22 @@ public class GroupsManager : MonoBehaviour
 
     void CheckEnemyGroupState()
     {
-        for (int i = 0; i < enemyGroups.Count; i++)
+        // Citizens will run to safe only by killing 
+        if (enemyGroups[0].childCount == 0 || enemyGroups[0].childCount == 1)
         {
-            //Debug.Log(enemyGroups[i].childCount);
-            if (enemyGroups[i].childCount == 0 || enemyGroups[i].childCount == 1)
+            Debug.Log("Zombie group exterminated.");
+            CheckCitizenGroupState(0);
+            enemyGroups.RemoveAt(0);
+            while (enemyGroups.Count > 0)
             {
-                Debug.Log("Zombie group exterminated.");
-                CheckCitizenGroupState(i);
-                enemyGroups.RemoveAt(i);
-                return;
+                if (enemyGroups[0].childCount == 0 || enemyGroups[0].childCount == 1)
+                {
+                    Debug.Log("Zombie group exterminated.");
+                    CheckCitizenGroupState(0);
+                    enemyGroups.RemoveAt(0);
+                }
+                else
+                    break;
             }
         }
     }

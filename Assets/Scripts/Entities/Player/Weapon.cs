@@ -181,14 +181,13 @@ public class Weapon : MonoBehaviour
 
     bool CanShoot()
     {
-        return !isReloading && Time.time >= lastFireTime + 1 / fireRate && !PauseMenu.IsPaused &&
-                !LevelManager.Instance.GameOver;
+        return !isReloading && Time.time >= lastFireTime + 1 / fireRate;
     }
 
     bool CanReload()
     {
-        return !isReloading && bulletsInMag < magSize + 1 && ammoLeft > 0 && Time.time >= lastFireTime + 1 / fireRate &&
-                !PauseMenu.IsPaused && !LevelManager.Instance.GameOver && reloadButtonPressCounter < 0.5f;
+        return !isReloading && bulletsInMag < magSize + 1 && ammoLeft > 0 &&
+                Time.time >= lastFireTime + 1 / fireRate && reloadButtonPressCounter < 0.5f;
     }
 
     public bool HasFinishedFiring()

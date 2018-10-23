@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
@@ -8,6 +9,7 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] GameObject pauseMenuUI;
     [SerializeField] GameObject hudUI;
     [SerializeField] GameObject firstMenuElement;
+    [SerializeField] UnityEvent onPauseToggle;
     static bool isPaused = false;
 
     void Update()
@@ -25,8 +27,9 @@ public class PauseMenu : MonoBehaviour
     {
         pauseMenuUI.SetActive(true);
         hudUI.SetActive(false);
-        Time.timeScale = 0.0f;
+        Time.timeScale = 0f;
         isPaused = true;
+        onPauseToggle.Invoke();
         #if UNITY_STANDALONE
             if (InputManager.Instance.CheckControllerConnection())
                 InputManager.Instance.ChangeFirstMenuItemSelected(firstMenuElement);
@@ -42,8 +45,9 @@ public class PauseMenu : MonoBehaviour
         #endif
         pauseMenuUI.SetActive(false);
         hudUI.SetActive(true);
-        Time.timeScale = 1.0f;
+        Time.timeScale = 1f;
         isPaused = false;
+        onPauseToggle.Invoke();
         InputManager.Instance.ChangeFirstMenuItemSelected(null);
     }
 
@@ -57,5 +61,10 @@ public class PauseMenu : MonoBehaviour
     public static bool IsPaused
     {
         get { return isPaused; }
+    }
+
+    public UnityEvent OnPauseToggle
+    {
+        get { return onPauseToggle; }
     }
 }

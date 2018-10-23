@@ -33,6 +33,10 @@ public class PlayerManager : MonoBehaviour
 		weaponManager = player.GetComponentInChildren<WeaponManager>();
 
 		playerLife.OnDeath.AddListener(TogglePlayerAvailability);
+		EndLevelMenu[] endLevelMenus = FindObjectsOfType<EndLevelMenu>();
+		foreach (EndLevelMenu endLevelMenu in endLevelMenus)
+			endLevelMenu.OnMenuToggle.AddListener(TogglePlayerAvailability);
+		FindObjectOfType<PauseMenu>().OnPauseToggle.AddListener(TogglePlayerAvailability);
 	}
 
 	void TogglePlayerAvailability()

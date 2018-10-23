@@ -20,14 +20,12 @@ public class PlayerAnimation : MonoBehaviour
     Animator animator;
     CharacterController charController;
     PlayerMovement playerMovement;
-    Life playerLife;
 
     void Start()
     {
         animator = GetComponent<Animator>();
         charController = GetComponentInParent<CharacterController>();
         playerMovement = GetComponentInParent<PlayerMovement>();
-        playerLife = GetComponentInParent<Life>();
 
         weaponManager.OnWeaponSwap.AddListener(ChangeWeaponAnimations);
         foreach (Transform weapon in weaponManager.transform)

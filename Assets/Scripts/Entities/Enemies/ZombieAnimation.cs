@@ -42,13 +42,11 @@ public class ZombieAnimation : MonoBehaviour
 
     void HitAnimation()
     {
-        agent.isStopped = true;
         animator.SetTrigger("Was Hit");
     }
 
     void DeathAnimation()
     {
-        agent.isStopped = true;
         animator.SetTrigger("Death");
     }
 

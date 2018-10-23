@@ -25,6 +25,7 @@ public class ZombieAudio : MonoBehaviour
 		zombieAI.OnChaseFinish.AddListener(PlayBreathSound);
 		zombieAI.OnAttack.AddListener(PlayAttackSound);
 		zombieLife.OnHit.AddListener(PlayHitSound);
+		zombieLife.OnHit.AddListener(DisableSelf);
 
 		PlayBreathSound();
 	}
@@ -51,5 +52,10 @@ public class ZombieAudio : MonoBehaviour
 	void PlayHitSound()
 	{
 		hitSound.Play();
+	}
+
+	void DisableSelf()
+	{
+		enabled = false;
 	}
 }

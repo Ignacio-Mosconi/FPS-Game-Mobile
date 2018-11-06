@@ -152,5 +152,21 @@ namespace UnityStandardAssets.CrossPlatformInput
 			if (CrossPlatformInputManager.AxisExists(verticalAxisName))
 				CrossPlatformInputManager.UnRegisterVirtualAxis(verticalAxisName);
 		}
+
+		public int ID
+		{
+			get { return m_Id; }
+		}
+#if !UNITY_EDITOR
+		public Vector2 Center
+		{
+			get { return m_Center; }
+		}
+#else
+		public Vector3 PreviousMouse
+		{
+			get { return m_PreviousMouse; }
+		}
 	}
+#endif
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 
-public class InputMobile : IInput
+public class InputAndroid : IInput
 {
 	public float GetHorizontalAxis()
 	{
@@ -27,7 +27,7 @@ public class InputMobile : IInput
 
 	public float GetSwapWeaponAxis()
 	{
-		return (CrossPlatformInputManager.GetButtonDown("SwapWeapon")) ? 1.0f : 0f;
+		return (CrossPlatformInputManager.GetButtonDown("Swap Weapon")) ? 1.0f : 0f;
 	}
 
 	public bool GetFireButton()

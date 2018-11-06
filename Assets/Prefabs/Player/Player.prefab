@@ -3187,8 +3187,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d92258efac1a7c943afcc75d0d3430bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 150
+  maxRotationSpeed: 180
   verticalViewRange: 80
+  touchSensitivity: 10
+  aimTouchPad: {fileID: 0}
 --- !u!114 &114720990784513648
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -26,7 +26,7 @@ public class InputPC : IInput
 
 	public float GetSwapWeaponAxis()
 	{
-		return Input.GetAxis("Mouse ScrollWheel");
+		return Input.GetAxis("Mouse Scroll Wheel");
 	}
 
 	public bool GetFireButton()

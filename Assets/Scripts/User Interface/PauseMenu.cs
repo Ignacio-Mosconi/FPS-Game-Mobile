@@ -8,6 +8,7 @@ public class PauseMenu : MonoBehaviour
 {
     [SerializeField] GameObject pauseMenuUI;
     [SerializeField] GameObject hudUI;
+    [SerializeField] GameObject mobileControls;
     [SerializeField] GameObject firstMenuElement;
     [SerializeField] UnityEvent onPauseToggle;
     static bool isPaused = false;
@@ -35,6 +36,8 @@ public class PauseMenu : MonoBehaviour
                 InputManager.Instance.ChangeFirstMenuItemSelected(firstMenuElement);
             else
                 GameManager.Instance.ShowCursor();
+        #else
+            mobileControls.SetActive(false);
         #endif
     }
 
@@ -42,6 +45,8 @@ public class PauseMenu : MonoBehaviour
     {
         #if UNITY_STANDALONE
             GameManager.Instance.HideCursor();
+        #else
+            mobileControls.SetActive(true);
         #endif
         pauseMenuUI.SetActive(false);
         hudUI.SetActive(true);

@@ -18,7 +18,7 @@ public class InputManager : MonoBehaviour
 			#if UNITY_STANDALONE
 				input = new InputPC();
 			#else
-				input = new InputMobile();
+				input = new InputAndroid();
 			#endif
 
 			eventSystem = FindObjectOfType<EventSystem>();

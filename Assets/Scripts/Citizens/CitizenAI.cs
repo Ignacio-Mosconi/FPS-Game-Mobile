@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 public class CitizenAI : MonoBehaviour
 {
-    [SerializeField] UnityEvent onRescued;
+    /*[SerializeField]*/ public UnityEvent onRescued = new UnityEvent();
 
     Transform path;
     NavMeshAgent agent;
@@ -35,6 +35,11 @@ public class CitizenAI : MonoBehaviour
 
             Destroy(gameObject);
         }
+    }
+
+    private void OnDestroy()
+    {
+        onRescued.Invoke();
     }
 
     public float getMaxSpeed()

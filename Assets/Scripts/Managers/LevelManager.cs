@@ -8,9 +8,12 @@ public class LevelManager : MonoBehaviour
     [Header("References")]
     [SerializeField] Life playerLife;
     [SerializeField] GameObject failLevelUI;
+    [SerializeField] GameObject winLevelUI;
     [SerializeField] GameObject hudUI;
     static LevelManager instance;
     bool gameOver;
+
+    int totalOfCitizenGroups;
 
     void Awake()
     {
@@ -20,6 +23,13 @@ public class LevelManager : MonoBehaviour
 
     void Start()
     {
+        MoveCitizens[] citizensGroups = GameObject.Find("Citizens").GetComponentsInChildren<MoveCitizens>();
+
+        foreach (MoveCitizens citizenGroup in citizensGroups)
+            citizenGroup.OnAllRescued.AddListener(WinLevel);
+
+        totalOfCitizenGroups = citizensGroups.Length;
+
         playerLife.OnDeath.AddListener(FailLevel);
     }
 
@@ -29,6 +39,19 @@ public class LevelManager : MonoBehaviour
         {
             gameOver = true;
             failLevelUI.SetActive(true);
+            hudUI.SetActive(false);
+        }
+    }
+
+    void WinLevel()
+    {
+        totalOfCitizenGroups--;
+        Debug.Log(totalOfCitizenGroups);
+
+        if (totalOfCitizenGroups <= 0 && !gameOver)
+        {
+            gameOver = true;
+            winLevelUI.SetActive(true);
             hudUI.SetActive(false);
         }
     }

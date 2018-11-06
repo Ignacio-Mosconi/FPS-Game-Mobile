@@ -8,13 +8,12 @@ interface IInput
 	float GetVerticalAxis();
 	float GetHorizontalViewAxis();
 	float GetVerticalViewAxis();
-	float GetWeaponSwapAxis();
+	float GetSwapWeaponAxis();
 	bool GetFireButton();
 	bool GetReloadButton();
 	bool GetJumpButton();
 	bool GetSprintButton();
 	bool GetSprintButtonModifier();
-	bool GetSwapWeaponButton();
 	bool GetInteractButton();
 	bool GetInteractHoldButton();
 	bool GetPauseButton();

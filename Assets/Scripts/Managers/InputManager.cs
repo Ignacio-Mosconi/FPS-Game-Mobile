@@ -96,7 +96,7 @@ public class InputManager : MonoBehaviour
 
 	public float GetWeaponSwapAxis()
 	{
-		return input.GetWeaponSwapAxis();
+		return input.GetSwapWeaponAxis();
 	}
 
 	public bool GetFireButton()
@@ -122,11 +122,6 @@ public class InputManager : MonoBehaviour
 	public bool GetSprintButtonModifier()
 	{
 		return input.GetSprintButtonModifier();
-	}
-
-	public bool GetSwapWeaponButton()
-	{
-		return input.GetSwapWeaponButton();
 	}
 
 	public bool GetInteractButton()

@@ -3201,6 +3201,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
+  weaponType: 0
   range: 100
   fireRate: 2
   impactForce: 350
@@ -3214,6 +3215,10 @@ MonoBehaviour:
   - Zombies Attack Boxes
   shootAnimation: {fileID: 7400000, guid: f5bdebd7b6c1ace478419a8044d916e0, type: 2}
   reloadAnimation: {fileID: 7400000, guid: cfd34b1f10136434780ab531747f1d7f, type: 2}
+  swapWeaponInAnimation: {fileID: 7400000, guid: 68fe70079aa6362419fad1cbaf91470c,
+    type: 2}
+  swapWeaponOutAnimation: {fileID: 7400000, guid: d5a887997a30eca478e085f8068bac12,
+    type: 2}
   shootSound: {fileID: 82931816935659628}
   reloadSound: {fileID: 82198567399042090}
   emptyMagSound: {fileID: 82423361211648654}
@@ -3268,6 +3273,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 25
+  weaponType: 0
   range: 200
   fireRate: 10
   impactForce: 700
@@ -3281,6 +3287,10 @@ MonoBehaviour:
   - Zombies Attack Boxes
   shootAnimation: {fileID: 7400000, guid: 1238c5a207f263e4e8805a51101822a9, type: 2}
   reloadAnimation: {fileID: 7400000, guid: 50fe7a78ad2a941498058e10f96f6da8, type: 2}
+  swapWeaponInAnimation: {fileID: 7400000, guid: 05656160a9aa82546a23da2bd57e94d8,
+    type: 2}
+  swapWeaponOutAnimation: {fileID: 7400000, guid: 8c7f70605643eaa4798828fb54068771,
+    type: 2}
   shootSound: {fileID: 82501798396606486}
   reloadSound: {fileID: 82269420301096620}
   emptyMagSound: {fileID: 82634988410498372}
@@ -3323,11 +3333,15 @@ MonoBehaviour:
   - {fileID: 7400000, guid: fca5438caf57d704993ec8e8958c8be1, type: 2}
   - {fileID: 7400000, guid: a4e962695484ec145b4998682b615d25, type: 2}
   - {fileID: 7400000, guid: 488e6128dab78ee4b83f5b3aeda8a819, type: 2}
+  - {fileID: 7400000, guid: 05656160a9aa82546a23da2bd57e94d8, type: 2}
+  - {fileID: 7400000, guid: 8c7f70605643eaa4798828fb54068771, type: 2}
   handGunAnimations:
   - {fileID: 7400000, guid: 757e016115fc839459485be03d5b4fd4, type: 2}
   - {fileID: 7400000, guid: c98c77818d54d544b8f7ffa7ff444ec8, type: 2}
   - {fileID: 7400000, guid: 9afeffc2ca534b84bbd64b8a9799e74e, type: 2}
   - {fileID: 7400000, guid: 35346add94256a24d8d74e0d8591f7b0, type: 2}
+  - {fileID: 7400000, guid: 68fe70079aa6362419fad1cbaf91470c, type: 2}
+  - {fileID: 7400000, guid: d5a887997a30eca478e085f8068bac12, type: 2}
   onShootingEnabledToggle:
     m_PersistentCalls:
       m_Calls: []
@@ -3402,6 +3416,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c50a58e6990c7fc4889263227d50202e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onWeaponSwapStart:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   onWeaponSwap:
     m_PersistentCalls:
       m_Calls: []

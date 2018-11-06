@@ -8,17 +8,15 @@ enum ScrollWheelDir
     Up, Down 
 }
 
-enum WeaponType
-{
-    LongGun, HandGun
-}
-
 public class WeaponManager : MonoBehaviour
 {
     [Header("Events")]
+    [SerializeField] UnityEvent onWeaponSwapStart;
     [SerializeField] UnityEvent onWeaponSwap;
+    
     Weapon currentWeapon;
-    WeaponType currentWeaponType = WeaponType.LongGun;
+    Weapon.WeaponType currentWeaponType = Weapon.WeaponType.LongGun;  
+    bool isSwapingWeapon = false;
 
 	void Awake ()
     {
@@ -27,12 +25,19 @@ public class WeaponManager : MonoBehaviour
 	
 	void Update ()
     {
-        if (InputManager.Instance.GetWeaponSwapAxis() > 0 && CanSwapWeapon())
-            SwapWeapon(ScrollWheelDir.Up);
-        if (InputManager.Instance.GetWeaponSwapAxis() < 0 && CanSwapWeapon())
-            SwapWeapon(ScrollWheelDir.Down);
-        if (InputManager.Instance.GetSwapWeaponButton() && CanSwapWeapon())
-            SwapWeapon();
+        if (CanSwapWeapon())
+        {
+            if (InputManager.Instance.GetWeaponSwapAxis() > 0)
+            {
+                StartCoroutine(SwapWeapon(ScrollWheelDir.Up));
+                return;
+            }
+            if (InputManager.Instance.GetWeaponSwapAxis() < 0)
+            {
+                StartCoroutine(SwapWeapon(ScrollWheelDir.Down));
+                return;
+            }
+        }
 	}
 
     void SetEquippedWeapon()
@@ -50,55 +55,54 @@ public class WeaponManager : MonoBehaviour
         }
     }
 
-    void SwapWeapon(ScrollWheelDir dir)
+    IEnumerator SwapWeapon(ScrollWheelDir dir)
     {
-        WeaponType previousWeaponType = currentWeaponType;
+        Weapon.WeaponType previousWeaponType = currentWeaponType;
 
         if (dir == ScrollWheelDir.Up)
         {
             if ((int)currentWeaponType < transform.childCount - 1)
                 currentWeaponType++;
             else
-                currentWeaponType = WeaponType.LongGun;
+                currentWeaponType = 0;
         }
         else
         {
             if ((int)currentWeaponType > 0)
                 currentWeaponType--;
             else
-                currentWeaponType = WeaponType.HandGun;
+                currentWeaponType = Weapon.WeaponType.Count - 1;
         }
 
         if (currentWeaponType != previousWeaponType)
+        {
+            isSwapingWeapon = true;
+            onWeaponSwapStart.Invoke();
+            yield return new WaitForSeconds(currentWeapon.SwapWeaponOutAnimation.length);
             SetEquippedWeapon();
-    }
-
-    void SwapWeapon()
-    {
-        WeaponType previousWeaponType = currentWeaponType;
-
-        if ((int)currentWeaponType < transform.childCount - 1)
-            currentWeaponType++;
-        else
-            currentWeaponType = WeaponType.LongGun;
-
-        if (previousWeaponType != currentWeaponType)
-            SetEquippedWeapon();
+            yield return new WaitForSeconds(currentWeapon.SwapWeaponInAnimation.length);
+            isSwapingWeapon = false;
+        }
     }
 
     bool CanSwapWeapon()
     {
-        return currentWeapon.enabled;
-    }
-
-    public int GetCurrentWeaponIndex()
-    {
-        return (int)currentWeaponType;
+        return (currentWeapon.enabled && !isSwapingWeapon);
     }
 
     public Weapon CurrentWeapon
     {
         get { return currentWeapon; }
+    }
+
+    public Weapon.WeaponType CurrentWeaponType
+    {
+        get { return currentWeaponType; }
+    }
+
+    public UnityEvent OnWeaponSwapStart
+    {
+        get { return onWeaponSwapStart; }
     }
 
     public UnityEvent OnWeaponSwap

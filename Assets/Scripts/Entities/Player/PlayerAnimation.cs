@@ -10,13 +10,17 @@ public class PlayerAnimation : MonoBehaviour
     [Header("References")]
     [SerializeField] WeaponManager weaponManager;
     [SerializeField] AnimatorOverrideController animatorOverrideController;
+    
     [Header("Animations")]
     [SerializeField] AnimationClip[] longGunAnimations;
     [SerializeField] AnimationClip[] handGunAnimations;
+    
     [Header("Events")]
     [SerializeField] UnityEvent onShootingEnabledToggle;
+    
     const float ANIMATION_DAMP_TIME = 0.2f;
     const float SPRINTING_VELOCITY = 0.6f;
+    
     Animator animator;
     CharacterController charController;
     PlayerMovement playerMovement;
@@ -27,12 +31,15 @@ public class PlayerAnimation : MonoBehaviour
         charController = GetComponentInParent<CharacterController>();
         playerMovement = GetComponentInParent<PlayerMovement>();
 
+        weaponManager.OnWeaponSwapStart.AddListener(HasStartedToSwapWeapn);
         weaponManager.OnWeaponSwap.AddListener(ChangeWeaponAnimations);
         foreach (Transform weapon in weaponManager.transform)
         {
             weapon.gameObject.GetComponent<Weapon>().OnShot.AddListener(HasShot);
             weapon.gameObject.GetComponent<Weapon>().OnReload.AddListener(HasReloaded);
         }
+
+        animator.runtimeAnimatorController = animatorOverrideController;
 
         ChangeWeaponAnimations();
     }
@@ -70,11 +77,17 @@ public class PlayerAnimation : MonoBehaviour
         animator.SetTrigger("Has Reloaded");
     }
 
+    void HasStartedToSwapWeapn()
+    {
+        animator.SetTrigger("Has Swapped Weapon");
+    }
+
     void EnableShooting()
     {
         weaponManager.CurrentWeapon.enabled = true;
         onShootingEnabledToggle.Invoke();
     }
+
     void DisableShooting()
     {
         weaponManager.CurrentWeapon.enabled = false;
@@ -83,23 +96,26 @@ public class PlayerAnimation : MonoBehaviour
 
     void ChangeWeaponAnimations()
     {
-        animator.runtimeAnimatorController = animatorOverrideController;
         animatorOverrideController["DEFAULT SHOOTING"] = weaponManager.CurrentWeapon.ShootAnimation;
         animatorOverrideController["DEFAULT RELOADING"] = weaponManager.CurrentWeapon.ReloadAnimation;
 
-        switch (weaponManager.GetCurrentWeaponIndex())
+        switch (weaponManager.CurrentWeaponType)
         {
-            case 0:
+            case Weapon.WeaponType.LongGun:
                 animatorOverrideController["DEFAULT IDLE"] = longGunAnimations[0];
                 animatorOverrideController["DEFAULT JUMPING"] = longGunAnimations[1];
                 animatorOverrideController["DEFAULT SPRINTING"] = longGunAnimations[2];
                 animatorOverrideController["DEFAULT WALKING"] = longGunAnimations[3];
+                animatorOverrideController["DEFAULT SWAPPING WEAPON IN"] = longGunAnimations[4];
+                animatorOverrideController["DEFAULT SWAPPING WEAPON OUT"] = longGunAnimations[5];
                 break;
-            case 1:
+            case Weapon.WeaponType.HandGun:
                 animatorOverrideController["DEFAULT IDLE"] = handGunAnimations[0];
                 animatorOverrideController["DEFAULT JUMPING"] = handGunAnimations[1];
                 animatorOverrideController["DEFAULT SPRINTING"] = handGunAnimations[2];
                 animatorOverrideController["DEFAULT WALKING"] = handGunAnimations[3];
+                animatorOverrideController["DEFAULT SWAPPING WEAPON IN"] = handGunAnimations[4];
+                animatorOverrideController["DEFAULT SWAPPING WEAPON OUT"] = handGunAnimations[5];
                 break;
         }
     }

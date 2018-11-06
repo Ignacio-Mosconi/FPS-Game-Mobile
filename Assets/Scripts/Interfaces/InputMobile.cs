@@ -25,9 +25,9 @@ public class InputMobile : IInput
 		return CrossPlatformInputManager.GetAxis("Mouse Y");
 	}
 
-	public float GetWeaponSwapAxis()
+	public float GetSwapWeaponAxis()
 	{
-		return 0f;
+		return (CrossPlatformInputManager.GetButtonDown("SwapWeapon")) ? 1.0f : 0f;
 	}
 
 	public bool GetFireButton()
@@ -53,11 +53,6 @@ public class InputMobile : IInput
 	public bool GetSprintButtonModifier()
 	{
 		return (CrossPlatformInputManager.GetAxis("Vertical") > 0.7f);
-	}
-
-	public bool GetSwapWeaponButton()
-	{
-		return CrossPlatformInputManager.GetButtonDown("Swap Weapon");
 	}
 
 	public bool GetInteractButton()

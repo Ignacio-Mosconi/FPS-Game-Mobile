@@ -24,7 +24,7 @@ public class InputPC : IInput
 		return Input.GetAxis("Mouse Y");
 	}
 
-	public float GetWeaponSwapAxis()
+	public float GetSwapWeaponAxis()
 	{
 		return Input.GetAxis("Mouse ScrollWheel");
 	}
@@ -52,11 +52,6 @@ public class InputPC : IInput
 	public bool GetSprintButtonModifier()
 	{
 		return Input.GetButton("Sprint Controller");
-	}
-
-	public bool GetSwapWeaponButton()
-	{
-		return Input.GetButtonDown("Swap Weapon");
 	}
 
 	public bool GetInteractButton()

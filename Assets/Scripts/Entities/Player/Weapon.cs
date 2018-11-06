@@ -4,10 +4,17 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(AudioSource))]
+
 public class Weapon : MonoBehaviour 
 {
+    public enum WeaponType
+    {
+        LongGun, HandGun, Count
+    }
+
     [Header("Weapon Stats")]
     [SerializeField] [Range(1, 100)] float damage;
+    [SerializeField] WeaponType weaponType;
     [SerializeField] [Range(1, 1000)] float range;
     [SerializeField] [Range(1, 12)] float fireRate;
     [SerializeField] [Range(1, 1000)] float impactForce;
@@ -23,6 +30,8 @@ public class Weapon : MonoBehaviour
     [Header("Weapon Animations")]
     [SerializeField] AnimationClip shootAnimation;
     [SerializeField] AnimationClip reloadAnimation;
+    [SerializeField] AnimationClip swapWeaponInAnimation;
+    [SerializeField] AnimationClip swapWeaponOutAnimation;
     
     [Header("Weapon Audio Sources")]
     [SerializeField] AudioSource shootSound;
@@ -233,6 +242,16 @@ public class Weapon : MonoBehaviour
     public AnimationClip ReloadAnimation
     {
         get { return reloadAnimation; }
+    }
+    
+    public AnimationClip SwapWeaponInAnimation
+    {
+        get { return swapWeaponInAnimation; }
+    }
+
+    public AnimationClip SwapWeaponOutAnimation
+    {
+        get { return swapWeaponOutAnimation; }
     }
 
     public AudioSource ShootSound

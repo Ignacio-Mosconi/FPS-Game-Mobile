@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: HUD & Minimap
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 8
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 0
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: bec3a334fd36fda4187a71289f85850d, type: 3}
+    - {fileID: 102900000, guid: 1672db435b3026c45b3861b18f91d39a, type: 3}
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 4a9d48f1074d8044ba0873b680d9dfb0, type: 3}
+  - {fileID: 21300000, guid: 451731d22b7cd3448881bea53651932f, type: 3}
+  - {fileID: 21300000, guid: 284def06031e81b4491ac31a9ab6f919, type: 3}
+  - {fileID: 21300000, guid: 9c5c42d6a6b167d4ba9d0e3b05d00589, type: 3}
+  - {fileID: 21300000, guid: dd5e452f0b799f1449a218407a6cb6f0, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Assault Rifle Crosshair
+  - Player Minimap Icon
+  - Health HUD
+  - Enemy Minimap Icon
+  - Pick Up Minimap Icon
+  m_Tag: HUD & Minimap
+  m_IsVariant: 0

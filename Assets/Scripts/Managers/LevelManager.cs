@@ -58,7 +58,9 @@ public class LevelManager : MonoBehaviour
 
     public void RestartLevel()
     {
-        GameManager.Instance.HideCursor();
+        #if UNITY_STANDALONE
+            GameManager.Instance.HideCursor();
+        #endif
         GameManager.Instance.FadeToScene(SceneManager.GetActiveScene().buildIndex);
     }
 

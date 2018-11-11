@@ -42,6 +42,7 @@ namespace UnityStandardAssets.CrossPlatformInput
 		bool m_Dragging;
 		int m_Id = -1;
 		Vector2 m_PreviousTouchPos; // swipe style control touch
+		Vector2 m_pointerDelta; // Added by me!
 
 
 #if !UNITY_EDITOR
@@ -123,16 +124,15 @@ namespace UnityStandardAssets.CrossPlatformInput
                 m_Center = m_PreviousTouchPos;
                 m_PreviousTouchPos = Input.touches[m_Id].position;
             }
-            Vector2 pointerDelta = new Vector2(Input.touches[m_Id].position.x - m_Center.x , Input.touches[m_Id].position.y - m_Center.y).normalized;
-            pointerDelta.x *= Xsensitivity;
-            pointerDelta.y *= Ysensitivity;
+            m_pointerDelta = new Vector2(Input.touches[m_Id].position.x - m_Center.x , Input.touches[m_Id].position.y - m_Center.y).normalized;
+            m_pointerDelta.x *= Xsensitivity;
+            m_pointerDelta.y *= Ysensitivity;
 #else
-				Vector2 pointerDelta;
-				pointerDelta.x = Input.mousePosition.x - m_PreviousMouse.x;
-				pointerDelta.y = Input.mousePosition.y - m_PreviousMouse.y;
+				m_pointerDelta.x = Input.mousePosition.x - m_PreviousMouse.x;
+				m_pointerDelta.y = Input.mousePosition.y - m_PreviousMouse.y;
 				m_PreviousMouse = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0f);
 #endif
-				UpdateVirtualAxes(new Vector3(pointerDelta.x, pointerDelta.y, 0));
+				UpdateVirtualAxes(new Vector3(m_pointerDelta.x, m_pointerDelta.y, 0));
 			}
 		}
 
@@ -157,16 +157,11 @@ namespace UnityStandardAssets.CrossPlatformInput
 		{
 			get { return m_Id; }
 		}
-#if !UNITY_EDITOR
-		public Vector2 Center
+
+		// Added by me!
+		public Vector2 PointerDelta
 		{
-			get { return m_Center; }
-		}
-#else
-		public Vector3 PreviousMouse
-		{
-			get { return m_PreviousMouse; }
+			get { return m_pointerDelta; }
 		}
 	}
-#endif
 }

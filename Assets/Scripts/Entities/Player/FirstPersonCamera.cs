@@ -6,12 +6,12 @@ using UnityStandardAssets.CrossPlatformInput;
 public class FirstPersonCamera : MonoBehaviour
 {
     [Header("Viewing Attributes")]
-    [SerializeField] [Range(45, 360)] float maxRotationSpeed = 180f;
-    [SerializeField] [Range(45, 90)] float verticalViewRange = 90f;
-    [SerializeField] [Range(5, 20)] float touchSensitivity = 15f;
-    [SerializeField] TouchPad aimTouchPad;
+    [SerializeField] [Range(45f, 360f)] float maxRotationSpeed = 180f;
+    [SerializeField] [Range(45f, 90f)] float verticalViewRange = 90f;
+    [SerializeField] [Range(5f, 50f)] float touchSensitivity = 30f;
     
     Transform fpsCamera;
+    TouchPad aimTouchPad;
     float rotationSpeed;
     float verAngle = 0;
     float horAngle = 0;
@@ -25,17 +25,16 @@ public class FirstPersonCamera : MonoBehaviour
 
     void Start()
     {
+        #if UNITY_ANDROID
+            aimTouchPad = FindObjectOfType<TouchPad>();
+        #endif
         fpsCamera = GetComponentInChildren<Camera>().transform;
     }
 
     void Update()
     {
-        #if UNITY_ANDROID
-            Vector2 pointerDelta;
-            pointerDelta.x = Input.mousePosition.x - aimTouchPad.PreviousMouse.x;
-            pointerDelta.y = Input.mousePosition.y - aimTouchPad.PreviousMouse.y;
-            
-            rotationSpeed = pointerDelta.magnitude * touchSensitivity;
+        #if UNITY_ANDROID            
+            rotationSpeed = aimTouchPad.PointerDelta.magnitude * touchSensitivity;
             rotationSpeed = rotationSpeed > maxRotationSpeed ? maxRotationSpeed : rotationSpeed;
         #else
             rotationSpeed = maxRotationSpeed;

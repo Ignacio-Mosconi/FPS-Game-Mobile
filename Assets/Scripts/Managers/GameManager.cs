@@ -43,7 +43,9 @@ public class GameManager : MonoBehaviour
     {
         if (nextSceneToLoad >= 0)
         {
-            HideCursor();
+            #if UNITY_STANDALONE
+                HideCursor();
+            #endif
 
             loadingScreen.SetActive(true);
 

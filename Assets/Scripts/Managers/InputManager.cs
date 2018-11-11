@@ -29,17 +29,10 @@ public class InputManager : MonoBehaviour
 				eventSystem = gameObj.AddComponent<EventSystem>();
 				StandaloneInputModule inputModule = gameObj.AddComponent<StandaloneInputModule>();
 				
-				#if UNITY_STANDALONE
-					inputModule.verticalAxis = "Vertical UI";
-					inputModule.horizontalAxis = "Horizontal UI";
-					inputModule.submitButton = "Select";
-					inputModule.cancelButton = "Return";
-				#else
-					inputModule.verticalAxis = "Vertical UI Controller Mobile";
-					inputModule.horizontalAxis = "Horizontal UI Controller Mobile";
-					inputModule.submitButton = "Select Controller Mobile";
-					inputModule.cancelButton = "Return Controller Mobile";
-				#endif
+				inputModule.verticalAxis = "Vertical UI";
+				inputModule.horizontalAxis = "Horizontal UI";
+				inputModule.submitButton = "Select";
+				inputModule.cancelButton = "Return";
         	}
         	
 			DontDestroyOnLoad(eventSystem.gameObject);

@@ -12,15 +12,18 @@ public class HUD : MonoBehaviour
     [SerializeField] TextMeshProUGUI healthText;
     [SerializeField] TextMeshProUGUI crateText;
     [SerializeField] GameObject mobileControls;
+    
     [Header("References")]
     [SerializeField] PlayerAnimation playerAnimation;
     [SerializeField] Life playerLife;
     [SerializeField] WeaponManager weaponManager;
     [SerializeField] Transform cratesHolder;
     PickUpTheObject[] crates;
-    const float criticalLifePercentage = 0.25f;
-    const float criticalMagAmmoPercentage = 0.25f;
-    float criticalLife = 0;
+    
+    const float CRITICAL_LIFE_PERC = 0.25f;
+    const float CRITICAL_AMMO_PERC = 0.25f;
+    
+    float criticalLife = 0f;
     int criticalMagAmmo = 0;
     int criticalAmmoLeft = 0;
 
@@ -55,7 +58,7 @@ public class HUD : MonoBehaviour
            weapon.gameObject.GetComponent<Weapon>().OnCrossHairScale.AddListener(ScaleCrosshair);
         }
         
-        criticalLife = playerLife.MaxHealth * criticalLifePercentage;
+        criticalLife = playerLife.MaxHealth * CRITICAL_LIFE_PERC;
 
         crateText.enabled = false;
 
@@ -103,7 +106,7 @@ public class HUD : MonoBehaviour
 
     void ChangeWeaponWeaponInfo()
     {
-        criticalMagAmmo = (int)(weaponManager.CurrentWeapon.MagSize * criticalMagAmmoPercentage);
+        criticalMagAmmo = (int)(weaponManager.CurrentWeapon.MagSize * CRITICAL_AMMO_PERC);
         criticalAmmoLeft = weaponManager.CurrentWeapon.MagSize;
     }
 

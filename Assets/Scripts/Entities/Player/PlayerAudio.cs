@@ -12,8 +12,10 @@ public class PlayerAudio : MonoBehaviour
 	[SerializeField] AudioSource deathSound;
 	[SerializeField] AudioSource[] outdoorFootsteps;
 	AudioSource[] currentFootsteps;
+	
 	const float WALKING_VELOCITY = 0.25f;
 	const float SPRINTING_VELOCITY = 0.6f;
+	
 	Animator animator;
 	PlayerMovement playerMovement;
 	WeaponManager weaponManager;

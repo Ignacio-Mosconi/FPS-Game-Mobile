@@ -20,18 +20,21 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float gravity;
     [SerializeField] float pushingForce;
     [SerializeField] float maxFallingDistance;
+   
     [Header("Events")]
     [SerializeField] UnityEvent onSurfaceChange;
+    
+    const float FALLING_DAMAGE_MULTIPLIER = 10;
+    
     Life playerLife;
     CharacterController charController;
-    const float FALLING_DAMAGE_MULTIPLIER = 10;
+    WalkingSurface currentSurface;
     float verticalSpeed;
     float distanceToGround;
     bool jumpedWhileSprinting;
     bool pressedSprintModifier;
     float fallingDistance;
     float lastPositionY;
-    WalkingSurface currentSurface;
 
     void Awake()
     {

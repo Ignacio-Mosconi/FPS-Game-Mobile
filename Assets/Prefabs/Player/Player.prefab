@@ -3189,8 +3189,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxRotationSpeed: 180
   verticalViewRange: 80
-  touchSensitivity: 10
-  aimTouchPad: {fileID: 0}
+  touchSensitivity: 30
 --- !u!114 &114720990784513648
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -16,13 +16,16 @@ public class FirstPersonCamera : MonoBehaviour
 
     void Awake()
     {
-        #if UNITY_STANDALONE
+#if UNITY_STANDALONE
             GameManager.Instance.HideCursor();
-        #endif
+#endif
     }
 
     void Start()
     {
+#if UNITY_ANDROID
+        maxRotationSpeed *= 0.75f;
+#endif
         fpsCamera = GetComponentInChildren<Camera>().transform;
     }
 

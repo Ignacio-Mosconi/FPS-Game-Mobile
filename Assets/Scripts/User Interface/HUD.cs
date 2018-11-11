@@ -10,7 +10,10 @@ public class HUD : MonoBehaviour
     [SerializeField] Image crosshair;
     [SerializeField] TextMeshProUGUI ammoText;
     [SerializeField] TextMeshProUGUI healthText;
-    [SerializeField] TextMeshProUGUI crateText;
+    [SerializeField] TextMeshProUGUI[] crateText;
+    [SerializeField] GameObject crateButtonIconKeyboard;
+    [SerializeField] GameObject crateButtonIconController;
+    [SerializeField] Image crateButtonMobile;
     [SerializeField] GameObject mobileControls;
     
     [Header("References")]
@@ -29,9 +32,9 @@ public class HUD : MonoBehaviour
 
     void Awake()
     {
-        #if UNITY_STANDALONE        
+#if UNITY_STANDALONE        
             mobileControls.SetActive(false);
-        #endif
+#endif
     }
     
     void Start() 
@@ -60,11 +63,16 @@ public class HUD : MonoBehaviour
         
         criticalLife = playerLife.MaxHealth * CRITICAL_LIFE_PERC;
 
-        crateText.enabled = false;
+        crateText[0].text = (InputManager.Instance.CheckControllerConnection() ? "Hold" : "Press");
 
-        crateText.text = InputManager.Instance.CheckControllerConnection() ?
-                        "Hold 'Square' to pick up ammo" : "Press 'E' to pick up ammo";
+        foreach (TextMeshProUGUI text in crateText)
+            text.enabled = false;
 
+        crateButtonIconKeyboard.SetActive(false);
+        crateButtonIconController.SetActive(false);
+#if UNITY_ANDROID
+        crateButtonMobile.color = new Color(crateButtonMobile.color.r, crateButtonMobile.color.g, crateButtonMobile.color.b, 0f);
+#endif
 	}
 
     void CrosshairEnabledToggle()
@@ -101,7 +109,19 @@ public class HUD : MonoBehaviour
 
     void ChangeTextSituation()
     {
-        crateText.enabled = !crateText.enabled;
+        foreach (TextMeshProUGUI text in crateText)
+            text.enabled = !text.enabled;
+        
+#if UNITY_STANDALONE
+        if (InputManager.Instance.CheckControllerConnection())
+            crateButtonIconController.SetActive(crateButtonIconController.activeInHierarchy);
+        else
+            crateButtonIconKeyboard.SetActive(crateButtonIconKeyboard.activeInHierarchy);
+#else
+        crateButtonMobile.color = crateText[0].enabled ? 
+                                    new Color(crateButtonMobile.color.r, crateButtonMobile.color.g, crateButtonMobile.color.g, 200f) :
+                                    new Color(crateButtonMobile.color.r, crateButtonMobile.color.g, crateButtonMobile.color.g, 0f);
+#endif
     }
 
     void ChangeWeaponWeaponInfo()

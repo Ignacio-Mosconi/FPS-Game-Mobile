@@ -42,7 +42,7 @@ public class InputAndroid : IInput
 
 	public bool GetJumpButton()
 	{
-		return CrossPlatformInputManager.GetButton("Jump");
+		return CrossPlatformInputManager.GetButtonDown("Jump");
 	}
 
 	public bool GetSprintButton()
@@ -57,7 +57,7 @@ public class InputAndroid : IInput
 
 	public bool GetInteractButton()
 	{
-		return false;
+		return CrossPlatformInputManager.GetButtonDown("Interact");
 	}
 
 	public bool GetInteractHoldButton()

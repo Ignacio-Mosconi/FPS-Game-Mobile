@@ -8,10 +8,8 @@ public class FirstPersonCamera : MonoBehaviour
     [Header("Viewing Attributes")]
     [SerializeField] [Range(45f, 360f)] float maxRotationSpeed = 180f;
     [SerializeField] [Range(45f, 90f)] float verticalViewRange = 90f;
-    [SerializeField] [Range(5f, 50f)] float touchSensitivity = 45f;
     
     Transform fpsCamera;
-    TouchPad aimTouchPad;
     float rotationSpeed;
     float verAngle = 0;
     float horAngle = 0;
@@ -25,26 +23,18 @@ public class FirstPersonCamera : MonoBehaviour
 
     void Start()
     {
-        #if UNITY_ANDROID
-            aimTouchPad = FindObjectOfType<TouchPad>();
-        #endif
         fpsCamera = GetComponentInChildren<Camera>().transform;
     }
 
     void Update()
     {
-        #if UNITY_ANDROID         
-            rotationSpeed = aimTouchPad.PointerDelta.magnitude * touchSensitivity;
-            rotationSpeed = rotationSpeed > maxRotationSpeed ? maxRotationSpeed : rotationSpeed;
-        #else
-            rotationSpeed = maxRotationSpeed;
-        #endif
+        float horRotation = InputManager.Instance.GetHorizontalViewAxis();
+        float verRotation = InputManager.Instance.GetVerticalViewAxis();
+        
+        rotationSpeed = maxRotationSpeed * Mathf.Max(Mathf.Abs(horRotation), Mathf.Abs(verRotation));
 
-        float horRotation = InputManager.Instance.GetHorizontalViewAxis() * rotationSpeed;
-        float verRotation = InputManager.Instance.GetVerticalViewAxis() * rotationSpeed;
-
-        horAngle += horRotation * Time.deltaTime;
-        verAngle -= verRotation * Time.deltaTime;
+        horAngle += horRotation * rotationSpeed * Time.deltaTime;
+        verAngle -= verRotation * rotationSpeed * Time.deltaTime;
 
         verAngle = Mathf.Clamp(verAngle, -verticalViewRange, verticalViewRange);
 

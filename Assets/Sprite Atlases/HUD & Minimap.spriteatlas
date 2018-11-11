@@ -34,16 +34,26 @@ SpriteAtlas:
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: 21300000, guid: ed160e00e439c384db7b49c7fc07197d, type: 3}
+  - {fileID: 21300000, guid: b26df640b1d1b52498f2b51f5798661e, type: 3}
   - {fileID: 21300000, guid: 4a9d48f1074d8044ba0873b680d9dfb0, type: 3}
+  - {fileID: 21300000, guid: 09c12a4281967824d862c71b8c249d73, type: 3}
   - {fileID: 21300000, guid: 451731d22b7cd3448881bea53651932f, type: 3}
+  - {fileID: 21300000, guid: 533d7275845b9634ab021b52d5749285, type: 3}
   - {fileID: 21300000, guid: 284def06031e81b4491ac31a9ab6f919, type: 3}
   - {fileID: 21300000, guid: 9c5c42d6a6b167d4ba9d0e3b05d00589, type: 3}
+  - {fileID: 21300000, guid: 773ca93b129ab604ab4c016fc8a8dbd3, type: 3}
   - {fileID: 21300000, guid: dd5e452f0b799f1449a218407a6cb6f0, type: 3}
   m_PackedSpriteNamesToIndex:
+  - Reload Button
+  - Jump Button
   - Assault Rifle Crosshair
+  - Fire Button
   - Player Minimap Icon
+  - Pause Button
   - Health HUD
   - Enemy Minimap Icon
+  - Swap Weapon Button
   - Pick Up Minimap Icon
   m_Tag: HUD & Minimap
   m_IsVariant: 0

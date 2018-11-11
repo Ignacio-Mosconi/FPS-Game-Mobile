@@ -8,7 +8,7 @@ public class FirstPersonCamera : MonoBehaviour
     [Header("Viewing Attributes")]
     [SerializeField] [Range(45f, 360f)] float maxRotationSpeed = 180f;
     [SerializeField] [Range(45f, 90f)] float verticalViewRange = 90f;
-    [SerializeField] [Range(5f, 50f)] float touchSensitivity = 30f;
+    [SerializeField] [Range(5f, 50f)] float touchSensitivity = 45f;
     
     Transform fpsCamera;
     TouchPad aimTouchPad;
@@ -33,7 +33,7 @@ public class FirstPersonCamera : MonoBehaviour
 
     void Update()
     {
-        #if UNITY_ANDROID            
+        #if UNITY_ANDROID         
             rotationSpeed = aimTouchPad.PointerDelta.magnitude * touchSensitivity;
             rotationSpeed = rotationSpeed > maxRotationSpeed ? maxRotationSpeed : rotationSpeed;
         #else

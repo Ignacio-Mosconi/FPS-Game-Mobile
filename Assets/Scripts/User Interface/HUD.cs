@@ -29,6 +29,7 @@ public class HUD : MonoBehaviour
     float criticalLife = 0f;
     int criticalMagAmmo = 0;
     int criticalAmmoLeft = 0;
+    bool inInteractionRange = false;
 
     void Awake()
     {
@@ -109,25 +110,24 @@ public class HUD : MonoBehaviour
 
     void ChangeTextSituation()
     {
+        inInteractionRange = !inInteractionRange;
+
         foreach (TextMeshProUGUI text in crateText)
             text.enabled = !text.enabled;
         
 #if UNITY_STANDALONE
-        if (InputManager.Instance.CheckControllerConnection())
-        {
-            crateButtonIconController.SetActive(!crateButtonIconController.activeInHierarchy);
+        bool controllerConnected = InputManager.Instance.CheckControllerConnection();
+        
+        if (controllerConnected)
             crateText[0].text = "Hold";
-        }
         else
-        {
-            crateButtonIconKeyboard.SetActive(!crateButtonIconKeyboard.activeInHierarchy);
             crateText[0].text = "Press";
-        }
+        crateButtonIconController.SetActive(controllerConnected && inInteractionRange);
+        crateButtonIconKeyboard.SetActive(!controllerConnected && inInteractionRange);
 #else
         crateButtonMobile.color = crateText[0].enabled ? 
                                     new Color(crateButtonMobile.color.r, crateButtonMobile.color.g, crateButtonMobile.color.g, 200f) :
                                     new Color(crateButtonMobile.color.r, crateButtonMobile.color.g, crateButtonMobile.color.g, 0f);
-            crateText[0].text = "Press";
 #endif
     }
 

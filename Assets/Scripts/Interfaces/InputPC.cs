@@ -26,7 +26,8 @@ public class InputPC : IInput
 
 	public float GetSwapWeaponAxis()
 	{
-		return Input.GetAxis("Mouse Scroll Wheel");
+		return (InputManager.Instance.CheckControllerConnection() && Input.GetButtonDown("Swap Weapon")) ?
+				1.0f : Input.GetAxis("Mouse Scroll Wheel");
 	}
 
 	public bool GetFireButton()

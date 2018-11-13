@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(Animator))]
@@ -15,9 +13,6 @@ public class PlayerAnimation : MonoBehaviour
     [SerializeField] AnimationClip[] longGunAnimations;
     [SerializeField] AnimationClip[] handGunAnimations;
     
-    [Header("Events")]
-    [SerializeField] UnityEvent onShootingEnabledToggle;
-    
     const float ANIMATION_DAMP_TIME = 0.2f;
     const float SPRINTING_VELOCITY = 0.6f;
     
@@ -25,12 +20,17 @@ public class PlayerAnimation : MonoBehaviour
     CharacterController charController;
     PlayerMovement playerMovement;
 
-    void Start()
-    {
-        animator = GetComponent<Animator>();
+    UnityEvent onShootingEnabledToggle = new UnityEvent();
+
+    void Awake()
+    {        
         charController = GetComponentInParent<CharacterController>();
         playerMovement = GetComponentInParent<PlayerMovement>();
+        animator = GetComponent<Animator>();
+    }
 
+    void Start()
+    {
         weaponManager.OnWeaponSwapStart.AddListener(HasStartedToSwapWeapn);
         weaponManager.OnWeaponSwap.AddListener(ChangeWeaponAnimations);
         foreach (Transform weapon in weaponManager.transform)

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
@@ -10,9 +8,10 @@ public class LevelManager : MonoBehaviour
     [SerializeField] GameObject failLevelUI;
     [SerializeField] GameObject winLevelUI;
     [SerializeField] GameObject hudUI;
+    
     static LevelManager instance;
+    
     bool gameOver;
-
     int totalOfCitizenGroups;
 
     void Awake()

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class InputManager : MonoBehaviour
@@ -20,17 +18,17 @@ public class InputManager : MonoBehaviour
 		{
 			DontDestroyOnLoad(gameObject);
 			
-			#if UNITY_STANDALONE
-				input = new InputPC();
-				controllerConnected = CheckControllerConnection();
-			#else
-				input = new InputAndroid();
-			#endif
+#if UNITY_STANDALONE
+			input = new InputPC();
+			controllerConnected = CheckControllerConnection();
+#else
+			input = new InputAndroid();
+#endif
 
 			eventSystem = FindObjectOfType<EventSystem>();
 
 			if (!eventSystem)
-        	{
+			{
 				GameObject gameObj = new GameObject("EventSystem");
 				eventSystem = gameObj.AddComponent<EventSystem>();
 				StandaloneInputModule inputModule = gameObj.AddComponent<StandaloneInputModule>();
@@ -39,8 +37,8 @@ public class InputManager : MonoBehaviour
 				inputModule.horizontalAxis = "Horizontal UI";
 				inputModule.submitButton = "Select";
 				inputModule.cancelButton = "Return";
-        	}
-        	
+			}
+			
 			DontDestroyOnLoad(eventSystem.gameObject);
 		}
 		else

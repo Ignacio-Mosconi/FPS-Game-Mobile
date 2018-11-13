@@ -1,12 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 
 public class EndLevelMenu : MonoBehaviour
 {
     [SerializeField] GameObject firstMenuElement;
-    [SerializeField] UnityEvent onMenuToggle;
+    
+    UnityEvent onMenuToggle = new UnityEvent();
 
     void Start()
     {

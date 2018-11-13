@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
@@ -21,11 +19,11 @@ public class HUD : MonoBehaviour
     [SerializeField] Life playerLife;
     [SerializeField] WeaponManager weaponManager;
     [SerializeField] Transform cratesHolder;
-    PickUpTheObject[] crates;
     
     const float CRITICAL_LIFE_PERC = 0.25f;
     const float CRITICAL_AMMO_PERC = 0.25f;
     
+    PickUpTheObject[] crates;
     float criticalLife = 0f;
     int criticalMagAmmo = 0;
     int criticalAmmoLeft = 0;
@@ -34,7 +32,7 @@ public class HUD : MonoBehaviour
     void Awake()
     {
 #if UNITY_STANDALONE        
-            mobileControls.SetActive(false);
+        mobileControls.SetActive(false);
 #endif
     }
     

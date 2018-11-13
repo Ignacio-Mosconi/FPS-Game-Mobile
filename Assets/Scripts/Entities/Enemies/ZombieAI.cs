@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
 
@@ -25,10 +23,6 @@ public class ZombieAI : MonoBehaviour
     [Header("Animations")]
     [SerializeField] AnimationClip attackAnimation;
     
-    [Header("Events")]
-    [SerializeField] UnityEvent onChaseStart;
-    [SerializeField] UnityEvent onChaseFinish;
-    [SerializeField] UnityEvent onAttack;
     
     const float MAX_SPEED_DELTA = 0.5f;
     const float BEING_HIT_WAIT_TIME = 1f;
@@ -48,8 +42,12 @@ public class ZombieAI : MonoBehaviour
     float walkSpeed;
     bool isFocusedOnTarget;
 
+    UnityEvent onChaseStart = new UnityEvent();
+    UnityEvent onChaseFinish = new UnityEvent();
+    UnityEvent onAttack = new UnityEvent();
+
 	void Awake()
-    {
+    {   
         agent = GetComponent<NavMeshAgent>();
         zombieLife = GetComponent<Life>();
         attackBox = GetComponentInChildren<AttackBox>().gameObject;

@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class MinimapDontShowShadows : MonoBehaviour {
-
+public class MinimapDontShowShadows : MonoBehaviour
+{
     float storedShadowDistance;
 
     void OnPreRender()

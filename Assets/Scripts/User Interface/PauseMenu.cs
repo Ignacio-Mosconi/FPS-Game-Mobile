@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -10,8 +7,9 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] GameObject hudUI;
     [SerializeField] GameObject mobileControls;
     [SerializeField] GameObject firstMenuElement;
-    [SerializeField] UnityEvent onPauseToggle;
     static bool isPaused = false;
+
+    UnityEvent onPauseToggle = new UnityEvent();
 
     void Update()
     {
@@ -31,23 +29,23 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 0f;
         isPaused = true;
         onPauseToggle.Invoke();
-        #if UNITY_STANDALONE
-            if (InputManager.Instance.CheckControllerConnection())
-                InputManager.Instance.ChangeFirstMenuItemSelected(firstMenuElement);
-            else
-                GameManager.Instance.ShowCursor();
-        #else
-            mobileControls.SetActive(false);
-        #endif
+#if UNITY_STANDALONE
+        if (InputManager.Instance.CheckControllerConnection())
+            InputManager.Instance.ChangeFirstMenuItemSelected(firstMenuElement);
+        else
+            GameManager.Instance.ShowCursor();
+#else
+        mobileControls.SetActive(false);
+#endif
     }
 
     public void Resume()
     {
-        #if UNITY_STANDALONE
-            GameManager.Instance.HideCursor();
-        #else
-            mobileControls.SetActive(true);
-        #endif
+#if UNITY_STANDALONE
+        GameManager.Instance.HideCursor();
+#else
+        mobileControls.SetActive(true);
+#endif
         pauseMenuUI.SetActive(false);
         hudUI.SetActive(true);
         Time.timeScale = 1f;

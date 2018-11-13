@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityStandardAssets.CrossPlatformInput;
+﻿using UnityStandardAssets.CrossPlatformInput;
 
 public class InputAndroid : IInput
 {

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 
 enum WalkingSurface
@@ -20,9 +18,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float gravity;
     [SerializeField] float pushingForce;
     [SerializeField] float maxFallingDistance;
-   
-    [Header("Events")]
-    [SerializeField] UnityEvent onSurfaceChange;
     
     const float FALLING_DAMAGE_MULTIPLIER = 10;
     
@@ -35,6 +30,8 @@ public class PlayerMovement : MonoBehaviour
     bool pressedSprintModifier;
     float fallingDistance;
     float lastPositionY;
+
+    UnityEvent onSurfaceChange = new UnityEvent();
 
     void Awake()
     {

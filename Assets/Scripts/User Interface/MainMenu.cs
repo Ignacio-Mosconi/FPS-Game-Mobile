@@ -1,13 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
     [SerializeField] GameObject firstMenuElement;
     [SerializeField] string firstLevelName;
-    bool enabledInitialization = false;
 
     void OnEnable()
     {
@@ -18,7 +15,6 @@ public class MainMenu : MonoBehaviour
 
     void Init()
     {
-        enabledInitialization = true;
         if (InputManager.Instance.CheckControllerConnection())
         {
             GameManager.Instance.HideCursor();

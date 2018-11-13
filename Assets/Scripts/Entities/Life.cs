@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 
 [System.Serializable]
@@ -11,13 +9,15 @@ public class Life : MonoBehaviour
     [SerializeField] float maxHealth;
     [SerializeField] float deadBodyDuration = 60f;
     [SerializeField] AnimationClip deathAnimation;
-    [SerializeField] UnityEvent onHit;
-    [SerializeField] UnityEvent onDeath;
-    [SerializeField] HitEvent onDamagerHit;
+    
     float health = 0;
 
-    public void Start()
-    {
+    UnityEvent onHit = new UnityEvent();
+    UnityEvent onDeath = new UnityEvent();
+    HitEvent onDamagerHit = new HitEvent();
+
+    public void Awake()
+    {        
         health = maxHealth;
     }
 
@@ -73,6 +73,16 @@ public class Life : MonoBehaviour
         if (canvas)
             canvas.enabled = false;
     }
+
+    public float Health
+    {
+        get { return health; }
+    }
+
+    public float MaxHealth
+    {
+        get { return maxHealth; }
+    }
     
     public UnityEvent OnHit
     {
@@ -87,15 +97,5 @@ public class Life : MonoBehaviour
     public HitEvent OnDamagerHit
     {
         get { return onDamagerHit; }
-    }
-
-    public float Health
-    {
-        get { return health; }
-    }
-
-    public float MaxHealth
-    {
-        get { return maxHealth; }
     }
 }

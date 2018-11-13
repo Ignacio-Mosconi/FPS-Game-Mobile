@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -38,12 +37,6 @@ public class Weapon : MonoBehaviour
     [SerializeField] AudioSource reloadSound;
     [SerializeField] AudioSource emptyMagSound;
     
-    [Header("Weapon Events")]
-    [SerializeField] UnityEvent onShot;
-    [SerializeField] UnityEvent onReload;
-    [SerializeField] UnityEvent onEmptyMag;
-    [SerializeField] UnityEvent onCrosshairScale;
-    
     const float BASE_SWAY = 0.01f;
     
     Transform fpsCamera;
@@ -59,6 +52,11 @@ public class Weapon : MonoBehaviour
     float recoilTimer = 0f;
     float reloadButtonPressCounter = 0;
     int shootingLayerMask = 0;
+    
+    UnityEvent onShot = new UnityEvent();
+    UnityEvent onReload = new UnityEvent();
+    UnityEvent onEmptyMag = new UnityEvent();
+    UnityEvent onCrosshairScale = new UnityEvent();
 
     void Awake()
     {

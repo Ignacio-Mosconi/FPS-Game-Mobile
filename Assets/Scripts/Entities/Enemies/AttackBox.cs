@@ -1,10 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class AttackBox : MonoBehaviour
 {
-	[SerializeField] [Range(0, 100)] float attackDamage;
+	[SerializeField] [Range(0f, 100f)] float attackDamage;
+	
 	const float ATTACK_DAMAGE_DELTA = 2f;
 	
 	void Start()

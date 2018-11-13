@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(Animator))]
@@ -10,6 +8,7 @@ using UnityEngine.AI;
 public class ZombieAnimation : MonoBehaviour
 {
     [SerializeField] AnimatorOverrideController animatorOverrideController;
+    
     Animator animator;
     NavMeshAgent agent;
     ZombieAI zombieAI;

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(AudioSource))]
@@ -11,11 +9,11 @@ public class PlayerAudio : MonoBehaviour
 	[SerializeField] AudioSource hitSound;
 	[SerializeField] AudioSource deathSound;
 	[SerializeField] AudioSource[] outdoorFootsteps;
-	AudioSource[] currentFootsteps;
 	
 	const float WALKING_VELOCITY = 0.25f;
 	const float SPRINTING_VELOCITY = 0.6f;
 	
+	AudioSource[] currentFootsteps;
 	Animator animator;
 	PlayerMovement playerMovement;
 	WeaponManager weaponManager;
@@ -27,17 +25,17 @@ public class PlayerAudio : MonoBehaviour
 		playerMovement = GetComponentInParent<PlayerMovement>();
 		weaponManager = GetComponentInChildren<WeaponManager>();
 		playerLife = GetComponentInParent<Life>();
-		
+	}
+
+	void Start()
+	{
 		foreach (Transform weapon in weaponManager.transform)
 		{
 			weapon.gameObject.GetComponent<Weapon>().OnShot.AddListener(PlayShootSound);
 			weapon.gameObject.GetComponent<Weapon>().OnReload.AddListener(PlayReloadSound);
 			weapon.gameObject.GetComponent<Weapon>().OnEmptyMag.AddListener(PlayEmptyMagSound);
 		}
-	}
-
-	void Start()
-	{
+		
 		ChangeFootstepsSounds();
 		playerMovement.OnSurfaceChange.AddListener(ChangeFootstepsSounds);
 		playerLife.OnHit.AddListener(PlayHitSound);

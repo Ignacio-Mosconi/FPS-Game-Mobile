@@ -1,23 +1,26 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 
 public class PickUpTheObject : MonoBehaviour
 {
-    Transform player;
-    Transform firstPersonCamera;
     [SerializeField] float distanceToInteract;
     [SerializeField] LayerMask possibleTargets;
     [SerializeField] Weapon weaponTarget;
-    [SerializeField] UnityEvent onDetected;
-    [SerializeField] UnityEvent onPressed;
+    
+    Transform player;
+    Transform firstPersonCamera;
     AudioSource pickUpSound;
     Canvas iconCanvas; 
+    
     static float holdInteractTime = 0;
+    
     const float HOLD_INTERACT_TIME = 0.75f;
+    
     bool isLooking = false;
 
+    UnityEvent onDetected = new UnityEvent();
+    UnityEvent onPressed = new UnityEvent();
+    
     void Start()
     {
         pickUpSound = GetComponent<AudioSource>();

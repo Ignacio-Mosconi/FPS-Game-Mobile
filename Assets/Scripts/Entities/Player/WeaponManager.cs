@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -9,20 +8,19 @@ enum ScrollWheelDir
 }
 
 public class WeaponManager : MonoBehaviour
-{
-    [Header("Events")]
-    [SerializeField] UnityEvent onWeaponSwapStart;
-    [SerializeField] UnityEvent onWeaponSwap;
-    
+{    
     Weapon currentWeapon;
     Weapon.WeaponType currentWeaponType = Weapon.WeaponType.LongGun;  
     bool isSwapingWeapon = false;
+
+    UnityEvent onWeaponSwap = new UnityEvent();
+    UnityEvent onWeaponSwapStart = new UnityEvent();
 
 	void Awake ()
     {
         SetEquippedWeapon();
 	}
-	
+
 	void Update ()
     {
         if (CanSwapWeapon())

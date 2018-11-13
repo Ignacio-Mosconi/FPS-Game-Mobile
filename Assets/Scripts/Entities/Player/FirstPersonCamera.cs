@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityStandardAssets.CrossPlatformInput;
+﻿using UnityEngine;
 
 public class FirstPersonCamera : MonoBehaviour
 {

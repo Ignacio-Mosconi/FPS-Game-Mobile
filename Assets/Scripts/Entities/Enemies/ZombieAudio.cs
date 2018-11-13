@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
 [RequireComponent(typeof(ZombieAI))]
@@ -10,6 +8,7 @@ public class ZombieAudio : MonoBehaviour
 	[SerializeField] AudioSource chaseSound;
 	[SerializeField] AudioSource attackSound;
 	[SerializeField] AudioSource hitSound;
+	
 	ZombieAI zombieAI;
 	Life zombieLife;
 

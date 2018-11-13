@@ -1,19 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
 
 public class CitizenAI : MonoBehaviour
 {
-    /*[SerializeField]*/ public UnityEvent onRescued = new UnityEvent();
-
     Transform path;
     NavMeshAgent agent;
     GameObject currentPath;
 
     const float maxSpeedDelta = 0.5f;
     float maxSpeed;
+
+    UnityEvent onRescued = new UnityEvent();
 
     void Awake()
     {

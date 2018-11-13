@@ -43,10 +43,6 @@ public class GameManager : MonoBehaviour
     {
         if (nextSceneToLoad >= 0)
         {
-            #if UNITY_STANDALONE
-                HideCursor();
-            #endif
-
             loadingScreen.SetActive(true);
 
             float loadTimer = 0f;

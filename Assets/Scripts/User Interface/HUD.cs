@@ -63,7 +63,7 @@ public class HUD : MonoBehaviour
         
         criticalLife = playerLife.MaxHealth * CRITICAL_LIFE_PERC;
 
-        crateText[0].text = (InputManager.Instance.CheckControllerConnection() ? "Hold" : "Press");
+        crateText[0].text = InputManager.Instance.CheckControllerConnection() ? "Hold" : "Press";
 
         foreach (TextMeshProUGUI text in crateText)
             text.enabled = false;
@@ -114,13 +114,20 @@ public class HUD : MonoBehaviour
         
 #if UNITY_STANDALONE
         if (InputManager.Instance.CheckControllerConnection())
-            crateButtonIconController.SetActive(crateButtonIconController.activeInHierarchy);
+        {
+            crateButtonIconController.SetActive(!crateButtonIconController.activeInHierarchy);
+            crateText[0].text = "Hold";
+        }
         else
-            crateButtonIconKeyboard.SetActive(crateButtonIconKeyboard.activeInHierarchy);
+        {
+            crateButtonIconKeyboard.SetActive(!crateButtonIconKeyboard.activeInHierarchy);
+            crateText[0].text = "Press";
+        }
 #else
         crateButtonMobile.color = crateText[0].enabled ? 
                                     new Color(crateButtonMobile.color.r, crateButtonMobile.color.g, crateButtonMobile.color.g, 200f) :
                                     new Color(crateButtonMobile.color.r, crateButtonMobile.color.g, crateButtonMobile.color.g, 0f);
+            crateText[0].text = "Press";
 #endif
     }
 

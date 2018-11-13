@@ -8,9 +8,9 @@ public class MainMenu : MonoBehaviour
     [SerializeField] GameObject firstMenuElement;
     [SerializeField] string firstLevelName;
 
-	void Start()
+	void OnEnable()
     {
-        #if UNITY_STANDALONE
+#if UNITY_STANDALONE
             if (InputManager.Instance.CheckControllerConnection())
             {
                 GameManager.Instance.HideCursor();
@@ -18,14 +18,14 @@ public class MainMenu : MonoBehaviour
             }
             else
                 GameManager.Instance.ShowCursor();
-        #endif
+#endif
 	}
 	
 	public void PlayGame()
     {
-        #if UNITY_STANDALONE
+#if UNITY_STANDALONE
             GameManager.Instance.HideCursor();
-        #endif
+#endif
         GameManager.Instance.FadeToScene(SceneManager.GetActiveScene().buildIndex + 1);
 	}
 

@@ -33,8 +33,12 @@ public class FirstPersonCamera : MonoBehaviour
     {
         float horRotation = InputManager.Instance.GetHorizontalViewAxis();
         float verRotation = InputManager.Instance.GetVerticalViewAxis();
-        
-        rotationSpeed = maxRotationSpeed * Mathf.Max(Mathf.Abs(horRotation), Mathf.Abs(verRotation));
+#if UNITY_STANDALONE
+        rotationSpeed = InputManager.Instance.ControllerConnected ?  maxRotationSpeed * Mathf.Max(Mathf.Abs(horRotation), Mathf.Abs(verRotation)) :
+                                                                        maxRotationSpeed;
+#else
+        rotationSpeed = Mathf.Max(Mathf.Abs(horRotation), Mathf.Abs(verRotation));
+#endif
 
         horAngle += horRotation * rotationSpeed * Time.deltaTime;
         verAngle -= verRotation * rotationSpeed * Time.deltaTime;

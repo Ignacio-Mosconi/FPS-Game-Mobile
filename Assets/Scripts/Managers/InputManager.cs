@@ -6,8 +6,13 @@ using UnityEngine.EventSystems;
 public class InputManager : MonoBehaviour
 {
 	static InputManager instance;
+	
+	const float CONTROLLER_CHECK_INTERVAL = 10f;
+
 	IInput input;
 	EventSystem eventSystem;
+	bool controllerConnected = false;
+	float controllerCheckTimer = 0f;
 
 	void Awake()
 	{
@@ -17,6 +22,7 @@ public class InputManager : MonoBehaviour
 			
 			#if UNITY_STANDALONE
 				input = new InputPC();
+				controllerConnected = CheckControllerConnection();
 			#else
 				input = new InputAndroid();
 			#endif
@@ -39,6 +45,16 @@ public class InputManager : MonoBehaviour
 		}
 		else
 			Destroy(gameObject);
+	}
+
+	void Update()
+	{
+		controllerCheckTimer += Time.deltaTime;
+		if (controllerCheckTimer >= CONTROLLER_CHECK_INTERVAL)
+		{
+			controllerCheckTimer = 0f;
+			controllerConnected = CheckControllerConnection();
+		}
 	}
 
 	public void ChangeFirstMenuItemSelected(GameObject firstMenuElement)
@@ -147,5 +163,10 @@ public class InputManager : MonoBehaviour
 			}
 			return instance;
 		}
+	}
+
+	public bool ControllerConnected
+	{
+		get { return controllerConnected; }
 	}
 }

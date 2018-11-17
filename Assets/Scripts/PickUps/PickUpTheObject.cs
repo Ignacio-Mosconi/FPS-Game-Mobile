@@ -52,11 +52,12 @@ public class PickUpTheObject : MonoBehaviour
                     onDetected.Invoke();
                 }
 
-                holdInteractTime = InputManager.Instance.GetInteractHoldButton() ? holdInteractTime + Time.deltaTime : 0;
+                holdInteractTime = InputManager.Instance.GetInteractHoldButton() ? holdInteractTime + Time.deltaTime : 0f;
 
-                if (InputManager.Instance.GetInteractButton() || holdInteractTime > HOLD_INTERACT_TIME)
+                if ((InputManager.Instance.GetInteractButton() || holdInteractTime > HOLD_INTERACT_TIME) &&
+                    weaponTarget.AmmoLeft < weaponTarget.MaxAmmo)
                 {
-                    weaponTarget.AmmoLeft = weaponTarget.MagSize;
+                    weaponTarget.AmmoLeft += weaponTarget.MagSize;
                     
                     pickUpSound.Play();
                     iconCanvas.enabled = false;

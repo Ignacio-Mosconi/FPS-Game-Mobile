@@ -212,9 +212,15 @@ public class Weapon : MonoBehaviour
         get { return ammoLeft; }
         set
         {
-            if (ammoLeft <= maxAmmo - magSize)
-                ammoLeft += value;
+            ammoLeft = value;
+            if (ammoLeft >= maxAmmo)
+                ammoLeft = maxAmmo;
         }
+    }
+
+    public int MaxAmmo
+    {
+        get { return maxAmmo; }
     }
 
     public int MagSize

@@ -5,6 +5,7 @@ public class FirstPersonCamera : MonoBehaviour
     [Header("Viewing Attributes")]
     [SerializeField] [Range(45f, 360f)] float maxRotationSpeed = 180f;
     [SerializeField] [Range(45f, 90f)] float verticalViewRange = 90f;
+    [SerializeField] AnimationCurve touchDeltaCurve;
     
     Transform fpsCamera;
     float rotationSpeed;
@@ -30,11 +31,18 @@ public class FirstPersonCamera : MonoBehaviour
     {
         float horRotation = InputManager.Instance.GetHorizontalViewAxis();
         float verRotation = InputManager.Instance.GetVerticalViewAxis();
+
 #if UNITY_STANDALONE
-        rotationSpeed = InputManager.Instance.ControllerConnected ?  maxRotationSpeed * Mathf.Max(Mathf.Abs(horRotation), Mathf.Abs(verRotation)) :
-                                                                        maxRotationSpeed;
+        if (InputManager.Instance.ControllerConnected)
+        {
+            Vector2 rotation = new Vector2(horRotation, verRotation);
+            rotationSpeed = maxRotationSpeed * rotation.magnitude;
+        }
+        else
+            rotationSpeed = maxRotationSpeed;
 #else
-        rotationSpeed = Mathf.Max(Mathf.Abs(horRotation), Mathf.Abs(verRotation));
+        Vector2 rotation = new Vector2(horRotation, verRotation);
+        rotationSpeed = maxRotationSpeed * rotation.magnitude * touchDeltaCurve;
 #endif
 
         horAngle += horRotation * rotationSpeed * Time.deltaTime;

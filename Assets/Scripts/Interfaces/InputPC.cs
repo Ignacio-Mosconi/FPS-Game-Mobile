@@ -24,7 +24,7 @@ public class InputPC : IInput
 
 	public float GetSwapWeaponAxis()
 	{
-		return (InputManager.Instance.CheckControllerConnection() && Input.GetButtonDown("Swap Weapon")) ?
+		return (InputManager.Instance.ControllerConnected && Input.GetButtonDown("Swap Weapon")) ?
 				1.0f : Input.GetAxis("Mouse Scroll Wheel");
 	}
 
@@ -60,7 +60,7 @@ public class InputPC : IInput
 
 	public bool GetInteractHoldButton()
 	{
-		return Input.GetButton("Interact Controller");
+		return Input.GetButton("Interact Hold");
 	}
 
     public bool GetPauseButton()

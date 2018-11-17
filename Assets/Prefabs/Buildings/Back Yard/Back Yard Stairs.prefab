@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 33155761306440156}
   - component: {fileID: 64187151366218546}
   - component: {fileID: 114578485045299142}
-  m_Layer: 15
+  m_Layer: 9
   m_Name: Back Yard Stairs
   m_TagString: Untagged
   m_Icon: {fileID: 0}

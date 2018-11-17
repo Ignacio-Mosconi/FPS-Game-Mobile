@@ -36,6 +36,8 @@ public class FirstPersonCamera : MonoBehaviour
         if (InputManager.Instance.ControllerConnected)
         {
             Vector2 rotation = new Vector2(horRotation, verRotation);
+            if (rotation.sqrMagnitude > 1f)
+                rotation.Normalize();
             rotationSpeed = maxRotationSpeed * rotation.magnitude;
         }
         else

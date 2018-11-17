@@ -10,7 +10,7 @@ public class HUD : MonoBehaviour
     [SerializeField] TextMeshProUGUI ammoText;
     [SerializeField] TextMeshProUGUI healthText;
     [SerializeField] TextMeshProUGUI[] pickUpText;
-    [SerializeField] TextMeshProUGUI cannotPickUpText;
+    [SerializeField] TextMeshProUGUI[] cannotPickUpText;
     [SerializeField] GameObject crateButtonIconKeyboard;
     [SerializeField] GameObject crateButtonIconController;
     [SerializeField] Image crateButtonMobile;
@@ -78,7 +78,8 @@ public class HUD : MonoBehaviour
 
         foreach (TextMeshProUGUI text in pickUpText)
             text.enabled = false;
-        cannotPickUpText.enabled = false;
+        foreach (TextMeshProUGUI text in cannotPickUpText)
+            text.enabled = false;
 
         crateButtonIconKeyboard.SetActive(false);
         crateButtonIconController.SetActive(false);
@@ -123,14 +124,21 @@ public class HUD : MonoBehaviour
     {
         foreach (TextMeshProUGUI text in pickUpText)
             text.enabled = canPickUp && inRange;
-        cannotPickUpText.enabled = !canPickUp && inRange;
+        foreach (TextMeshProUGUI text in cannotPickUpText)
+            text.enabled = !canPickUp && inRange;
 
         if (inRange)
         {
             if (canPickUp)
-                pickUpText[1].text = "to pick up the " + pickableName + ".";
+            {
+                pickUpText[1].text = "to pick up the";
+                pickUpText[2].text = pickableName;
+            }
             else
-                cannotPickUpText.text = "You cannot pick up more " + pickableName + ".";
+            {
+                cannotPickUpText[0].text = "You cannot pick up more ";
+                cannotPickUpText[1].text = pickableName;
+            }
         }
         
 #if UNITY_STANDALONE

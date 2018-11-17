@@ -3162,20 +3162,6 @@ MonoBehaviour:
   maxHealth: 100
   deadBodyDuration: 60
   deathAnimation: {fileID: 0}
-  onHit:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  onDeath:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  onDamagerHit:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: HitEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!114 &114541303858802696
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3189,7 +3175,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxRotationSpeed: 180
   verticalViewRange: 80
-  touchSensitivity: 45
+  touchDeltaCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &114720990784513648
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3202,7 +3211,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  weaponType: 0
+  weaponType: 1
   range: 100
   fireRate: 2
   impactForce: 350
@@ -3223,26 +3232,6 @@ MonoBehaviour:
   shootSound: {fileID: 82931816935659628}
   reloadSound: {fileID: 82198567399042090}
   emptyMagSound: {fileID: 82423361211648654}
-  onShot:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  onReload:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  onEmptyMag:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  onCrosshairScale:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114723857998289264
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3295,26 +3284,6 @@ MonoBehaviour:
   shootSound: {fileID: 82501798396606486}
   reloadSound: {fileID: 82269420301096620}
   emptyMagSound: {fileID: 82634988410498372}
-  onShot:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  onReload:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  onEmptyMag:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  onCrosshairScale:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114796286262304684
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3343,11 +3312,6 @@ MonoBehaviour:
   - {fileID: 7400000, guid: 35346add94256a24d8d74e0d8591f7b0, type: 2}
   - {fileID: 7400000, guid: 68fe70079aa6362419fad1cbaf91470c, type: 2}
   - {fileID: 7400000, guid: d5a887997a30eca478e085f8068bac12, type: 2}
-  onShootingEnabledToggle:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114834572792407628
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3380,11 +3344,6 @@ MonoBehaviour:
   gravity: 10
   pushingForce: 5
   maxFallingDistance: 5
-  onSurfaceChange:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114861362138713628
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3417,16 +3376,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c50a58e6990c7fc4889263227d50202e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onWeaponSwapStart:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  onWeaponSwap:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!124 &124319593150179410
 Behaviour:
   m_ObjectHideFlags: 1

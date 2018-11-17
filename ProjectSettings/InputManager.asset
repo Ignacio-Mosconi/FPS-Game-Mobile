@@ -103,8 +103,8 @@ InputManager:
     joyNum: 1
   - serializedVersion: 3
     m_Name: Mouse X
-    descriptiveName: View Left
-    descriptiveNegativeName: View Right
+    descriptiveName: View Right
+    descriptiveNegativeName: View Left
     negativeButton: 
     positiveButton: 
     altNegativeButton: 

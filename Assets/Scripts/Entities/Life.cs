@@ -41,6 +41,11 @@ public class Life : MonoBehaviour
         }
     }
 
+    public void Heal(float amount)
+    {
+        health = (health + amount < maxHealth) ? health + amount : maxHealth;
+    }
+
     void Die()
     {
         onDeath.Invoke();

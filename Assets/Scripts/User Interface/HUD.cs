@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
@@ -8,7 +9,8 @@ public class HUD : MonoBehaviour
     [SerializeField] Image crosshair;
     [SerializeField] TextMeshProUGUI ammoText;
     [SerializeField] TextMeshProUGUI healthText;
-    [SerializeField] TextMeshProUGUI[] crateText;
+    [SerializeField] TextMeshProUGUI[] pickUpText;
+    [SerializeField] TextMeshProUGUI cannotPickUpText;
     [SerializeField] GameObject crateButtonIconKeyboard;
     [SerializeField] GameObject crateButtonIconController;
     [SerializeField] Image crateButtonMobile;
@@ -19,20 +21,27 @@ public class HUD : MonoBehaviour
     [SerializeField] Life playerLife;
     [SerializeField] WeaponManager weaponManager;
     [SerializeField] Transform cratesHolder;
+    [SerializeField] Transform helathPacksHolder;
     
     const float CRITICAL_LIFE_PERC = 0.25f;
     const float CRITICAL_AMMO_PERC = 0.25f;
     
-    PickUpTheObject[] crates;
+    List<Pickable> pickables;
+#if UNITY_ANDROID
+    Color enabledColor;
+    Color disabledColor;
+#endif
     float criticalLife = 0f;
     int criticalMagAmmo = 0;
     int criticalAmmoLeft = 0;
-    bool inInteractionRange = false;
 
     void Awake()
     {
 #if UNITY_STANDALONE        
         mobileControls.SetActive(false);
+#else
+        enabledColor = new Color(crateButtonMobile.color.r, crateButtonMobile.color.g, crateButtonMobile.color.g, 200f);
+        disabledColor = new Color(crateButtonMobile.color.r, crateButtonMobile.color.g, crateButtonMobile.color.g, 0f);
 #endif
     }
     
@@ -45,12 +54,15 @@ public class HUD : MonoBehaviour
         weaponManager.OnWeaponSwap.AddListener(ChangeWeaponWeaponInfo);
         weaponManager.OnWeaponSwap.AddListener(ChangeAmmoDisplay);
 
-        crates = cratesHolder.GetComponentsInChildren<PickUpTheObject>();
+        pickables = new List<Pickable>();
 
-        foreach (PickUpTheObject crate in crates)
+        foreach (Transform crate in cratesHolder)
+            pickables.Add(crate.GetComponent<Pickable>());
+
+        foreach (Pickable pickable in pickables)
         {
-            crate.OnDetected.AddListener(ChangeTextSituation);
-            crate.OnPressed.AddListener(ChangeAmmoDisplay);
+            pickable.OnInteractRange.AddListener(ChangeTextSituation);
+            pickable.OnPressed.AddListener(ChangeAmmoDisplay);
         }
 
         foreach (Transform weapon in weaponManager.transform)
@@ -62,15 +74,16 @@ public class HUD : MonoBehaviour
         
         criticalLife = playerLife.MaxHealth * CRITICAL_LIFE_PERC;
 
-        crateText[0].text = InputManager.Instance.CheckControllerConnection() ? "Hold" : "Press";
+        pickUpText[0].text = InputManager.Instance.CheckControllerConnection() ? "Hold" : "Press";
 
-        foreach (TextMeshProUGUI text in crateText)
+        foreach (TextMeshProUGUI text in pickUpText)
             text.enabled = false;
+        cannotPickUpText.enabled = false;
 
         crateButtonIconKeyboard.SetActive(false);
         crateButtonIconController.SetActive(false);
 #if UNITY_ANDROID
-        crateButtonMobile.color = new Color(crateButtonMobile.color.r, crateButtonMobile.color.g, crateButtonMobile.color.b, 0f);
+        crateButtonMobile.color = disabledColor;
 #endif
 	}
 
@@ -106,26 +119,34 @@ public class HUD : MonoBehaviour
         healthText.color = (playerLife.Health > criticalLife) ? Color.white : Color.red;
     }
 
-    void ChangeTextSituation()
+    void ChangeTextSituation(string pickableName, bool canPickUp, bool inRange)
     {
-        inInteractionRange = !inInteractionRange;
+        foreach (TextMeshProUGUI text in pickUpText)
+            text.enabled = canPickUp && inRange;
+        cannotPickUpText.enabled = !canPickUp && inRange;
 
-        foreach (TextMeshProUGUI text in crateText)
-            text.enabled = !text.enabled;
+        if (inRange)
+        {
+            if (canPickUp)
+                pickUpText[1].text = "to pick up the " + pickableName + ".";
+            else
+                cannotPickUpText.text = "You cannot pick up more " + pickableName + ".";
+        }
         
 #if UNITY_STANDALONE
         bool controllerConnected = InputManager.Instance.CheckControllerConnection();
         
-        if (controllerConnected)
-            crateText[0].text = "Hold";
-        else
-            crateText[0].text = "Press";
-        crateButtonIconController.SetActive(controllerConnected && inInteractionRange);
-        crateButtonIconKeyboard.SetActive(!controllerConnected && inInteractionRange);
+        if (inRange && canPickUp)
+        {
+            if (controllerConnected)
+                pickUpText[0].text = "Hold";
+            else
+                pickUpText[0].text = "Press";
+        }
+        crateButtonIconController.SetActive(controllerConnected && inRange && canPickUp);
+        crateButtonIconKeyboard.SetActive(!controllerConnected && inRange && canPickUp);
 #else
-        crateButtonMobile.color = crateText[0].enabled ? 
-                                    new Color(crateButtonMobile.color.r, crateButtonMobile.color.g, crateButtonMobile.color.g, 200f) :
-                                    new Color(crateButtonMobile.color.r, crateButtonMobile.color.g, crateButtonMobile.color.g, 0f);
+        crateButtonMobile.color = inRange ? enabledColor : disabledColor;
 #endif
     }
 

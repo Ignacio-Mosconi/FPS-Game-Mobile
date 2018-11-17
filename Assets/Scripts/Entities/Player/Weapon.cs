@@ -202,6 +202,11 @@ public class Weapon : MonoBehaviour
         return consecutiveShots == 0;
     }
 
+    public WeaponType TypeOfWeapon
+    {
+        get { return weaponType; }
+    }
+
     public int BulletsInMag
     {
         get { return bulletsInMag; }

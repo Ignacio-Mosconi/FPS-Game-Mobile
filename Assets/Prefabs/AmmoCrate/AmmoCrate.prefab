@@ -134,13 +134,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1921551262722604}
-  m_LocalRotation: {x: -0.70559597, y: 0, z: -0, w: 0.70861435}
+  m_LocalRotation: {x: -0.9455186, y: 0, z: 0, w: -0.32556805}
   m_LocalPosition: {x: 0.0033582766, y: 0.16872685, z: -0.38009056}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4645728536173260}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -218, y: 0, z: 0}
 --- !u!23 &23357223574271954
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -255,7 +255,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 50
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 5
@@ -342,7 +342,7 @@ Animator:
   m_GameObject: {fileID: 1032392104348514}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 45fb3b613218da844b047d1f9349e0d6, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6b89edb7a7539fd43bd3dff16db0f598, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -359,24 +359,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1032392104348514}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 434409d2a1781014593af7ff13aa1803, type: 3}
+  m_Script: {fileID: 11500000, guid: 4cb7a2bb8a5031c47ba7c242bfb295fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   distanceToInteract: 3
-  possibleTargets:
-    serializedVersion: 2
-    m_Bits: 8192
+  magsToCollect: 2
   weaponTarget: {fileID: 0}
-  onDetected:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  onPressed:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114297674195044164
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -9,6 +9,7 @@ public class SettingsMenu : MonoBehaviour
     {
         Low, Medium, High
     }
+
     [Header("Graphics Settings")]
     [SerializeField] TextMeshProUGUI gfxText;
     [SerializeField] Button increaseGfxButton;
@@ -28,7 +29,14 @@ public class SettingsMenu : MonoBehaviour
     const float MIXER_MULT = 20f;
     const float SLIDER_INCREMENT_VALUE = 0.1f;
 
+    AudioSource selectionSound;
+
     bool wasControllerConnected;
+
+    void Awake()
+    {
+        selectionSound = GetComponentInParent<AudioSource>();
+    }
 
     void OnEnable()
     {
@@ -56,27 +64,45 @@ public class SettingsMenu : MonoBehaviour
             if (InputManager.Instance.EventSystem.currentSelectedGameObject == controllerNavigationButtons[0].gameObject)
             {
                 if (InputManager.Instance.GetRightUIButton())
+                {
                     IncreaseGfxSetting();
+                    selectionSound.Play();
+                }
                 if (InputManager.Instance.GetLeftUIButton())
+                {
                     DecreaseGfxSetting();
+                    selectionSound.Play();
+                }
             }
             else
             {
                 if (InputManager.Instance.EventSystem.currentSelectedGameObject == controllerNavigationButtons[1].gameObject)
                 {
                     if (InputManager.Instance.GetRightUIButton())
+                    {
                         IncreaseSliderValue(sfxVolumeSlider);
+                        selectionSound.Play();
+                    }
                     if (InputManager.Instance.GetLeftUIButton())
+                    {
                         DecreaseSliderValue(sfxVolumeSlider);
+                        selectionSound.Play();
+                    }
                 }
                 else
                 {
                     if (InputManager.Instance.EventSystem.currentSelectedGameObject == controllerNavigationButtons[2].gameObject)
                     {
                         if (InputManager.Instance.GetRightUIButton())
+                        {
                             IncreaseSliderValue(musicVolumeSlider);
+                            selectionSound.Play();
+                        }
                         if (InputManager.Instance.GetLeftUIButton())
+                        {
                             DecreaseSliderValue(musicVolumeSlider);
+                            selectionSound.Play();
+                        }
                     }
                 }
             }

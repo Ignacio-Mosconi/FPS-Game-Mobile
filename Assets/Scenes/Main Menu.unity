@@ -343,22 +343,22 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114886501635126900, guid: a5ce81a410bbc394c92491caeb531144,
+    - target: {fileID: 114745214062821034, guid: a5ce81a410bbc394c92491caeb531144,
         type: 2}
       propertyPath: m_havePropertiesChanged
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114886501635126900, guid: a5ce81a410bbc394c92491caeb531144,
+    - target: {fileID: 114745214062821034, guid: a5ce81a410bbc394c92491caeb531144,
         type: 2}
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114227176659451470, guid: a5ce81a410bbc394c92491caeb531144,
+    - target: {fileID: 114886501635126900, guid: a5ce81a410bbc394c92491caeb531144,
         type: 2}
       propertyPath: m_havePropertiesChanged
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114227176659451470, guid: a5ce81a410bbc394c92491caeb531144,
+    - target: {fileID: 114886501635126900, guid: a5ce81a410bbc394c92491caeb531144,
         type: 2}
       propertyPath: m_isInputParsingRequired
       value: 1
@@ -379,6 +379,16 @@ Prefab:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114412938317672696, guid: a5ce81a410bbc394c92491caeb531144,
+        type: 2}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114227176659451470, guid: a5ce81a410bbc394c92491caeb531144,
+        type: 2}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114227176659451470, guid: a5ce81a410bbc394c92491caeb531144,
         type: 2}
       propertyPath: m_isInputParsingRequired
       value: 1

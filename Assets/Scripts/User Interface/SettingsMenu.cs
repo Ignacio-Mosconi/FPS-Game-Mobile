@@ -92,6 +92,8 @@ public class SettingsMenu : MonoBehaviour
                 InputManager.Instance.ChangeFirstMenuItemSelected(firstMenuElement);         
                 foreach (GameObject sliderButton in sliderButtons)
                     sliderButton.SetActive(true);
+                foreach (Button navigationButton in controllerNavigationButtons)
+                    navigationButton.interactable = true;
                 wasControllerConnected = true;
             }
         }
@@ -102,6 +104,8 @@ public class SettingsMenu : MonoBehaviour
                 InputManager.Instance.ChangeFirstMenuItemSelected(null);
                 foreach (GameObject sliderButton in sliderButtons)
                     sliderButton.SetActive(false);
+                foreach (Button navigationButton in controllerNavigationButtons)
+                    navigationButton.interactable = false;
                 wasControllerConnected = false;
             }
     }

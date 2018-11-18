@@ -7,6 +7,9 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] GameObject hudUI;
     [SerializeField] GameObject mobileControls;
     [SerializeField] GameObject firstMenuElement;
+    [SerializeField] Animator pauseMenuAnimator;
+    [SerializeField] AnimationClip fadeOutAnimation;
+    
     static bool isPaused = false;
 
     UnityEvent onPauseToggle = new UnityEvent();
@@ -20,6 +23,20 @@ public class PauseMenu : MonoBehaviour
             else
                 Resume();
         }
+    }
+
+    void Continue()
+    {
+#if UNITY_STANDALONE
+        GameManager.Instance.HideCursor();
+#else
+        mobileControls.SetActive(true);
+#endif
+        pauseMenuUI.SetActive(false);
+        hudUI.SetActive(true);
+        isPaused = false;
+        onPauseToggle.Invoke();
+        InputManager.Instance.ChangeFirstMenuItemSelected(null);
     }
 
     public void Pause()
@@ -41,17 +58,9 @@ public class PauseMenu : MonoBehaviour
 
     public void Resume()
     {
-#if UNITY_STANDALONE
-        GameManager.Instance.HideCursor();
-#else
-        mobileControls.SetActive(true);
-#endif
-        pauseMenuUI.SetActive(false);
-        hudUI.SetActive(true);
         Time.timeScale = 1f;
-        isPaused = false;
-        onPauseToggle.Invoke();
-        InputManager.Instance.ChangeFirstMenuItemSelected(null);
+        pauseMenuAnimator.SetTrigger("Fade Out");
+        Invoke("Continue", fadeOutAnimation.length);
     }
 
     public void LoadMenu()

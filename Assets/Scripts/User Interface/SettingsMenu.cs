@@ -40,6 +40,10 @@ public class SettingsMenu : MonoBehaviour
             decreaseGfxButton.interactable = false;
         sfxVolumeSlider.value = GameManager.Instance.SfxVolumeValue;
         musicVolumeSlider.value = GameManager.Instance.MusicVolumeValue;
+        foreach (GameObject sliderButton in sliderButtons)
+            sliderButton.SetActive(false);
+        foreach (Button navigationButton in controllerNavigationButtons)
+            navigationButton.interactable = false;
     }
 
 #if UNITY_STANDALONE

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.Events;
 
 public class PauseMenu : MonoBehaviour
@@ -12,6 +13,9 @@ public class PauseMenu : MonoBehaviour
     
     static bool isPaused = false;
 
+    bool wasInitialized = false;
+    bool wasControllerConnected = false;
+
     UnityEvent onPauseToggle = new UnityEvent();
 
     void Update()
@@ -23,7 +27,41 @@ public class PauseMenu : MonoBehaviour
             else
                 Resume();
         }
+#if UNITY_STANDALONE
+        if (isPaused && wasInitialized)
+            HandleControllerConnection();
+#endif
     }
+
+#if UNITY_STANDALONE
+    IEnumerator Initialize()
+    {
+        yield return new WaitForSecondsRealtime(0.1f);
+        wasInitialized = true;
+    }
+
+    void HandleControllerConnection()
+    {
+        bool isConnected = InputManager.Instance.CheckControllerConnection();
+
+        if (isConnected)
+        {
+            if (!wasControllerConnected)
+            {
+                GameManager.Instance.HideCursor();
+                InputManager.Instance.ChangeFirstMenuItemSelected(firstMenuElement);
+                wasControllerConnected = true;
+            }
+        }
+        else
+            if (wasControllerConnected)
+            {
+                GameManager.Instance.ShowCursor();
+                InputManager.Instance.ChangeFirstMenuItemSelected(null);
+                wasControllerConnected = false;
+            }
+    }
+#endif
 
     void Continue()
     {
@@ -69,6 +107,15 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1.0f;
         GameManager.Instance.FadeToScene(0);
     }
+
+#if UNITY_STANDALONE
+    public void OnPauseMenuUIEnable()
+    {
+        wasInitialized = false;
+        wasControllerConnected = false;
+        StartCoroutine(Initialize());
+    }
+#endif
 
     public static bool IsPaused
     {

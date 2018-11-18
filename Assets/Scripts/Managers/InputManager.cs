@@ -160,7 +160,7 @@ public class InputManager : MonoBehaviour
 				wasJustPressed = true;
 			}
 			else
-				horizontalUILeftPressedTimer += Time.deltaTime;
+				horizontalUILeftPressedTimer += Time.unscaledDeltaTime;
 		}
 		else
 			if (isHorizontalUILeftPressed)
@@ -182,7 +182,7 @@ public class InputManager : MonoBehaviour
                 wasJustPressed = true;
             }
             else
-                horizontalUIRightPressedTimer += Time.deltaTime;
+                horizontalUIRightPressedTimer += Time.unscaledDeltaTime;
         }
         else
             if (isHorizontalUIRightPressed)

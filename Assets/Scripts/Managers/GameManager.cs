@@ -20,7 +20,6 @@ public class GameManager : MonoBehaviour
     TextMeshProUGUI loadingText;
     int nextSceneToLoad = -1;
 
-
     void Awake()
     {
         if (Instance == this)

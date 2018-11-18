@@ -6,23 +6,50 @@ public class MainMenu : MonoBehaviour
     [SerializeField] GameObject firstMenuElement;
     [SerializeField] string firstLevelName;
 
+    bool wasControllerConnected = false;
+    bool wasInitialized = false;
+
+#if UNITY_STANDALONE
     void OnEnable()
     {
-#if UNITY_STANDALONE
-        Invoke("Init", 0.1f);
-#endif
+        wasControllerConnected = false;
+        wasInitialized = false;
+        Invoke("Initialize", 0.1f);
     }
 
-    void Init()
+    void Update()
     {
-        if (InputManager.Instance.CheckControllerConnection())
+        if (wasInitialized)
+            HandleControllerConnection();
+    }
+
+    void Initialize()
+    {
+        wasInitialized = true;
+    }
+
+    void HandleControllerConnection()
+    {
+        bool isConnected = InputManager.Instance.CheckControllerConnection();
+
+        if (isConnected)
         {
-            GameManager.Instance.HideCursor();
-            InputManager.Instance.ChangeFirstMenuItemSelected(firstMenuElement);
+            if (!wasControllerConnected)
+            {
+                GameManager.Instance.HideCursor();
+                InputManager.Instance.ChangeFirstMenuItemSelected(firstMenuElement);
+                wasControllerConnected = true;
+            }
         }
         else
-            GameManager.Instance.ShowCursor();
+            if (wasControllerConnected)
+            {
+                GameManager.Instance.ShowCursor();
+                InputManager.Instance.ChangeFirstMenuItemSelected(null);
+                wasControllerConnected = false;
+            }
     }
+#endif
 	
 	public void PlayGame()
     {

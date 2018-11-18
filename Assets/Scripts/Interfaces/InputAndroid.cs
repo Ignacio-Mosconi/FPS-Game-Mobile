@@ -66,4 +66,14 @@ public class InputAndroid : IInput
 	{
 		return CrossPlatformInputManager.GetButtonDown("Cancel");
 	}
+
+    public bool GetLeftUIButton()
+    {
+        return CrossPlatformInputManager.GetAxis("Horizontal UI") < 0.5f;
+    }
+	
+    public bool GetRightUIButton()
+    {
+        return CrossPlatformInputManager.GetAxis("Horizontal UI") > 0.5f;
+    }
 }

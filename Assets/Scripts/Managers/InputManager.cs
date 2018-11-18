@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Events;
 
 public class InputManager : MonoBehaviour
 {
@@ -11,6 +12,10 @@ public class InputManager : MonoBehaviour
 	EventSystem eventSystem;
 	bool controllerConnected = false;
 	float controllerCheckTimer = 0f;
+	bool isHorizontalUILeftPressed = false;
+	bool isHorizontalUIRightPressed = false;
+	float horizontalUILeftPressedTimer = 0f;
+	float horizontalUIRightPressedTimer = 0f;
 
 	void Awake()
 	{
@@ -49,24 +54,20 @@ public class InputManager : MonoBehaviour
 	{
 		controllerCheckTimer += Time.deltaTime;
 		if (controllerCheckTimer >= CONTROLLER_CHECK_INTERVAL)
-		{
-			controllerCheckTimer = 0f;
-			controllerConnected = CheckControllerConnection();
-		}
+			CheckControllerConnection();
 	}
 
 	public void ChangeFirstMenuItemSelected(GameObject firstMenuElement)
     {
 		if (CheckControllerConnection())
-		{
 			eventSystem.firstSelectedGameObject = firstMenuElement;
-			eventSystem.SetSelectedGameObject(firstMenuElement);
-		}
+		eventSystem.SetSelectedGameObject(firstMenuElement);
     }
 
     public bool CheckControllerConnection()
     {
-        bool controllerConnected = false;
+		controllerConnected = false;
+		
         string[] controllers = Input.GetJoystickNames();
         
         for (int i = 0; i < controllers.Length; i++)
@@ -146,6 +147,50 @@ public class InputManager : MonoBehaviour
 		return input.GetPauseButton();
 	}
 
+    public bool GetLeftUIButton()
+    {
+		bool wasJustPressed = false;
+
+		if (input.GetLeftUIButton())
+		{
+			if (!isHorizontalUILeftPressed || horizontalUILeftPressedTimer > 0.25f)
+			{
+				horizontalUILeftPressedTimer = 0f;
+				isHorizontalUILeftPressed = true;
+				wasJustPressed = true;
+			}
+			else
+				horizontalUILeftPressedTimer += Time.deltaTime;
+		}
+		else
+			if (isHorizontalUILeftPressed)
+				isHorizontalUILeftPressed = false;
+		
+		return wasJustPressed;
+    }
+
+    public bool GetRightUIButton()
+    {
+        bool wasJustPressed = false;
+
+        if (input.GetRightUIButton())
+        {
+            if (!isHorizontalUIRightPressed || horizontalUIRightPressedTimer > 0.25f)
+            {
+                horizontalUIRightPressedTimer = 0f;
+                isHorizontalUIRightPressed = true;
+                wasJustPressed = true;
+            }
+            else
+                horizontalUIRightPressedTimer += Time.deltaTime;
+        }
+        else
+            if (isHorizontalUIRightPressed)
+            isHorizontalUIRightPressed = false;
+
+        return wasJustPressed;
+    }
+
 	static public InputManager Instance
 	{
 		get
@@ -161,6 +206,11 @@ public class InputManager : MonoBehaviour
 			}
 			return instance;
 		}
+	}
+
+	public EventSystem EventSystem
+	{
+		get { return eventSystem; }
 	}
 
 	public bool ControllerConnected

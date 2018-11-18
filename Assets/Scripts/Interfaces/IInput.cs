@@ -13,4 +13,6 @@
 	bool GetInteractButton();
 	bool GetInteractHoldButton();
 	bool GetPauseButton();
+	bool GetLeftUIButton();
+	bool GetRightUIButton();
 }

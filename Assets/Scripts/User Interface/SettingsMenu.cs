@@ -21,14 +21,18 @@ public class SettingsMenu : MonoBehaviour
     [SerializeField] Slider musicVolumeSlider;
     [SerializeField] GameObject[] sliderButtons;
 
-    [Header("Others")]
+    [Header("UI Navigation")]
     [SerializeField] GameObject firstMenuElement;
+    [SerializeField] Button[] controllerNavigationButtons;
 
     const float MIXER_MULT = 20f;
     const float SLIDER_INCREMENT_VALUE = 0.1f;
 
+    bool wasControllerConnected;
+
     void OnEnable()
     {
+        wasControllerConnected = false;
         gfxText.text = GameManager.Instance.CurrentGfxSetting.ToString();
         if (GameManager.Instance.CurrentGfxSetting == GfxSetting.High)
             increaseGfxButton.interactable = false;
@@ -36,16 +40,70 @@ public class SettingsMenu : MonoBehaviour
             decreaseGfxButton.interactable = false;
         sfxVolumeSlider.value = GameManager.Instance.SfxVolumeValue;
         musicVolumeSlider.value = GameManager.Instance.MusicVolumeValue;
+    }
 
 #if UNITY_STANDALONE
-        bool controllerConnected = InputManager.Instance.CheckControllerConnection();
+    void Update()
+    {
+        HandleControllerConnection();
 
-        foreach (GameObject sliderButton in sliderButtons)
-            sliderButton.SetActive(controllerConnected);
-
-        if (controllerConnected)
-            InputManager.Instance.ChangeFirstMenuItemSelected(firstMenuElement);
+        if (InputManager.Instance.ControllerConnected)
+        {
+            if (InputManager.Instance.EventSystem.currentSelectedGameObject == controllerNavigationButtons[0].gameObject)
+            {
+                if (InputManager.Instance.GetRightUIButton())
+                    IncreaseGfxSetting();
+                if (InputManager.Instance.GetLeftUIButton())
+                    DecreaseGfxSetting();
+            }
+            else
+            {
+                if (InputManager.Instance.EventSystem.currentSelectedGameObject == controllerNavigationButtons[1].gameObject)
+                {
+                    if (InputManager.Instance.GetRightUIButton())
+                        IncreaseSliderValue(sfxVolumeSlider);
+                    if (InputManager.Instance.GetLeftUIButton())
+                        DecreaseSliderValue(sfxVolumeSlider);
+                }
+                else
+                {
+                    if (InputManager.Instance.EventSystem.currentSelectedGameObject == controllerNavigationButtons[2].gameObject)
+                    {
+                        if (InputManager.Instance.GetRightUIButton())
+                            IncreaseSliderValue(musicVolumeSlider);
+                        if (InputManager.Instance.GetLeftUIButton())
+                            DecreaseSliderValue(musicVolumeSlider);
+                    }
+                }
+            }
+        }
+    }
 #endif
+
+    void HandleControllerConnection()
+    {
+        bool isConnected = InputManager.Instance.CheckControllerConnection();
+
+        if (isConnected)
+        {
+            if (!wasControllerConnected)
+            {
+                GameManager.Instance.HideCursor();
+                InputManager.Instance.ChangeFirstMenuItemSelected(firstMenuElement);         
+                foreach (GameObject sliderButton in sliderButtons)
+                    sliderButton.SetActive(true);
+                wasControllerConnected = true;
+            }
+        }
+        else
+            if (wasControllerConnected)
+            {    
+                GameManager.Instance.ShowCursor();
+                InputManager.Instance.ChangeFirstMenuItemSelected(null);
+                foreach (GameObject sliderButton in sliderButtons)
+                    sliderButton.SetActive(false);
+                wasControllerConnected = false;
+            }
     }
 
     float GetMixerLevel(AudioMixer audioMixer)

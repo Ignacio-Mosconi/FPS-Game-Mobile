@@ -67,4 +67,14 @@ public class InputPC : IInput
     {
         return Input.GetButtonDown("Cancel");
     }
+
+    public bool GetLeftUIButton()
+    {
+        return Input.GetAxis("Horizontal UI") == -1f;
+    }
+
+    public bool GetRightUIButton()
+    {
+        return Input.GetAxis("Horizontal UI") == 1f;
+    }
 }

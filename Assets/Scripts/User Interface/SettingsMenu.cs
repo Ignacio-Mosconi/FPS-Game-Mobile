@@ -1,15 +1,27 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Audio;
+using TMPro;
 
 public class SettingsMenu : MonoBehaviour
 {
+    public enum GfxSetting
+    {
+        Low, Medium, High
+    }
+    [Header("Graphics Settings")]
+    [SerializeField] TextMeshProUGUI gfxText;
+    [SerializeField] Button increaseGfxButton;
+    [SerializeField] Button decreaseGfxButton;
+
     [Header("Audio Settings")]
     [SerializeField] AudioMixer sfxMixer;
     [SerializeField] AudioMixer musicMixer;
     [SerializeField] Slider sfxVolumeSlider;
     [SerializeField] Slider musicVolumeSlider;
     [SerializeField] GameObject[] sliderButtons;
+
+    [Header("Others")]
     [SerializeField] GameObject firstMenuElement;
 
     const float MIXER_MULT = 20f;
@@ -17,6 +29,11 @@ public class SettingsMenu : MonoBehaviour
 
     void OnEnable()
     {
+        gfxText.text = GameManager.Instance.CurrentGfxSetting.ToString();
+        if (GameManager.Instance.CurrentGfxSetting == GfxSetting.High)
+            increaseGfxButton.interactable = false;
+        if (GameManager.Instance.CurrentGfxSetting == GfxSetting.Low)
+            decreaseGfxButton.interactable = false;
         sfxVolumeSlider.value = GameManager.Instance.SfxVolumeValue;
         musicVolumeSlider.value = GameManager.Instance.MusicVolumeValue;
 
@@ -36,6 +53,38 @@ public class SettingsMenu : MonoBehaviour
         float volume;
         bool result = audioMixer.GetFloat("Volume", out volume);
         return (result) ? volume : 0f;
+    }
+
+    public void IncreaseGfxSetting()
+    {
+        if (GameManager.Instance.CurrentGfxSetting != GfxSetting.High)
+        {
+            GameManager.Instance.CurrentGfxSetting++;
+            QualitySettings.SetQualityLevel((int)GameManager.Instance.CurrentGfxSetting);
+
+            gfxText.text = GameManager.Instance.CurrentGfxSetting.ToString();
+
+            if (GameManager.Instance.CurrentGfxSetting == GfxSetting.High)
+                increaseGfxButton.interactable = false;
+            if (!decreaseGfxButton.interactable)
+                decreaseGfxButton.interactable = true;
+        }
+    }
+
+    public void DecreaseGfxSetting()
+    {
+        if (GameManager.Instance.CurrentGfxSetting != GfxSetting.Low)
+        {
+            GameManager.Instance.CurrentGfxSetting--;
+            QualitySettings.SetQualityLevel((int)GameManager.Instance.CurrentGfxSetting);
+
+            gfxText.text = GameManager.Instance.CurrentGfxSetting.ToString();
+            
+            if (GameManager.Instance.CurrentGfxSetting == GfxSetting.Low)
+                decreaseGfxButton.interactable = false;
+            if (!increaseGfxButton.interactable)
+                increaseGfxButton.interactable = true;
+        }
     }
 
     public void SetSfxVolume(float volume)

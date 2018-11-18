@@ -1061,7 +1061,7 @@ Material:
     - _OutlineColor: {r: 0.10980392, g: 0.10980392, b: 0.10980392, a: 1}
     - _ReflectFaceColor: {r: 0, g: 0, b: 0, a: 1}
     - _ReflectOutlineColor: {r: 0, g: 0, b: 0, a: 1}
-    - _SpecularColor: {r: 0.6792453, g: 0.5606978, b: 0.5606978, a: 1}
+    - _SpecularColor: {r: 0.5188679, g: 0.06608224, b: 0.06608224, a: 1}
     - _UnderlayColor: {r: 0, g: 0, b: 0, a: 0.5}
 --- !u!28 &28661418678033968
 Texture2D:

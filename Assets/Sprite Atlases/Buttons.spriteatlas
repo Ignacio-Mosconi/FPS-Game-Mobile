@@ -34,10 +34,12 @@ SpriteAtlas:
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: 9cbd93231a5696c48b3f481c6bb4e7fe, type: 3}
+  - {fileID: 21300000, guid: f1a181642413a4149bd64d7a957c56ac, type: 3}
   - {fileID: 21300000, guid: d99445ebac8c46a4ab5e9b5bfc856a74, type: 3}
   - {fileID: 21300000, guid: 9ef2faaea4709104ca027b7d1665449f, type: 3}
   m_PackedSpriteNamesToIndex:
   - Button (Normal)
+  - Navigation
   - Button (Pressed)
   - Button (Highlighted)
   m_Tag: Buttons

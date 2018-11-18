@@ -7,6 +7,7 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] GameObject loadingScreen;
+    [SerializeField] SettingsMenu.GfxSetting currentGfxSetting;
     [SerializeField] float sfxVolumeValue = 0.75f;
     [SerializeField] float musicVolumeValue = 0.75f;
 
@@ -113,6 +114,12 @@ public class GameManager : MonoBehaviour
             }
             return instance;
         }
+    }
+
+    public SettingsMenu.GfxSetting CurrentGfxSetting
+    {
+        get { return currentGfxSetting; }
+        set { currentGfxSetting = value; }
     }
 
     public float SfxVolumeValue

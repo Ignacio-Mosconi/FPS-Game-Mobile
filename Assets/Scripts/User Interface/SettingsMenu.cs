@@ -29,14 +29,17 @@ public class SettingsMenu : MonoBehaviour
     const float MIXER_MULT = 20f;
     const float SLIDER_INCREMENT_VALUE = 0.1f;
 
+#if UNITY_STANDALONE
     AudioSource selectionSound;
-
+#endif
     bool wasControllerConnected;
 
+#if UNITY_STANDALONE
     void Awake()
     {
         selectionSound = GetComponentInParent<AudioSource>();
     }
+#endif
 
     void OnEnable()
     {

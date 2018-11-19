@@ -13,8 +13,10 @@ public class PauseMenu : MonoBehaviour
     
     static bool isPaused = false;
 
+#if UNITY_STANDALONE
     bool wasInitialized = false;
     bool wasControllerConnected = false;
+#endif
 
     UnityEvent onPauseToggle = new UnityEvent();
 

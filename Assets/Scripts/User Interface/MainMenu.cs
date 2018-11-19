@@ -6,8 +6,10 @@ public class MainMenu : MonoBehaviour
     [SerializeField] GameObject firstMenuElement;
     [SerializeField] string firstLevelName;
 
+#if UNITY_STANDALONE
     bool wasControllerConnected = false;
     bool wasInitialized = false;
+#endif
 
 #if UNITY_STANDALONE
     void OnEnable()

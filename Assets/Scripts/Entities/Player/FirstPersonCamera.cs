@@ -44,7 +44,7 @@ public class FirstPersonCamera : MonoBehaviour
             rotationSpeed = maxRotationSpeed;
 #else
         Vector2 rotation = new Vector2(horRotation, verRotation);
-        rotationSpeed = maxRotationSpeed * rotation.magnitude * touchDeltaCurve;
+        rotationSpeed = maxRotationSpeed * touchDeltaCurve.Evaluate(rotation.magnitude);
 #endif
 
         horAngle += horRotation * rotationSpeed * Time.deltaTime;

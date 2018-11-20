@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-
+using EZCameraShake;
 public class PlayerManager : MonoBehaviour
 {
 	[SerializeField] GameObject player;
@@ -11,6 +11,7 @@ public class PlayerManager : MonoBehaviour
 	PlayerAnimation playerAnimation;
 	PlayerAudio playerAudio;
 	FirstPersonCamera firstPersonCamera;
+	CameraShaker cameraShaker;
 	CharacterController characterController;
 	WeaponManager weaponManager;
 
@@ -27,6 +28,7 @@ public class PlayerManager : MonoBehaviour
 		playerAnimation = player.GetComponentInChildren<PlayerAnimation>();
 		playerAudio = player.GetComponentInChildren<PlayerAudio>();
 		firstPersonCamera = player.GetComponent<FirstPersonCamera>();
+		cameraShaker = player.GetComponentInChildren<CameraShaker>();
 		characterController = player.GetComponent<CharacterController>();
 		weaponManager = player.GetComponentInChildren<WeaponManager>();
 
@@ -43,6 +45,7 @@ public class PlayerManager : MonoBehaviour
 		playerAnimation.enabled = !playerAnimation.enabled;
 		playerAudio.enabled = !playerAudio.enabled;
 		firstPersonCamera.enabled = !firstPersonCamera.enabled;
+		cameraShaker.enabled = !cameraShaker.enabled;
 		characterController.enabled = !characterController.enabled;
 		weaponManager.CurrentWeapon.enabled = !weaponManager.CurrentWeapon.enabled;
 		weaponManager.enabled = !weaponManager.enabled;

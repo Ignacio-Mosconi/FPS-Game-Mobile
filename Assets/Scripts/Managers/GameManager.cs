@@ -25,6 +25,9 @@ public class GameManager : MonoBehaviour
         if (Instance == this)
         {
             animator = GetComponent<Animator>();
+#if UNITY_ANDROID
+            currentGfxSetting = SettingsMenu.GfxSetting.Medium;
+#endif
             DontDestroyOnLoad(gameObject);
         }
         else

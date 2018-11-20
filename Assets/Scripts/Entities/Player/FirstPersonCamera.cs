@@ -28,9 +28,6 @@ public class FirstPersonCamera : MonoBehaviour
 
     void Start()
     {
-#if UNITY_ANDROID
-        maxRotationSpeed *= 0.75f;
-#endif
         fpsCamera = GetComponentInChildren<Camera>().transform;
         gameObject.GetComponentInParent<Life>().OnDamagerHit.AddListener(ShakeCamera);
     }

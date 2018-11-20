@@ -21,7 +21,7 @@ public class HUD : MonoBehaviour
     [SerializeField] Life playerLife;
     [SerializeField] WeaponManager weaponManager;
     [SerializeField] Transform cratesHolder;
-    [SerializeField] Transform helathPacksHolder;
+    [SerializeField] Transform healthPacksHolder;
     
     const float CRITICAL_LIFE_PERC = 0.25f;
     const float CRITICAL_AMMO_PERC = 0.25f;
@@ -58,11 +58,16 @@ public class HUD : MonoBehaviour
 
         foreach (Transform crate in cratesHolder)
             pickables.Add(crate.GetComponent<Pickable>());
+        foreach (Transform healthPack in healthPacksHolder)
+            pickables.Add(healthPack.GetComponent<Pickable>());
 
         foreach (Pickable pickable in pickables)
         {
             pickable.OnInteractRange.AddListener(ChangeTextSituation);
-            pickable.OnPressed.AddListener(ChangeAmmoDisplay);
+            if (pickable.GetPickUpType() == Pickable.PickUpType.AmmoCrate)
+                pickable.OnPressed.AddListener(ChangeAmmoDisplay);
+            if (pickable.GetPickUpType() == Pickable.PickUpType.HealthPack)
+                pickable.OnPressed.AddListener(ChangeHealthDisplay);
         }
 
         foreach (Transform weapon in weaponManager.transform)

@@ -57,4 +57,9 @@ public class AmmoCrate : Pickable
     {
         return weaponTarget.AmmoLeft < weaponTarget.MaxAmmo;
     }
+
+    override public PickUpType GetPickUpType()
+    {
+        return PickUpType.AmmoCrate;
+    }
 }

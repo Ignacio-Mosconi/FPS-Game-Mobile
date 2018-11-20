@@ -6,6 +6,11 @@ public class InteractRangeEvent : UnityEvent<string, bool, bool> {}
 
 public abstract class Pickable : MonoBehaviour
 {
+    public enum PickUpType
+    {
+        AmmoCrate, HealthPack
+    }
+
     [SerializeField] float distanceToInteract;
     
     int layerMask;
@@ -84,6 +89,7 @@ public abstract class Pickable : MonoBehaviour
     protected abstract void PickUpObject();
     protected abstract string GetPickableName();
     protected abstract bool CanPickUp();
+    public abstract PickUpType GetPickUpType();
 
     public InteractRangeEvent OnInteractRange
     {

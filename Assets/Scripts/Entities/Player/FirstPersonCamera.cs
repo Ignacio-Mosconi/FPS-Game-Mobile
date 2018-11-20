@@ -5,8 +5,10 @@ public class FirstPersonCamera : MonoBehaviour
     [Header("Viewing Attributes")]
     [SerializeField] [Range(45f, 360f)] float maxRotationSpeed = 180f;
     [SerializeField] [Range(45f, 90f)] float verticalViewRange = 90f;
+#if UNITY_ANDROID
     [SerializeField] AnimationCurve touchDeltaCurve;
-    
+#endif
+
     Transform fpsCamera;
     float rotationSpeed;
     float verAngle = 0;
@@ -15,7 +17,7 @@ public class FirstPersonCamera : MonoBehaviour
     void Awake()
     {
 #if UNITY_STANDALONE
-            GameManager.Instance.HideCursor();
+        GameManager.Instance.HideCursor();
 #endif
     }
 
@@ -36,8 +38,6 @@ public class FirstPersonCamera : MonoBehaviour
         if (InputManager.Instance.ControllerConnected)
         {
             Vector2 rotation = new Vector2(horRotation, verRotation);
-            if (rotation.sqrMagnitude > 1f)
-                rotation.Normalize();
             rotationSpeed = maxRotationSpeed * rotation.magnitude;
         }
         else
@@ -45,6 +45,7 @@ public class FirstPersonCamera : MonoBehaviour
 #else
         Vector2 rotation = new Vector2(horRotation, verRotation);
         rotationSpeed = maxRotationSpeed * touchDeltaCurve.Evaluate(rotation.magnitude);
+        Debug.Log(rotationSpeed);
 #endif
 
         horAngle += horRotation * rotationSpeed * Time.deltaTime;

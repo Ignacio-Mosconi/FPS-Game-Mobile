@@ -236,7 +236,7 @@ public class ZombieAI : MonoBehaviour
         }
     }
 
-    void StopMoving(Transform damager)
+    void StopMoving(float amount, Transform damager)
     {
         currentState = ZombieState.BeingHit;
         if (isFocusedOnTarget)

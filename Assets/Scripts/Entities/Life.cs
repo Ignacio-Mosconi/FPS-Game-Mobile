@@ -2,7 +2,7 @@
 using UnityEngine.Events;
 
 [System.Serializable]
-public class HitEvent : UnityEvent<Transform> {}
+public class HitEvent : UnityEvent<float, Transform> {}
 
 public class Life : MonoBehaviour 
 {
@@ -36,7 +36,7 @@ public class Life : MonoBehaviour
             else
             {
                 onHit.Invoke();
-                onDamagerHit.Invoke(damager);
+                onDamagerHit.Invoke(amount, damager);
             }
         }
     }

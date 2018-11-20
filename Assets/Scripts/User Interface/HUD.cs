@@ -159,7 +159,7 @@ public class HUD : MonoBehaviour
         crateButtonIconController.SetActive(controllerConnected && inRange && canPickUp);
         crateButtonIconKeyboard.SetActive(!controllerConnected && inRange && canPickUp);
 #else
-        crateButtonMobile.color = inRange ? enabledColor : disabledColor;
+        crateButtonMobile.color = inRange && canPickUp ? enabledColor : disabledColor;
 #endif
     }
 

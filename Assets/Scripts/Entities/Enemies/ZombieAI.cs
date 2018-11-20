@@ -272,6 +272,7 @@ public class ZombieAI : MonoBehaviour
             CancelInvoke("MoveAgain");
         if (currentPath)
             Destroy(currentPath);
+        attackBox.SetActive(false);
         agent.enabled = false;
         enabled = false;
     }

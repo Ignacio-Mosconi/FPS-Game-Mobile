@@ -6,9 +6,7 @@ public class FirstPersonCamera : MonoBehaviour
     [Header("Viewing Attributes")]
     [SerializeField] [Range(45f, 360f)] float maxRotationSpeed = 180f;
     [SerializeField] [Range(45f, 90f)] float verticalViewRange = 90f;
-#if UNITY_ANDROID
     [SerializeField] AnimationCurve touchDeltaCurve;
-#endif
 
     const float MIN_CAM_SHAKE = 2.5f;
     const float MAX_CAM_SHAKE = 7f;

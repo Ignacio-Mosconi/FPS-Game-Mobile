@@ -2142,6 +2142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firstMenuElement: {fileID: 1127963906089378}
+  mobileControls: {fileID: 1254800703356806}
 --- !u!114 &114095036432228046
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4719,7 +4720,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00c3c865782347f41b6358d9fba14b48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MovementRange: 100
+  MovementRange: 125
   axesToUse: 0
   horizontalAxisName: Horizontal
   verticalAxisName: Vertical
@@ -5722,6 +5723,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firstMenuElement: {fileID: 1879917545468808}
+  mobileControls: {fileID: 1254800703356806}
 --- !u!114 &114542541295944516
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8198,7 +8200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00c3c865782347f41b6358d9fba14b48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MovementRange: 100
+  MovementRange: 125
   axesToUse: 0
   horizontalAxisName: Horizontal View
   verticalAxisName: Vertical View

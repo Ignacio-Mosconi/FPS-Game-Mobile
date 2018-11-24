@@ -270,6 +270,8 @@ public class ZombieAI : MonoBehaviour
     {
         if (IsInvoking("MoveAgain"))
             CancelInvoke("MoveAgain");
+        if (IsInvoking("Attack"))
+            CancelInvoke("Attack");
         if (currentPath)
             Destroy(currentPath);
         attackBox.SetActive(false);

@@ -2755,8 +2755,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1804514630719326}
-  m_LocalRotation: {x: -0, y: -0.057705004, z: -0, w: 0.9983337}
-  m_LocalPosition: {x: 60.8, y: 0, z: 96.14}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 149, y: 1, z: 52}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4747852073307732}
@@ -3226,8 +3226,9 @@ MonoBehaviour:
   viewDistance: 15
   fieldOfView: 170
   attackRange: 1.8
-  nearDetectionDistance: 3
+  nearDetectionDistance: 4
   investigationDistance: 15
+  hearingDistance: 25
   attackAnimation: {fileID: 7400000, guid: 87d73776719a4e04192da63a9f805907, type: 2}
 --- !u!114 &114365347457325794
 MonoBehaviour:

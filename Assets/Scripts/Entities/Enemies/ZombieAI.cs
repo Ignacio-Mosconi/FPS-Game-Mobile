@@ -14,11 +14,12 @@ public class ZombieAI : MonoBehaviour
     [Header("Zombie Attributes")]
     [SerializeField] Transform[] possibleTargets;
     [SerializeField] GameObject walkPath;
-    [SerializeField] [Range(0, 100)] float viewDistance;
-    [SerializeField] [Range(0, 180)] float fieldOfView;
+    [SerializeField] [Range(0f, 100f)] float viewDistance;
+    [SerializeField] [Range(0f, 180f)] float fieldOfView;
     [SerializeField] [Range(1.75f, 5f)] float attackRange;
-    [SerializeField] [Range(1, 5)] float nearDetectionDistance;
-    [SerializeField] [Range(2, 25)] float investigationDistance;
+    [SerializeField] [Range(1f, 5f)] float nearDetectionDistance;
+    [SerializeField] [Range(2f, 25f)] float investigationDistance;
+    [SerializeField] [Range(5f, 100f)] float hearingDistance;
     
     [Header("Animations")]
     [SerializeField] AnimationClip attackAnimation;
@@ -331,6 +332,7 @@ public class ZombieAI : MonoBehaviour
         attackBox.SetActive(false);
     }
 
+    // Other Methods
     void StartListeningToNewWeapon(Weapon newWeapon)
     {
         newWeapon.OnShotHeadsUp.AddListener(StartInvestigation);
@@ -338,7 +340,7 @@ public class ZombieAI : MonoBehaviour
 
     void StartInvestigation(Vector3 destination)
     {
-        if (!currentTarget && (destination - transform.position).sqrMagnitude <= investigationDistance * investigationDistance)
+        if (!currentTarget && (destination - transform.position).sqrMagnitude <= hearingDistance * hearingDistance)
         {
             agent.speed = maxSpeed;
             onChaseStart.Invoke();

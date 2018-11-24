@@ -16,7 +16,7 @@ public class GroupsManager : MonoBehaviour
             {
                 Transform child = enemyGroups[i].GetChild(j);
 
-                if (child.gameObject.layer == LayerMask.NameToLayer("Zombies"))
+                if (child.gameObject.layer == LayerMask.NameToLayer("Zombies Main"))
                 {
                     Life life = child.GetComponent<Life>();
 

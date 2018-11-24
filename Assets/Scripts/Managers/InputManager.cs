@@ -6,7 +6,7 @@ public class InputManager : MonoBehaviour
 {
 	static InputManager instance;
 	
-	const float CONTROLLER_CHECK_INTERVAL = 10f;
+	const float CONTROLLER_CHECK_INTERVAL = 2.5f;
 
 	IInput input;
 	EventSystem eventSystem;
@@ -40,8 +40,8 @@ public class InputManager : MonoBehaviour
 				
 				inputModule.verticalAxis = "Vertical UI";
 				inputModule.horizontalAxis = "Horizontal UI";
-				inputModule.submitButton = "Select";
-				inputModule.cancelButton = "Return";
+				inputModule.submitButton = "Select Controller";
+				inputModule.cancelButton = "Return Controller";
 			}
 			
 			DontDestroyOnLoad(eventSystem.gameObject);
@@ -67,6 +67,7 @@ public class InputManager : MonoBehaviour
     public bool CheckControllerConnection()
     {
 		controllerConnected = false;
+		controllerCheckTimer = 0f;
 		
         string[] controllers = Input.GetJoystickNames();
         

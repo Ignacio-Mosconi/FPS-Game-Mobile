@@ -2,6 +2,9 @@
 using UnityEngine;
 using UnityEngine.Events;
 
+[System.Serializable]
+public class ShotEvent : UnityEvent<Vector3> {}
+
 [RequireComponent(typeof(AudioSource))]
 
 public class Weapon : MonoBehaviour 
@@ -56,6 +59,7 @@ public class Weapon : MonoBehaviour
     int shootingLayerMask = 0;
     
     UnityEvent onShot = new UnityEvent();
+    ShotEvent onShotHeadsUp = new ShotEvent();
     UnityEvent onReload = new UnityEvent();
     UnityEvent onEmptyMag = new UnityEvent();
     UnityEvent onCrosshairScale = new UnityEvent();
@@ -99,6 +103,7 @@ public class Weapon : MonoBehaviour
             {
                 Shoot();
                 onShot.Invoke();
+                onShotHeadsUp.Invoke(transform.position);
             }
            else
                 onEmptyMag.Invoke();
@@ -152,7 +157,6 @@ public class Weapon : MonoBehaviour
                                             headCollisionDmgMul : 1f;
                 
                 targetLife.TakeDamage(damage * damagePercentage * damageMultiplier, transform);
-                Debug.Log(LayerMask.LayerToName(hit.transform.gameObject.layer));
             }
             if (targetRigidbody)
             {
@@ -286,6 +290,11 @@ public class Weapon : MonoBehaviour
     public UnityEvent OnShot
     {
         get { return onShot; }
+    }
+
+    public ShotEvent OnShotHeadsUp
+    {
+        get { return onShotHeadsUp; }
     }
 
     public UnityEvent OnReload

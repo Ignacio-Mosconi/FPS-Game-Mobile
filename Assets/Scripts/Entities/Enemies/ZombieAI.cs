@@ -61,6 +61,17 @@ public class ZombieAI : MonoBehaviour
     {
         zombieLife.OnDeath.AddListener(DisableSelf);
         zombieLife.OnDamagerHit.AddListener(StopMoving);
+
+        foreach (Transform target in possibleTargets)
+        {
+            WeaponManager weaponManager = target.gameObject.GetComponentInChildren<WeaponManager>();
+            
+            if (weaponManager)
+            {
+                weaponManager.OnWeaponSwapHeadsUp.AddListener(StartListeningToNewWeapon);
+                weaponManager.CurrentWeapon.OnShotHeadsUp.AddListener(StartInvestigation);
+            }
+        }
         
         CreatePath();
     }
@@ -318,6 +329,22 @@ public class ZombieAI : MonoBehaviour
     void DisableAttackBox()
     {
         attackBox.SetActive(false);
+    }
+
+    void StartListeningToNewWeapon(Weapon newWeapon)
+    {
+        newWeapon.OnShotHeadsUp.AddListener(StartInvestigation);
+    }
+
+    void StartInvestigation(Vector3 destination)
+    {
+        if (!currentTarget && (destination - transform.position).sqrMagnitude <= investigationDistance * investigationDistance)
+        {
+            agent.speed = maxSpeed;
+            onChaseStart.Invoke();
+            currentState = ZombieState.Ivestigating;
+            agent.destination = Vector3.MoveTowards(transform.position, destination, investigationDistance);
+        }
     }
 
     // Getters & Setters

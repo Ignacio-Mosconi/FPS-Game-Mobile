@@ -5,6 +5,12 @@ public class HealthPack :  Pickable
     [SerializeField] Life playerLife;
     [SerializeField] [Range(0f, 100f)] float healAmount;
 
+    void DisableSelf()
+    {
+        gameObject.SetActive(false);
+        Destroy(GetComponent("Pickable"));
+    }
+
     override protected void PickUpObject()
     {
         playerLife.Heal(healAmount);
@@ -16,8 +22,6 @@ public class HealthPack :  Pickable
         onInteractRange.Invoke(GetPickableName(), CanPickUp(), false);
         onPressed.Invoke();
         
-        gameObject.SetActive(false);
-        Destroy(GetComponent("Pickable"));
     }
 
     override protected string GetPickableName()

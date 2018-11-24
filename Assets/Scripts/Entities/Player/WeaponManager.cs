@@ -7,6 +7,9 @@ enum ScrollWheelDir
     Up, Down 
 }
 
+[System.Serializable]
+public class SwapEvent : UnityEvent<Weapon> {}
+
 public class WeaponManager : MonoBehaviour
 {    
     Weapon currentWeapon;
@@ -14,6 +17,7 @@ public class WeaponManager : MonoBehaviour
     bool isSwapingWeapon = false;
 
     UnityEvent onWeaponSwap = new UnityEvent();
+    SwapEvent onWeaponSwapHeadsUp = new SwapEvent();
     UnityEvent onWeaponSwapStart = new UnityEvent();
 
 	void Awake ()
@@ -48,6 +52,7 @@ public class WeaponManager : MonoBehaviour
             {
                 currentWeapon = weapon.gameObject.GetComponent<Weapon>();
                 onWeaponSwap.Invoke();
+                onWeaponSwapHeadsUp.Invoke(currentWeapon);
             }
             i++;
         }
@@ -106,5 +111,10 @@ public class WeaponManager : MonoBehaviour
     public UnityEvent OnWeaponSwap
     {
         get { return onWeaponSwap; }
+    }
+
+    public SwapEvent OnWeaponSwapHeadsUp
+    {
+        get { return onWeaponSwapHeadsUp; }
     }
 }

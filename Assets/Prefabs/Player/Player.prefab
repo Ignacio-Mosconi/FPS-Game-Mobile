@@ -1646,7 +1646,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1452382057879526}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 63.58, y: 1.28, z: 60.49}
+  m_LocalPosition: {x: 63.58, y: 1.28, z: 86}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4050524811194710}
@@ -3190,6 +3190,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxRotationSpeed: 200
   verticalViewRange: 80
+  touchDeltaCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0.5
+      inSlope: 1.469067
+      outSlope: 1.469067
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.020222783
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &114720990784513648
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3201,7 +3225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ead552aff4f27764d9f5a92071b745c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
+  damage: 12
   weaponType: 1
   range: 100
   fireRate: 2
@@ -3212,8 +3236,10 @@ MonoBehaviour:
   recoilSwayLevel: 3
   recoilDuration: 0.75
   layersToIgnore:
-  - Zombies Body Colliders
+  - Zombies Main
   - Zombies Attack Boxes
+  zombiesHeadLayerName: Zombies Head
+  headCollisionDmgMul: 2
   shootAnimation: {fileID: 7400000, guid: f5bdebd7b6c1ace478419a8044d916e0, type: 2}
   reloadAnimation: {fileID: 7400000, guid: cfd34b1f10136434780ab531747f1d7f, type: 2}
   swapWeaponInAnimation: {fileID: 7400000, guid: 68fe70079aa6362419fad1cbaf91470c,
@@ -3264,8 +3290,10 @@ MonoBehaviour:
   recoilSwayLevel: 5
   recoilDuration: 0.3
   layersToIgnore:
-  - Zombies Body Colliders
+  - Zombies Main
   - Zombies Attack Boxes
+  zombiesHeadLayerName: Zombies Head
+  headCollisionDmgMul: 2
   shootAnimation: {fileID: 7400000, guid: 1238c5a207f263e4e8805a51101822a9, type: 2}
   reloadAnimation: {fileID: 7400000, guid: 50fe7a78ad2a941498058e10f96f6da8, type: 2}
   swapWeaponInAnimation: {fileID: 7400000, guid: 05656160a9aa82546a23da2bd57e94d8,

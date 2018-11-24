@@ -25,6 +25,8 @@ public class Weapon : MonoBehaviour
     
     [Header("Others")]
     [SerializeField] string[] layersToIgnore;
+    [SerializeField] string zombiesHeadLayerName;
+    [SerializeField] float headCollisionDmgMul = 2.0f;
     
     [Header("Weapon Animations")]
     [SerializeField] AnimationClip shootAnimation;
@@ -140,13 +142,17 @@ public class Weapon : MonoBehaviour
         
         if (Physics.Raycast(fpsCamera.position, (fpsCamera.forward + sway).normalized, out hit, range, shootingLayerMask))
         {
-            Life targetLife = hit.transform.GetComponent<Life>();
+            Life targetLife = hit.transform.GetComponentInParent<Life>();
             Rigidbody targetRigidbody = hit.transform.GetComponent<Rigidbody>();
 
             if (targetLife)
             {
                 float damagePercentage = 1 - (hit.transform.position - transform.position).sqrMagnitude / (range * range);
-                targetLife.TakeDamage(damage * damagePercentage, transform);
+                float damageMultiplier = (hit.transform.gameObject.layer == LayerMask.NameToLayer(zombiesHeadLayerName)) ? 
+                                            headCollisionDmgMul : 1f;
+                
+                targetLife.TakeDamage(damage * damagePercentage * damageMultiplier, transform);
+                Debug.Log(LayerMask.LayerToName(hit.transform.gameObject.layer));
             }
             if (targetRigidbody)
             {
@@ -194,7 +200,7 @@ public class Weapon : MonoBehaviour
     bool CanReload()
     {
         return !isReloading && bulletsInMag < magSize + 1 && ammoLeft > 0 &&
-                Time.time >= lastFireTime + 1 / fireRate && reloadButtonPressCounter < 0.5f;
+                Time.time >= lastFireTime + 1f / fireRate && reloadButtonPressCounter < 0.5f;
     }
 
     public bool HasFinishedFiring()

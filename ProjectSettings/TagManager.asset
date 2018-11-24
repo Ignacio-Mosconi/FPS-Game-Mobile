@@ -19,15 +19,15 @@ TagManager:
   - Terrain
   - Buildings
   - Decoration
-  - Zombies
+  - Zombies Main
   - Player
   - PickUp
   - Icon
   - Roofs
   - Citizen
-  - Zombies Body Colliders
+  - Zombies Body
   - Zombies Attack Boxes
-  - 
+  - Zombies Head
   - 
   - 
   - 

@@ -31,6 +31,8 @@ public class LevelManager : MonoBehaviour
         foreach (MoveCitizens citizenGroup in citizensGroups)
             citizenGroup.OnAllRescued.AddListener(WinLevel);
 
+        ZombieAI.OnFirstPlayerDetection.AddListener(NotifyFirstZombieDetection);
+
         totalOfCitizenGroups = citizensGroups.Length;
 
         playerLife.OnDeath.AddListener(FailLevel);
@@ -38,7 +40,7 @@ public class LevelManager : MonoBehaviour
 
     void Update()
     {
-        if (!music.isPlaying && !PauseMenu.IsPaused)
+        if (ZombieAI.FirstPlayerDetection && !music.isPlaying && !PauseMenu.IsPaused)
         {
             musicTimer += Time.deltaTime;
             
@@ -71,6 +73,15 @@ public class LevelManager : MonoBehaviour
             winLevelUI.SetActive(true);
             hudUI.SetActive(false);
         }
+    }
+
+    void NotifyFirstZombieDetection()
+    {
+        if (!ZombieAI.FirstPlayerDetection)
+            ZombieAI.FirstPlayerDetection = true;
+        ZombieAI.OnFirstPlayerDetection.RemoveListener(NotifyFirstZombieDetection);
+
+        music.Play();
     }
 
     public void RestartLevel()

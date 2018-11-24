@@ -31,6 +31,8 @@ public class ZombieAI : MonoBehaviour
     const float ROTATION_DEGREES_DELTA = 10f;
     const float DETECTION_TARGET_VELOCITY = 0.5f;
     
+    static bool firstPlayerDetection = false;
+    
     NavMeshAgent agent;
     ZombieState currentState;
     Life zombieLife;
@@ -42,6 +44,9 @@ public class ZombieAI : MonoBehaviour
     float maxSpeed;
     float walkSpeed;
     bool isFocusedOnTarget;
+
+    
+    static UnityEvent onFirstPlayerDetection = new UnityEvent();
 
     UnityEvent onChaseStart = new UnityEvent();
     UnityEvent onChaseFinish = new UnityEvent();
@@ -218,6 +223,12 @@ public class ZombieAI : MonoBehaviour
                 }
             }
         }
+
+        if (!firstPlayerDetection && currentTarget)
+        {
+            firstPlayerDetection = true;
+            onFirstPlayerDetection.Invoke();
+        }
     }  
 
     void ChaseTarget()
@@ -351,6 +362,12 @@ public class ZombieAI : MonoBehaviour
     }
 
     // Getters & Setters
+    public static bool FirstPlayerDetection
+    {
+        get { return firstPlayerDetection; }
+        set { firstPlayerDetection = value; }
+    }
+
     public float MaxSpeed
     {
         get { return maxSpeed; }
@@ -374,5 +391,10 @@ public class ZombieAI : MonoBehaviour
     public UnityEvent OnAttack
     {
         get { return onAttack; }
+    }
+
+    public static UnityEvent OnFirstPlayerDetection
+    {
+        get { return onFirstPlayerDetection; }
     }
 }

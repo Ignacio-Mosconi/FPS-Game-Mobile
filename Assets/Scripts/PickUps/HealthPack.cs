@@ -5,6 +5,8 @@ public class HealthPack :  Pickable
     [SerializeField] Life playerLife;
     [SerializeField] [Range(0f, 100f)] float healAmount;
 
+    bool isPickingUpHealth = false;
+
     void DisableSelf()
     {
         gameObject.SetActive(false);
@@ -13,15 +15,19 @@ public class HealthPack :  Pickable
 
     override protected void PickUpObject()
     {
-        playerLife.Heal(healAmount);
- 
-        iconCanvas.enabled = false;
-        pickUpSound.Play();
-        Invoke("DisableSelf", pickUpSound.clip.length);
+        if (!isPickingUpHealth)
+        {
+            isPickingUpHealth = true;
 
-        onInteractRange.Invoke(GetPickableName(), CanPickUp(), false);
-        onPressed.Invoke();
-        
+            playerLife.Heal(healAmount);
+    
+            iconCanvas.enabled = false;
+            pickUpSound.Play();
+            Invoke("DisableSelf", pickUpSound.clip.length);
+
+            onInteractRange.Invoke(GetPickableName(), CanPickUp(), false);
+            onPressed.Invoke();
+        }
     }
 
     override protected string GetPickableName()

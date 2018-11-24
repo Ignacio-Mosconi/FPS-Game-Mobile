@@ -343,7 +343,8 @@ public class ZombieAI : MonoBehaviour
             agent.speed = maxSpeed;
             onChaseStart.Invoke();
             currentState = ZombieState.Ivestigating;
-            agent.destination = Vector3.MoveTowards(transform.position, destination, investigationDistance);
+            if (agent.enabled && !agent.isStopped)
+                agent.destination = Vector3.MoveTowards(transform.position, destination, investigationDistance);
         }
     }
 

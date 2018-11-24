@@ -8,11 +8,15 @@ public class LevelManager : MonoBehaviour
     [SerializeField] GameObject failLevelUI;
     [SerializeField] GameObject winLevelUI;
     [SerializeField] GameObject hudUI;
+    [SerializeField] AudioSource music;
+    
+    float MUSIC_START_DELAY = 15f;
     
     static LevelManager instance;
-    
+
     bool gameOver;
     int totalOfCitizenGroups;
+    float musicTimer = 0f;
 
     void Awake()
     {
@@ -30,6 +34,20 @@ public class LevelManager : MonoBehaviour
         totalOfCitizenGroups = citizensGroups.Length;
 
         playerLife.OnDeath.AddListener(FailLevel);
+    }
+
+    void Update()
+    {
+        if (!music.isPlaying && !PauseMenu.IsPaused)
+        {
+            musicTimer += Time.deltaTime;
+            
+            if (musicTimer >= MUSIC_START_DELAY)
+            {
+                musicTimer = 0f;
+                music.Play();
+            }
+        }
     }
 
     void FailLevel()

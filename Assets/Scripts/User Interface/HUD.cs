@@ -137,7 +137,7 @@ public class HUD : MonoBehaviour
             {
                 if (localScale.x < 1.25f)
                 {
-                    float scale = Mathf.Lerp(localScale.x, 1.25f, 3.0f);
+                    float scale = Mathf.Lerp(localScale.x, 1.25f, 3.0f * Time.deltaTime);
 
                     localScale.Set(
                         scale, // X
@@ -152,7 +152,7 @@ public class HUD : MonoBehaviour
             {
                 if (localScale.x > 1.0f)
                 {
-                    float scale = Mathf.Lerp(localScale.x, 1.0f, 3.0f);
+                    float scale = Mathf.Lerp(localScale.x, 1.0f, 3.0f * Time.deltaTime);
 
                     localScale.Set(
                         scale, // X

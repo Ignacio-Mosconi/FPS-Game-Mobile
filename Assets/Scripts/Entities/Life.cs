@@ -54,7 +54,7 @@ public class Life : MonoBehaviour
 
     void Die(float deathDuration)
     {
-        if (transform.gameObject.layer == LayerMask.NameToLayer("Zombies"))
+        if (transform.gameObject.layer == LayerMask.NameToLayer("Zombies Main"))
             transform.SetParent(transform.parent.parent); // The grandfather.
         onDeath.Invoke();
         Destroy(gameObject, deathDuration + deadBodyDuration);

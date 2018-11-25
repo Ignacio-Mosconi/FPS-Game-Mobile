@@ -12,13 +12,11 @@ public class NotifyAtTrigger : MonoBehaviour
 
     void OnTriggerEnter()
     {
-        Debug.Log("Enter to " + name);
         isTriggering = true;
     }
 
     void OnTriggerExit()
     {
-        Debug.Log("Exit from " + name);
         isTriggering = false;
     }
 

@@ -109,7 +109,7 @@ public class HUD : MonoBehaviour
             {
                 Transform child = enemyGroups[i].GetChild(j);
 
-                if (child.gameObject.layer == LayerMask.NameToLayer("Zombies"))
+                if (child.gameObject.layer == LayerMask.NameToLayer("Zombies Main"))
                 {
                     Life life = child.GetComponent<Life>();
 
@@ -122,7 +122,8 @@ public class HUD : MonoBehaviour
             }
 
             enemyGroupText.Add(zombiesTextTransform[i].GetComponentInChildren<TextMeshProUGUI>());
-            enemyGroupText[i].text = "G" + i+1 + ": " + maxZombies[i] + "/" + maxZombies[i];
+            int group = i + 1;
+            enemyGroupText[i].text = "G" + group + ": " + maxZombies[i] + "/" + maxZombies[i];
         }
     }
 
@@ -252,8 +253,12 @@ public class HUD : MonoBehaviour
     {
         for (int i = 0; i < enemyGroups.Count; i++)
         {
-            float zombiesLeft = enemyGroups[i].childCount / 2;
-            float percentage = zombiesLeft / maxZombies[i];
+            float countOfZombies = 0;
+            for (int j = 0; j < enemyGroups[i].childCount; j++)
+                if (enemyGroups[i].GetChild(j).gameObject.layer == LayerMask.NameToLayer("Zombies Main"))
+                    countOfZombies++;
+
+            float percentage = countOfZombies / maxZombies[i];
 
             if (percentage < 0.4f)
             {
@@ -264,7 +269,9 @@ public class HUD : MonoBehaviour
                 else
                     enemyGroupText[i].color = new Color(0.3f, 0.3f,  0.3f,   enemyGroupText[i].color.a); // Black Grey
             }
-            enemyGroupText[i].text = "G" + i+1 + ": " + enemyGroups[i].childCount / 2 + "/" + maxZombies[i];
+
+            int group = i + 1;
+            enemyGroupText[i].text = "G" + group + ": " + countOfZombies + "/" + maxZombies[i];
         }
     }
 }

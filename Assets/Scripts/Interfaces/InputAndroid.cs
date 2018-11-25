@@ -14,12 +14,12 @@ public class InputAndroid : IInput
 
 	public float GetHorizontalViewAxis()
 	{
-		return CrossPlatformInputManager.GetAxis("Mouse X");
+		return CrossPlatformInputManager.GetAxis("Horizontal View");
 	}
 
 	public float GetVerticalViewAxis()
 	{
-		return CrossPlatformInputManager.GetAxis("Mouse Y");
+		return CrossPlatformInputManager.GetAxis("Vertical View");
 	}
 
 	public float GetSwapWeaponAxis()
@@ -64,16 +64,16 @@ public class InputAndroid : IInput
 
 	public bool GetPauseButton()
 	{
-		return CrossPlatformInputManager.GetButtonDown("Cancel");
+		return CrossPlatformInputManager.GetButtonDown("Pause");
 	}
 
     public bool GetLeftUIButton()
     {
-        return CrossPlatformInputManager.GetAxis("Horizontal UI") < 0.5f;
+        return CrossPlatformInputManager.GetAxis("Horizontal UI") == -1f;
     }
 	
     public bool GetRightUIButton()
     {
-        return CrossPlatformInputManager.GetAxis("Horizontal UI") > 0.5f;
+        return CrossPlatformInputManager.GetAxis("Horizontal UI") == 1f;
     }
 }

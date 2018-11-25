@@ -39,6 +39,7 @@ public class PauseMenu : MonoBehaviour
     IEnumerator Initialize()
     {
         yield return new WaitForSecondsRealtime(0.1f);
+        wasControllerConnected = false;
         wasInitialized = true;
     }
 

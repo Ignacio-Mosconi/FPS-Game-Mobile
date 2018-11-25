@@ -4,6 +4,7 @@ using UnityEngine.Events;
 public class EndLevelMenu : MonoBehaviour
 {
     [SerializeField] GameObject firstMenuElement;
+    [SerializeField] GameObject mobileControls;
     
     UnityEvent onMenuToggle = new UnityEvent();
 
@@ -11,6 +12,7 @@ public class EndLevelMenu : MonoBehaviour
     {
         Time.timeScale = 0f;
         onMenuToggle.Invoke();
+#if UNITY_STANDALONE
         if (InputManager.Instance.CheckControllerConnection())
             InputManager.Instance.ChangeFirstMenuItemSelected(firstMenuElement);
         else
@@ -18,6 +20,9 @@ public class EndLevelMenu : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
+#else
+        mobileControls.SetActive(false);
+#endif
     }
 
     public void Restart()

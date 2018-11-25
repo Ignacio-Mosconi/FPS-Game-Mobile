@@ -4,77 +4,91 @@ public class InputPC : IInput
 {
 	public float GetHorizontalAxis()
 	{
-		return Input.GetAxis("Horizontal");
+		return (InputManager.Instance.ControllerConnected) ? Input.GetAxis("Horizontal Controller") :
+															Input.GetAxis("Horizontal");			
 	}
 
 	public float GetVerticalAxis()
 	{
-		return Input.GetAxis("Vertical");
+		return (InputManager.Instance.ControllerConnected) ? Input.GetAxis("Vertical Controller") :
+															Input.GetAxis("Vertical");
 	}
 
 	public float GetHorizontalViewAxis()
 	{
-		return Input.GetAxis("Mouse X");
+		return (InputManager.Instance.ControllerConnected) ? Input.GetAxis("Horizontal View Controller") :
+															Input.GetAxis("Horizontal View");
 	}
 
 	public float GetVerticalViewAxis()
 	{
-		return Input.GetAxis("Mouse Y");
+		return (InputManager.Instance.ControllerConnected) ? Input.GetAxis("Vertical View Controller") :
+															Input.GetAxis("Vertical View");
 	}
 
 	public float GetSwapWeaponAxis()
 	{
 		return (InputManager.Instance.ControllerConnected && Input.GetButtonDown("Swap Weapon")) ?
-				1.0f : Input.GetAxis("Mouse Scroll Wheel");
+				1.0f : Input.GetAxis("Swap Weapon");
 	}
 
 	public bool GetFireButton()
 	{
-		return Input.GetButton("Fire");
+		return (InputManager.Instance.ControllerConnected) ? Input.GetButton("Fire Controller") :
+															Input.GetButton("Fire");
 	}
 
 	public bool GetReloadButton()
 	{
-		return Input.GetButtonUp("Reload");
+		return (InputManager.Instance.ControllerConnected) ? Input.GetButtonUp("Reload Controller") :
+															Input.GetButtonUp("Reload");
 	}
 
 	public bool GetJumpButton()
 	{
-		return Input.GetButtonDown("Jump");
+		return (InputManager.Instance.ControllerConnected) ? Input.GetButtonDown("Jump Controller") :
+															Input.GetButtonDown("Jump");
 	}
 
 	public bool GetSprintButton()
 	{
-		return Input.GetButton("Sprint");
+		return (!InputManager.Instance.ControllerConnected) ? Input.GetButton("Sprint") :
+																false;
 	}
 
 	public bool GetSprintButtonModifier()
 	{
-		return Input.GetButton("Sprint Controller");
+		return (InputManager.Instance.ControllerConnected) ? Input.GetButton("Sprint Controller") :
+																false;
 	}
 
 	public bool GetInteractButton()
 	{
-		return Input.GetButtonDown("Interact");
+		return (!InputManager.Instance.ControllerConnected) ? Input.GetButtonDown("Interact") :
+																false;
 	}
 
 	public bool GetInteractHoldButton()
 	{
-		return Input.GetButton("Interact Hold");
+		return (InputManager.Instance.ControllerConnected) ? Input.GetButton("Interact Controller") :
+																false;
 	}
 
     public bool GetPauseButton()
     {
-        return Input.GetButtonDown("Cancel");
+        return (InputManager.Instance.ControllerConnected) ? Input.GetButtonDown("Pause Controller") :
+																Input.GetButtonDown("Pause");
     }
 
     public bool GetLeftUIButton()
     {
-        return Input.GetAxis("Horizontal UI") == -1f;
+        return (InputManager.Instance.ControllerConnected) ? Input.GetAxis("Horizontal UI") == -1f :
+																false;
     }
 
     public bool GetRightUIButton()
     {
-        return Input.GetAxis("Horizontal UI") == 1f;
+        return (InputManager.Instance.ControllerConnected) ? Input.GetAxis("Horizontal UI") == 1f :
+																false;
     }
 }

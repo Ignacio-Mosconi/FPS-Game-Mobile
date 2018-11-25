@@ -14,11 +14,12 @@ public class ZombieAI : MonoBehaviour
     [Header("Zombie Attributes")]
     [SerializeField] Transform[] possibleTargets;
     [SerializeField] GameObject walkPath;
-    [SerializeField] [Range(0, 100)] float viewDistance;
-    [SerializeField] [Range(0, 180)] float fieldOfView;
+    [SerializeField] [Range(0f, 100f)] float viewDistance;
+    [SerializeField] [Range(0f, 180f)] float fieldOfView;
     [SerializeField] [Range(1.75f, 5f)] float attackRange;
-    [SerializeField] [Range(1, 5)] float nearDetectionDistance;
-    [SerializeField] [Range(2, 25)] float investigationDistance;
+    [SerializeField] [Range(1f, 5f)] float nearDetectionDistance;
+    [SerializeField] [Range(2f, 25f)] float investigationDistance;
+    [SerializeField] [Range(5f, 100f)] float hearingDistance;
     
     [Header("Animations")]
     [SerializeField] AnimationClip attackAnimation;
@@ -29,6 +30,8 @@ public class ZombieAI : MonoBehaviour
     const float ATTACK_RANGE_OUT_WAIT_TIME = 0.75f;
     const float ROTATION_DEGREES_DELTA = 10f;
     const float DETECTION_TARGET_VELOCITY = 0.5f;
+    
+    static bool firstPlayerDetection = false;
     
     NavMeshAgent agent;
     ZombieState currentState;
@@ -41,6 +44,9 @@ public class ZombieAI : MonoBehaviour
     float maxSpeed;
     float walkSpeed;
     bool isFocusedOnTarget;
+
+    
+    static UnityEvent onFirstPlayerDetection = new UnityEvent();
 
     UnityEvent onChaseStart = new UnityEvent();
     UnityEvent onChaseFinish = new UnityEvent();
@@ -61,6 +67,17 @@ public class ZombieAI : MonoBehaviour
     {
         zombieLife.OnDeath.AddListener(DisableSelf);
         zombieLife.OnDamagerHit.AddListener(StopMoving);
+
+        foreach (Transform target in possibleTargets)
+        {
+            WeaponManager weaponManager = target.gameObject.GetComponentInChildren<WeaponManager>();
+            
+            if (weaponManager)
+            {
+                weaponManager.OnWeaponSwapHeadsUp.AddListener(StartListeningToNewWeapon);
+                weaponManager.CurrentWeapon.OnShotHeadsUp.AddListener(StartInvestigation);
+            }
+        }
         
         CreatePath();
     }
@@ -206,6 +223,12 @@ public class ZombieAI : MonoBehaviour
                 }
             }
         }
+
+        if (!firstPlayerDetection && currentTarget)
+        {
+            firstPlayerDetection = true;
+            onFirstPlayerDetection.Invoke();
+        }
     }  
 
     void ChaseTarget()
@@ -270,6 +293,8 @@ public class ZombieAI : MonoBehaviour
     {
         if (IsInvoking("MoveAgain"))
             CancelInvoke("MoveAgain");
+        if (IsInvoking("Attack"))
+            CancelInvoke("Attack");
         if (currentPath)
             Destroy(currentPath);
         attackBox.SetActive(false);
@@ -318,7 +343,31 @@ public class ZombieAI : MonoBehaviour
         attackBox.SetActive(false);
     }
 
+    // Other Methods
+    void StartListeningToNewWeapon(Weapon newWeapon)
+    {
+        newWeapon.OnShotHeadsUp.AddListener(StartInvestigation);
+    }
+
+    void StartInvestigation(Vector3 destination)
+    {
+        if (!currentTarget && (destination - transform.position).sqrMagnitude <= hearingDistance * hearingDistance)
+        {
+            agent.speed = maxSpeed;
+            onChaseStart.Invoke();
+            currentState = ZombieState.Ivestigating;
+            if (agent.enabled && !agent.isStopped)
+                agent.destination = Vector3.MoveTowards(transform.position, destination, investigationDistance);
+        }
+    }
+
     // Getters & Setters
+    public static bool FirstPlayerDetection
+    {
+        get { return firstPlayerDetection; }
+        set { firstPlayerDetection = value; }
+    }
+
     public float MaxSpeed
     {
         get { return maxSpeed; }
@@ -342,5 +391,10 @@ public class ZombieAI : MonoBehaviour
     public UnityEvent OnAttack
     {
         get { return onAttack; }
+    }
+
+    public static UnityEvent OnFirstPlayerDetection
+    {
+        get { return onFirstPlayerDetection; }
     }
 }

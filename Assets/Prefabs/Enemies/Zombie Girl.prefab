@@ -172,8 +172,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4937459226606690}
   - component: {fileID: 95408912230957984}
-  - component: {fileID: 136279483432129308}
   - component: {fileID: 195776102037078542}
+  - component: {fileID: 136420170354515276}
   - component: {fileID: 114541367227730550}
   - component: {fileID: 114643109547879248}
   - component: {fileID: 114713386595519070}
@@ -728,7 +728,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4134958273475880}
-  m_Layer: 11
+  - component: {fileID: 135212491469375296}
+  m_Layer: 19
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -788,7 +789,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4637895707526460}
-  m_Layer: 11
+  - component: {fileID: 136225375551776034}
+  m_Layer: 17
   m_Name: Hips
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -941,22 +943,6 @@ GameObject:
   - component: {fileID: 4089872992171484}
   m_Layer: 11
   m_Name: RightHandPinky2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &1904778398699726
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4182350423155758}
-  - component: {fileID: 136638121625865272}
-  m_Layer: 17
-  m_Name: Body Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1253,19 +1239,6 @@ Transform:
   - {fileID: 4561131104489460}
   m_Father: {fileID: 4600187922058058}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4182350423155758
-Transform:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1904778398699726}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4937459226606690}
-  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4197799047599556
 Transform:
@@ -1924,7 +1897,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1186911932948620}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 169.9563, y: 1, z: 59.948326}
+  m_LocalPosition: {x: 64.5, y: 0.182, z: 114.68}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4637895707526460}
@@ -1933,7 +1906,6 @@ Transform:
   - {fileID: 4301762326586412}
   - {fileID: 224367998361368886}
   - {fileID: 4491635895040612}
-  - {fileID: 4182350423155758}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2480,24 +2452,10 @@ MonoBehaviour:
   viewDistance: 20
   fieldOfView: 180
   attackRange: 1.8
-  nearDetectionDistance: 4
-  investigationDistance: 18
+  nearDetectionDistance: 5
+  investigationDistance: 20
+  hearingDistance: 40
   attackAnimation: {fileID: 7400000, guid: 87d73776719a4e04192da63a9f805907, type: 2}
-  onChaseStart:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  onChaseFinish:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  onAttack:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114713386595519070
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2512,20 +2470,6 @@ MonoBehaviour:
   maxHealth: 100
   deadBodyDuration: 60
   deathAnimation: {fileID: 7400000, guid: 83750dc6a4f141c49bf3cff317770d64, type: 2}
-  onHit:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  onDeath:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  onDamagerHit:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: HitEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!114 &114821191805625524
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2589,25 +2533,37 @@ MonoBehaviour:
   chaseSound: {fileID: 82613503097903766}
   attackSound: {fileID: 82744242564148844}
   hitSound: {fileID: 82118890849263778}
---- !u!136 &136279483432129308
+--- !u!135 &135212491469375296
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1741238935965732}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.18
+  m_Center: {x: 0, y: 0.02, z: 0}
+--- !u!136 &136225375551776034
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1759313002923394}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.31274986
+  m_Height: 1.3324163
+  m_Direction: 1
+  m_Center: {x: 0, y: -0.2, z: 0}
+--- !u!136 &136420170354515276
 CapsuleCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1186911932948620}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.31274986
-  m_Height: 1.6485245
-  m_Direction: 1
-  m_Center: {x: 0.011453629, y: 0.81308043, z: 0}
---- !u!136 &136638121625865272
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1904778398699726}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1

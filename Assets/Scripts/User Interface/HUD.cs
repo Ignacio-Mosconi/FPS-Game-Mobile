@@ -15,17 +15,21 @@ public class HUD : MonoBehaviour
     [SerializeField] GameObject crateButtonIconController;
     [SerializeField] Image crateButtonMobile;
     [SerializeField] GameObject mobileControls;
-    
+    [SerializeField] Transform[] zombiesTextTransform;
+
     [Header("References")]
     [SerializeField] PlayerAnimation playerAnimation;
     [SerializeField] Life playerLife;
     [SerializeField] WeaponManager weaponManager;
     [SerializeField] Transform cratesHolder;
     [SerializeField] Transform healthPacksHolder;
-    
+    [SerializeField] List<Transform> enemyGroups;
+    [SerializeField] List<NotifyAtTrigger> zombieZones;
+
     const float CRITICAL_LIFE_PERC = 0.25f;
     const float CRITICAL_AMMO_PERC = 0.25f;
-    
+    const float MIN_TRANSPARENCY   = 0.40f;
+
     List<Pickable> pickables;
 #if UNITY_ANDROID
     Color enabledColor;
@@ -34,6 +38,8 @@ public class HUD : MonoBehaviour
     float criticalLife = 0f;
     int criticalMagAmmo = 0;
     int criticalAmmoLeft = 0;
+    List<TextMeshProUGUI> enemyGroupText;
+    List<int> maxZombies;
 
     void Awake()
     {
@@ -91,7 +97,73 @@ public class HUD : MonoBehaviour
 #if UNITY_ANDROID
         crateButtonMobile.color = disabledColor;
 #endif
-	}
+
+        // Zombies texts
+        enemyGroupText = new List<TextMeshProUGUI>();
+        maxZombies = new List<int>();
+
+        for (int i = 0; i < enemyGroups.Count; i++)
+        {
+            maxZombies.Add(0);
+            for (int j = 0; j < enemyGroups[i].childCount; j++)
+            {
+                Transform child = enemyGroups[i].GetChild(j);
+
+                if (child.gameObject.layer == LayerMask.NameToLayer("Zombies"))
+                {
+                    Life life = child.GetComponent<Life>();
+
+                    if (!life) Debug.Log("No life component at " + life.name);
+
+                    life.OnDeath.AddListener(UpdateZombieTextValues);
+
+                    maxZombies[i]++;
+                }
+            }
+
+            enemyGroupText.Add(zombiesTextTransform[i].GetComponentInChildren<TextMeshProUGUI>());
+            enemyGroupText[i].text = "G" + i+1 + ": " + maxZombies[i] + "/" + maxZombies[i];
+        }
+    }
+
+    void Update()
+    {
+        for (int i = 0; i < zombieZones.Count; i++)
+        {
+            Vector3 localScale = zombiesTextTransform[i].localScale;
+            
+            if (zombieZones[i].IsTriggering)
+            {
+                if (localScale.x < 1.25f)
+                {
+                    float scale = Mathf.Lerp(localScale.x, 1.25f, 3.0f);
+
+                    localScale.Set(
+                        scale, // X
+                        scale, // y
+                        1.0f   // z
+                        );
+
+                    zombiesTextTransform[i].localScale = localScale;
+                }
+            }
+            else
+            {
+                if (localScale.x > 1.0f)
+                {
+                    float scale = Mathf.Lerp(localScale.x, 1.0f, 3.0f);
+
+                    localScale.Set(
+                        scale, // X
+                        scale, // y
+                        1.0f   // z
+                        );
+
+                    zombiesTextTransform[i].localScale = localScale;
+                }
+            }
+        }
+    }
 
     void CrosshairEnabledToggle()
     {
@@ -174,5 +246,25 @@ public class HUD : MonoBehaviour
         float newScale = weaponManager.CurrentWeapon.CrosshairScaling;
         
         crosshair.transform.localScale = new Vector2(newScale, newScale);
+    }
+
+    void UpdateZombieTextValues()
+    {
+        for (int i = 0; i < enemyGroups.Count; i++)
+        {
+            float zombiesLeft = enemyGroups[i].childCount / 2;
+            float percentage = zombiesLeft / maxZombies[i];
+
+            if (percentage < 0.4f)
+            {
+                if (percentage > 0.2f)
+                    enemyGroupText[i].color = new Color(1.0f, 0.92f, 0.016f, enemyGroupText[i].color.a); // Yellow
+                else if (percentage > 0.0f)
+                    enemyGroupText[i].color = new Color(1.0f, 0.0f,  0.0f,   enemyGroupText[i].color.a); // Red
+                else
+                    enemyGroupText[i].color = new Color(0.3f, 0.3f,  0.3f,   enemyGroupText[i].color.a); // Black Grey
+            }
+            enemyGroupText[i].text = "G" + i+1 + ": " + enemyGroups[i].childCount / 2 + "/" + maxZombies[i];
+        }
     }
 }

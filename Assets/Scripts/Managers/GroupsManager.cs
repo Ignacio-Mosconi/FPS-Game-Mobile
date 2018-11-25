@@ -33,14 +33,14 @@ public class GroupsManager : MonoBehaviour
         // Citizens will run to safe only by killing 
         if (enemyGroups[0].childCount == 0 || enemyGroups[0].childCount == 1)
         {
-            Debug.Log("Zombie group exterminated.");
+            //Debug.Log("Zombie group exterminated.");
             CheckCitizenGroupState(0);
             enemyGroups.RemoveAt(0);
             while (enemyGroups.Count > 0)
             {
                 if (enemyGroups[0].childCount == 0 || enemyGroups[0].childCount == 1)
                 {
-                    Debug.Log("Zombie group exterminated.");
+                    //Debug.Log("Zombie group exterminated.");
                     CheckCitizenGroupState(0);
                     enemyGroups.RemoveAt(0);
                 }

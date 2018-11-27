@@ -44,7 +44,9 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 284def06031e81b4491ac31a9ab6f919, type: 3}
   - {fileID: 21300000, guid: 9c5c42d6a6b167d4ba9d0e3b05d00589, type: 3}
   - {fileID: 21300000, guid: c14dcc27505b06b45a18dcc22c387ab5, type: 3}
+  - {fileID: 21300000, guid: 558bb0f8996dd724eaaab4ce7b8ba26b, type: 3}
   - {fileID: 21300000, guid: 773ca93b129ab604ab4c016fc8a8dbd3, type: 3}
+  - {fileID: 21300000, guid: b36c8f6d1475a1842b752e55fabdb579, type: 3}
   - {fileID: 21300000, guid: eb505d7ebda9e024cb435185301a11eb, type: 3}
   - {fileID: 21300000, guid: dd5e452f0b799f1449a218407a6cb6f0, type: 3}
   m_PackedSpriteNamesToIndex:
@@ -58,7 +60,9 @@ SpriteAtlas:
   - Health HUD
   - Enemy Minimap Icon
   - Interact Button - Controller Icon
+  - Citizen Minimap Icon
   - Swap Weapon Button
+  - Ammo HUD
   - Interact Button
   - Pick Up Minimap Icon
   m_Tag: HUD & Minimap

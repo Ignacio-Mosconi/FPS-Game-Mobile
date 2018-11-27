@@ -65,7 +65,6 @@ public class LevelManager : MonoBehaviour
     void WinLevel()
     {
         totalOfCitizenGroups--;
-        Debug.Log(totalOfCitizenGroups);
 
         if (totalOfCitizenGroups <= 0 && !gameOver)
         {

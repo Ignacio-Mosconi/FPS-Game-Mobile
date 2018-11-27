@@ -263,11 +263,11 @@ public class HUD : MonoBehaviour
             if (percentage < 0.4f)
             {
                 if (percentage > 0.2f)
-                    enemyGroupText[i].color = new Color(1.0f, 0.92f, 0.016f, enemyGroupText[i].color.a); // Yellow
+                    enemyGroupText[i].color = Color.yellow;
                 else if (percentage > 0.0f)
-                    enemyGroupText[i].color = new Color(1.0f, 0.0f,  0.0f,   enemyGroupText[i].color.a); // Red
+                    enemyGroupText[i].color = Color.red;
                 else
-                    enemyGroupText[i].color = new Color(0.3f, 0.3f,  0.3f,   enemyGroupText[i].color.a); // Black Grey
+                    enemyGroupText[i].color = new Color(0.3f, 0.3f,  0.3f, 1.0f); // Black Grey
             }
 
             int group = i + 1;

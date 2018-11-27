@@ -8,7 +8,7 @@ public class CitizenAI : MonoBehaviour
     NavMeshAgent agent;
     GameObject currentPath;
 
-    const float maxSpeedDelta = 0.5f;
+    const float maxSpeedDelta = 1.0f;
     float maxSpeed;
 
     UnityEvent onRescued = new UnityEvent();
@@ -29,8 +29,6 @@ public class CitizenAI : MonoBehaviour
     {
         if (!agent.pathPending && agent.remainingDistance < agent.stoppingDistance)
         {
-            // Here the Citizen will start to dissapear, and when the transparent is = 0 the citizen will be destroyed.
-
             Destroy(gameObject);
         }
     }

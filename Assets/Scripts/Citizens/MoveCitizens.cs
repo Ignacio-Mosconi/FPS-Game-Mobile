@@ -31,8 +31,6 @@ public class MoveCitizens : MonoBehaviour
         // Checked by 1 because this function is called before the last Citizen is destroyed.
         if (transform.childCount <= 1)
         {
-            Debug.Log("Citizen group rescued.");
-
             onAllRescued.Invoke();
         }
     }

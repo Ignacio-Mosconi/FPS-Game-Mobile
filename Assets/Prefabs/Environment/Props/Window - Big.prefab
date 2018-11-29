@@ -19,6 +19,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4427649639649784}
+  - component: {fileID: 65842918911292870}
   m_Layer: 10
   m_Name: Window - Big
   m_TagString: Untagged
@@ -82,7 +83,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1111593712607190}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -68.734375, y: -5.915264, z: -17.563751}
+  m_LocalPosition: {x: -68.734375, y: -5.915264, z: -17.720001}
   m_LocalScale: {x: 1.01, y: 1, z: 1}
   m_Children:
   - {fileID: 4452869871043550}
@@ -217,3 +218,15 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1366799993684546}
   m_Mesh: {fileID: 4300000, guid: 67450e76c85a8104291ac3f12a171af7, type: 3}
+--- !u!65 &65842918911292870
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1111593712607190}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10, y: 3, z: 0.2}
+  m_Center: {x: 0.014669589, y: 1.5036919, z: 0}

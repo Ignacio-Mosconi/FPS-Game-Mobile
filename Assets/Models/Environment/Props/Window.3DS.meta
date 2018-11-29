@@ -56,6 +56,14 @@ ModelImporter:
     4300010: Line13
     4300012: Line02
     4300014: BLIND
+    6400000: BLIND
+    6400002: Line02
+    6400004: Line04
+    6400006: Line05
+    6400008: Line06
+    6400010: Line07
+    6400012: Line13
+    6400014: Obj_000003
     2186277476908879412: ImportLogs
   externalObjects:
   - first:
@@ -105,7 +113,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 0.1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1

@@ -119,6 +119,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4722821798541030}
+  - component: {fileID: 65721114780758680}
   m_Layer: 10
   m_Name: Window - Blindless
   m_TagString: Untagged
@@ -666,3 +667,15 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1491738746015314}
   m_Mesh: {fileID: 4300014, guid: 1061c1db2ecf93746aca2d32af75c3a0, type: 3}
+--- !u!65 &65721114780758680
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1496148007924664}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.601116, z: 5.588939}
+  m_Center: {x: 0.000000002969052, y: 1.846285, z: 0.055293903}

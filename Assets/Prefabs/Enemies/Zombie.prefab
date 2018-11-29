@@ -3228,7 +3228,7 @@ MonoBehaviour:
   attackRange: 1.8
   nearDetectionDistance: 4
   investigationDistance: 15
-  hearingDistance: 25
+  hearingDistance: 20
   attackAnimation: {fileID: 7400000, guid: 87d73776719a4e04192da63a9f805907, type: 2}
 --- !u!114 &114365347457325794
 MonoBehaviour:

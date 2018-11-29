@@ -1,0 +1,157 @@
+fileFormatVersion: 2
+guid: 1061c1db2ecf93746aca2d32af75c3a0
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: BLIND
+    100002: Group01
+    100004: Group02
+    100006: HORIZONTAL
+    100008: Line02
+    100010: Line04
+    100012: Line05
+    100014: Line06
+    100016: Line07
+    100018: Line13
+    100020: Obj_000003
+    100022: //RootNode
+    100024: window and
+    400000: BLIND
+    400002: Group01
+    400004: Group02
+    400006: HORIZONTAL
+    400008: Line02
+    400010: Line04
+    400012: Line05
+    400014: Line06
+    400016: Line07
+    400018: Line13
+    400020: Obj_000003
+    400022: //RootNode
+    400024: window and
+    2100000: 02 - Default
+    2100002: 03 - Default
+    2100004: Wood_Cedfence
+    2300000: BLIND
+    2300002: Line02
+    2300004: Line04
+    2300006: Line05
+    2300008: Line06
+    2300010: Line07
+    2300012: Line13
+    2300014: Obj_000003
+    3300000: BLIND
+    3300002: Line02
+    3300004: Line04
+    3300006: Line05
+    3300008: Line06
+    3300010: Line07
+    3300012: Line13
+    3300014: Obj_000003
+    4300000: Obj_000003
+    4300002: Line06
+    4300004: Line05
+    4300006: Line07
+    4300008: Line04
+    4300010: Line13
+    4300012: Line02
+    4300014: BLIND
+    2186277476908879412: ImportLogs
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 02 - Default
+    second: {fileID: 2100000, guid: 2e83e776e13d6064287d750343b4f8fa, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 03 - Default
+    second: {fileID: 2100000, guid: 592bd0f0066c2ca4c9948550cd8826fa, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wood_Cedfence
+    second: {fileID: 2100000, guid: 71003e90e9a1c57429c48e31c2f5460b, type: 2}
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 1
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

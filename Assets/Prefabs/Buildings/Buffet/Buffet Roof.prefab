@@ -29,7 +29,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4893059171390234
 Transform:
   m_ObjectHideFlags: 1
@@ -193,7 +193,7 @@ MonoBehaviour:
       localPivot: {x: 0, y: 0}
       localSize: {x: 0, y: 0}
       anchor: 9
-    _mat: {fileID: 2100000, guid: 1b410be636a8a0a41bb86b6f8080797c, type: 2}
+    _mat: {fileID: 2100000, guid: c2aaf09ea4d29d743ae7fe41245c03d4, type: 2}
     manualUV: 1
     textureGroup: -1
   - _indices: 0b0000000c0000000d0000000e0000000b0000000d000000
@@ -221,7 +221,7 @@ MonoBehaviour:
       localPivot: {x: 0, y: 0}
       localSize: {x: 0, y: 0}
       anchor: 9
-    _mat: {fileID: 2100000, guid: 1b410be636a8a0a41bb86b6f8080797c, type: 2}
+    _mat: {fileID: 2100000, guid: c2aaf09ea4d29d743ae7fe41245c03d4, type: 2}
     manualUV: 1
     textureGroup: -1
   - _indices: 100000001100000012000000110000001300000012000000
@@ -249,7 +249,7 @@ MonoBehaviour:
       localPivot: {x: 0, y: 0}
       localSize: {x: 0, y: 0}
       anchor: 9
-    _mat: {fileID: 2100000, guid: 1b410be636a8a0a41bb86b6f8080797c, type: 2}
+    _mat: {fileID: 2100000, guid: c2aaf09ea4d29d743ae7fe41245c03d4, type: 2}
     manualUV: 1
     textureGroup: -1
   - _indices: 140000001500000016000000150000001700000016000000
@@ -305,7 +305,7 @@ MonoBehaviour:
       localPivot: {x: 0, y: 0}
       localSize: {x: 0, y: 0}
       anchor: 9
-    _mat: {fileID: 2100000, guid: 1b410be636a8a0a41bb86b6f8080797c, type: 2}
+    _mat: {fileID: 2100000, guid: c2aaf09ea4d29d743ae7fe41245c03d4, type: 2}
     manualUV: 1
     textureGroup: -1
   - _indices: 1c0000001d0000001e0000001d0000001f0000001e000000

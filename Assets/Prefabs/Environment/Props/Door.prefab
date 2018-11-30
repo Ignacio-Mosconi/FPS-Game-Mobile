@@ -347,7 +347,7 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -377,7 +377,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 69.12338, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -4.386809, y: 9.987104, z: -1.3370975}
+  m_ConnectedAnchor: {x: -4.3868194, y: 9.987103, z: -1.3371097}
   m_UseSpring: 1
   m_Spring:
     spring: 1

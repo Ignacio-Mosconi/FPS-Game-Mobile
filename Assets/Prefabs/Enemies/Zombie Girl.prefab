@@ -1897,7 +1897,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1186911932948620}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 132.75578, y: 1, z: 76.26508}
+  m_LocalPosition: {x: 87.7, y: 1, z: 42.76629}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4637895707526460}
@@ -2455,6 +2455,7 @@ MonoBehaviour:
   nearDetectionDistance: 5
   investigationDistance: 20
   hearingDistance: 30
+  pushingForce: 7
   attackAnimation: {fileID: 7400000, guid: 87d73776719a4e04192da63a9f805907, type: 2}
 --- !u!114 &114713386595519070
 MonoBehaviour:
@@ -2568,9 +2569,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.6
-  m_Height: 3
+  m_Height: 3.2
   m_Direction: 1
-  m_Center: {x: 0, y: 1.5, z: 0}
+  m_Center: {x: 0, y: 1.6, z: 0}
 --- !u!137 &137165317997399278
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

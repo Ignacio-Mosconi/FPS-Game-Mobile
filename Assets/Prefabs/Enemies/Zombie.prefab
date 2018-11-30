@@ -2367,8 +2367,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1772508593585714}
-  m_LocalRotation: {x: 0.000000009080392, y: 0.000000011175871, z: 5.551115e-17, w: 1}
-  m_LocalPosition: {x: -0.0016789706, y: -0.08387709, z: -0.03301593}
+  m_LocalRotation: {x: 0.000000009080392, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.0016797355, y: -0.08387756, z: -0.033017606}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4045297339792248}
@@ -2755,8 +2755,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1804514630719326}
-  m_LocalRotation: {x: -0, y: -0.057705004, z: -0, w: 0.9983337}
-  m_LocalPosition: {x: 104.25, y: 3, z: 102.75}
+  m_LocalRotation: {x: -0, y: -0.28166792, z: -0, w: 0.95951194}
+  m_LocalPosition: {x: 126.25, y: 8.875, z: 40.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4747852073307732}
@@ -3229,6 +3229,7 @@ MonoBehaviour:
   nearDetectionDistance: 4
   investigationDistance: 15
   hearingDistance: 20
+  pushingForce: 3
   attackAnimation: {fileID: 7400000, guid: 87d73776719a4e04192da63a9f805907, type: 2}
 --- !u!114 &114365347457325794
 MonoBehaviour:
@@ -3341,9 +3342,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.6
-  m_Height: 3
+  m_Height: 3.2
   m_Direction: 1
-  m_Center: {x: 0, y: 1.5, z: 0}
+  m_Center: {x: 0, y: 1.6, z: 0}
 --- !u!136 &136351431983641814
 CapsuleCollider:
   m_ObjectHideFlags: 1

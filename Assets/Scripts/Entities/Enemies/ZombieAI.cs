@@ -20,6 +20,7 @@ public class ZombieAI : MonoBehaviour
     [SerializeField] [Range(1f, 5f)] float nearDetectionDistance;
     [SerializeField] [Range(2f, 25f)] float investigationDistance;
     [SerializeField] [Range(5f, 100f)] float hearingDistance;
+    [SerializeField] [Range(1f, 5f)] float pushingForce;
     
     [Header("Animations")]
     [SerializeField] AnimationClip attackAnimation;
@@ -160,9 +161,17 @@ public class ZombieAI : MonoBehaviour
         }
     }
 
-    void StartListeningTargets()
+    void OnCollisionEnter(Collision collision)
     {
-        
+        Rigidbody hitRigidbody = collision.transform.GetComponent<Rigidbody>();
+
+        Debug.Log(collision.transform.gameObject.name);
+
+        if (hitRigidbody)
+        {
+            Vector3 pushDirection = transform.forward;
+            hitRigidbody.velocity = pushDirection * pushingForce;
+        }
     }
 
     // Movement Methods

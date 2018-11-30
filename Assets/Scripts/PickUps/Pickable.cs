@@ -57,12 +57,11 @@ public abstract class Pickable : MonoBehaviour
                 StartLooking();
                 holdInteractTime = InputManager.Instance.GetInteractHoldButton() ? holdInteractTime + Time.deltaTime : 0f;
 
-                if (InputManager.Instance.GetInteractButton() || holdInteractTime > HOLD_INTERACT_TIME && CanPickUp())
+                if ((InputManager.Instance.GetInteractButton() || holdInteractTime > HOLD_INTERACT_TIME) && CanPickUp())
                     PickUpObject();
             }
             else 
-                StopLooking();
-                
+                StopLooking();            
         }
         else 
             StopLooking();

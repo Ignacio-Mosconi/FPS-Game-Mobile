@@ -160,6 +160,11 @@ public class ZombieAI : MonoBehaviour
         }
     }
 
+    void StartListeningTargets()
+    {
+        
+    }
+
     // Movement Methods
     bool IsOnAttackRange()
     {

@@ -425,9 +425,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loadingScreen: {fileID: 1879414338393738}
-  currentGfxSetting: 2
-  sfxVolumeValue: 0.75
-  musicVolumeValue: 0.75
+  settingsMenu: {fileID: 0}
 --- !u!114 &114683583854386314
 MonoBehaviour:
   m_ObjectHideFlags: 1

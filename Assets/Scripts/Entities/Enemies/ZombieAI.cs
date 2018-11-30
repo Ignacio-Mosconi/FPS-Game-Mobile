@@ -165,8 +165,6 @@ public class ZombieAI : MonoBehaviour
     {
         Rigidbody hitRigidbody = collision.transform.GetComponent<Rigidbody>();
 
-        Debug.Log(collision.transform.gameObject.name);
-
         if (hitRigidbody)
         {
             Vector3 pushDirection = transform.forward;

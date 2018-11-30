@@ -243,6 +243,11 @@ Prefab:
       value: 
       objectReference: {fileID: 21510035921187684, guid: d6f86f2680e7c784aa7a58bf44257c55,
         type: 2}
+    - target: {fileID: 114677388269165104, guid: 9847a54831cf84f4aae2be21d235b505,
+        type: 2}
+      propertyPath: settingsMenu
+      value: 
+      objectReference: {fileID: 2130792119}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9847a54831cf84f4aae2be21d235b505, type: 2}
   m_IsPrefabAsset: 0
@@ -527,3 +532,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28e9002b06fa67742a6ee6ae108bd416, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2130792119 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114079534920281678, guid: a5ce81a410bbc394c92491caeb531144,
+    type: 2}
+  m_PrefabInternal: {fileID: 1285189642}
+  m_Script: {fileID: 11500000, guid: e5712fa54f8873e40ac27afba4077053, type: 3}

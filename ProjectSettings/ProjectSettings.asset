@@ -118,7 +118,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 0
-  bundleVersion: 0.1
+  bundleVersion: 0.2
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -154,7 +154,7 @@ PlayerSettings:
     Android: com.greennacho.forsakenschool
     Standalone: com.greennacho.forsakenschool
   buildNumber:
-    Standalone: 1
+    Standalone: 2
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 18
   AndroidTargetSdkVersion: 0

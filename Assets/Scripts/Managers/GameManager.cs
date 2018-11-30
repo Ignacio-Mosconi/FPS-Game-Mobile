@@ -7,14 +7,15 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] GameObject loadingScreen;
-    [SerializeField] SettingsMenu.GfxSetting currentGfxSetting;
-    [SerializeField] float sfxVolumeValue = 0.75f;
-    [SerializeField] float musicVolumeValue = 0.75f;
-
+    [SerializeField] SettingsMenu settingsMenu;
+    
     static GameManager instance;
 
     const float MIN_LOAD_TIME = 1f;
 
+    SettingsMenu.GfxSetting currentGfxSetting;
+    float currentSfxVolume;
+    float currentMusicVolume;
     Animator animator;
     Slider loadingBarSlider;
     TextMeshProUGUI loadingText;
@@ -36,6 +37,21 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+#if UNITY_STANDALONE
+        currentGfxSetting = (SettingsMenu.GfxSetting)(PlayerPrefs.GetInt("GfxSetting", (int)SettingsMenu.GfxSetting.High));
+#else
+        currentGfxSetting = (SettingsMenu.GfxSetting)(PlayerPrefs.GetInt("GfxSetting", (int)SettingsMenu.GfxSetting.Medium));
+#endif
+        currentSfxVolume = PlayerPrefs.GetFloat("SfxVolume", 0.75f);
+        currentMusicVolume = PlayerPrefs.GetFloat("MusicVolume", 0.75f);
+
+        if (settingsMenu)
+        {
+            settingsMenu.UpdateGraphicsSetting();
+            settingsMenu.UpdateSfxVolume();
+            settingsMenu.UpdateMusicVolume();
+        }
+
         SceneManager.sceneLoaded += OnSceneLoaded;
         loadingBarSlider = loadingScreen.GetComponentInChildren<Slider>();
         loadingText = loadingScreen.GetComponentInChildren<TextMeshProUGUI>();
@@ -121,17 +137,29 @@ public class GameManager : MonoBehaviour
     public SettingsMenu.GfxSetting CurrentGfxSetting
     {
         get { return currentGfxSetting; }
-        set { currentGfxSetting = value; }
+        set 
+        { 
+            currentGfxSetting = value;
+            PlayerPrefs.SetInt("GfxSetting", (int)currentGfxSetting);
+        }
     }
 
-    public float SfxVolumeValue
+    public float CurrentSfxVolume
     {
-        get { return sfxVolumeValue; }
-        set { sfxVolumeValue = value; }
+        get { return currentSfxVolume; }
+        set 
+        {
+            currentSfxVolume = value;
+            PlayerPrefs.SetFloat("SfxVolume", currentSfxVolume);
+        }
     }
-    public float MusicVolumeValue
+    public float CurrentMusicVolume
     {
-        get { return musicVolumeValue; }
-        set { musicVolumeValue = value; }
+        get { return currentMusicVolume; }
+        set 
+        {
+            currentMusicVolume = value;
+            PlayerPrefs.SetFloat("MusicVolume", currentMusicVolume);
+        }
     }
 }

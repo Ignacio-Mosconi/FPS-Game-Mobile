@@ -64,7 +64,7 @@ public class Weapon : MonoBehaviour
     UnityEvent onEmptyMag = new UnityEvent();
     UnityEvent onCrosshairScale = new UnityEvent();
 
-    void Awake()
+    public void Awake()
     {
         fpsCamera = GetComponentInParent<Camera>().transform;
         muzzleFlash = GetComponentInChildren<ParticleSystem>();

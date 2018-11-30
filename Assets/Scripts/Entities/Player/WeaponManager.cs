@@ -22,6 +22,8 @@ public class WeaponManager : MonoBehaviour
 
 	void Awake ()
     {
+        foreach (Transform weapon in transform)
+            weapon.GetComponent<Weapon>().Awake();
         SetEquippedWeapon();
 	}
 

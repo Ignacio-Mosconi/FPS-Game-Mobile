@@ -210,12 +210,12 @@ public class HUD : MonoBehaviour
             if (canPickUp)
             {
                 pickUpText[1].text = "to pick up the";
-                pickUpText[2].text = pickableName;
+                pickUpText[2].text = pickableName + ".";
             }
             else
             {
                 cannotPickUpText[0].text = "You cannot pick up more ";
-                cannotPickUpText[1].text = pickableName;
+                cannotPickUpText[1].text = (pickableName == "Health Pack") ? pickableName + "s." : pickableName + ".";
             }
         }
         
